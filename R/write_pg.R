@@ -16,6 +16,7 @@
 #' @export 
 write_pg <- function(conn, name, value, ...) {
 	# TODO: Use S4 method for PostgreSQLConnection,character,data.frame
+	# TODO: Files should be exported in a different table
 	if(!"bibtexkey" %in% colnames(value))
 		stop("The column 'bibtexkey' is mandatory in 'value'.")
 	# TODO: Build a list of field names from the documentation (perhaps also comments)
