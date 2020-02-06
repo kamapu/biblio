@@ -28,7 +28,7 @@
 		stop("'bibtexkey', 'file' and 'mime' are mandatory fields in 'value'.")
 	if(any(!value$bibtexkey %in% refs$bibtexkey))
 		stop("Some values of 'bibtexkey' in 'value' are not present in 'refs'.")
-	value$file <- with(value, paste(file, mime, sep=":"))
+	value$file <- with(value, paste("", file, mime, sep=":"))
 	value <- split(value, value$bibtexkey)
 	value <- do.call(rbind, lapply(value, function(x)
 						c(x$bibtexkey[1], paste0(x$file, collapse=";"))))
