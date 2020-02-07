@@ -3,9 +3,12 @@
 \name{add_files}
 \alias{add_files}
 \alias{add_files<-}
+\alias{get_files}
 \title{Add List of Files from Additional Table}
 \usage{
 add_files(refs) <- value
+
+get_files(refs)
 }
 \arguments{
 \item{refs}{A data frame including reference entries imported from BibTeX
@@ -19,11 +22,17 @@ cross-checked and evenctually cause an error, thus you may clean this
 data frame before using it.}
 }
 \value{
-The same data frame 'refs' with an inserted or updated column 'file'.
+In `add_files<-` the same data frame 'refs' with an inserted or updated
+column 'file'.
+For `get_files`, a data frame with three columns, namely 'bibtexkey', 'file'
+and 'mime', where every file is listed in aseparated row.
 }
 \description{
-This function attempts to harmonize relational databases listing files in
-a separated relation (data frame).
+The function `add_files<-` attempts to harmonize relational databases listing
+files in a separated relation (data frame).
+
+The reverse function is called `get_files`, where a string will be converted
+into a data frame.
 }
 \author{
 Miguel Alvarez \email{kamapu78@gmail.com}
