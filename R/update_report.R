@@ -45,11 +45,12 @@ setMethod("update_report", signature(db="data.frame", bib="data.frame"),
 				if(any(tmp2))
 					OUT$updated[[i]] <- tmp2 else next
 			}
-			OUT$updated <- do.call(cbind, OUT$updated)
-			rownames(OUT$updated) <- common_keys
-			
-			OUT$updated <- OUT$updated[apply(OUT$updated, 1,
-							function(x) any(x)),,drop=FALSE]
+			if(length(OUT$updated) > 0) {
+				OUT$updated <- do.call(cbind, OUT$updated)
+				rownames(OUT$updated) <- common_keys
+				OUT$updated <- OUT$updated[apply(OUT$updated, 1,
+								function(x) any(x)),,drop=FALSE]
+			}
 			if(print_only) {
 				if(length(OUT$deleted) > 0)
 					cat(paste0("## deleted entries (", length(OUT$deleted),
@@ -61,7 +62,7 @@ setMethod("update_report", signature(db="data.frame", bib="data.frame"),
 									"):\n'",
 									paste0(OUT$added, collapse="' '"),
 									"'\n\n"))
-				if(nrow(OUT$updated) > 0)
+				if(length(OUT$updated) > 0)
 					for(i in rownames(OUT$updated)) {
 						cat(paste0("## ", i, ":\n"))
 						for(j in colnames(OUT$updated)[OUT$updated[i,]]) {
@@ -70,6 +71,8 @@ setMethod("update_report", signature(db="data.frame", bib="data.frame"),
 											bib[bib$bibtexkey == i,j], "\n\n"))
 						}
 					}
+				if(sum(sapply(OUT, length)) == 0)
+					cat("## no changes detected\n")
 			} else {
 				return(OUT)
 			}

@@ -10,7 +10,8 @@ Depends:
     R(>= 3.5.0)
 Imports:
     DBI,
-    methods
+    methods,
+    RPostgreSQL
 Suggests:
     devtools,
     goodpractice,

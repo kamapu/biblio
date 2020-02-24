@@ -4,10 +4,13 @@
 \alias{read_bib}
 \title{Read BibTeX Databases}
 \usage{
-read_bib(bib, ...)
+read_bib(bib, journaltitle = FALSE, ...)
 }
 \arguments{
 \item{bib}{Path to BibTeX file.}
+
+\item{journaltitle}{Logical value indicating whether empty values in field
+'journaltitle' should be filled with respective values in 'journal'.}
 
 \item{...}{Further arguments passed to \code{\link{readLines}}.}
 }
