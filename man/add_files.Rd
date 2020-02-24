@@ -22,16 +22,16 @@ cross-checked and evenctually cause an error, thus you may clean this
 data frame before using it.}
 }
 \value{
-In `add_files<-` the same data frame 'refs' with an inserted or updated
+In \verb{add_files<-} the same data frame 'refs' with an inserted or updated
 column 'file'.
-For `get_files`, a data frame with three columns, namely 'bibtexkey', 'file'
+For \code{get_files}, a data frame with three columns, namely 'bibtexkey', 'file'
 and 'mime', where every file is listed in aseparated row.
 }
 \description{
-The function `add_files<-` attempts to harmonize relational databases listing
+The function \verb{add_files<-} attempts to harmonize relational databases listing
 files in a separated relation (data frame).
 
-The reverse function is called `get_files`, where a string will be converted
+The reverse function is called \code{get_files}, where a string will be converted
 into a data frame.
 }
 \author{
