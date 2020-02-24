@@ -44,8 +44,8 @@ read_bib <- function(bib, journaltitle=FALSE, ...) {
 	new_bib <- with(new_bib, do.call(rbind, split(value, as.integer(refid))))
 	colnames(new_bib) <- fields
 	if(journaltitle & ("journal" %in% colnames(new_bib)))
-		new_bib$journaltitle[is.na(new_bib$journaltitle)] <-
-				new_bib$journal[is.na(new_bib$journaltitle)]
+		new_bib[is.na(new_bib[,"journaltitle"]), "journaltitle"] <-
+				new_bib[is.na(new_bib[,"journaltitle"]), "journal"]
 	colnames(type)[1:2] <- c("bib_type","bibtexkey")
 	# TODO: perhaps define S3 object
 	return(cbind(type[,c("bib_type","bibtexkey")], new_bib[match(type[,"refid"],
