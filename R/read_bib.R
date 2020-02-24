@@ -7,10 +7,12 @@
 #' will be inserted as character values.
 #' 
 #' @param bib Path to BibTeX file.
+#' @param journaltitle Logical value indicating whether empty values in field
+#'     'journaltitle' should be filled with respective values in 'journal'.
 #' @param ... Further arguments passed to \code{\link{readLines}}.
 #' 
 #' @export 
-read_bib <- function(bib, ...) {
+read_bib <- function(bib, journaltitle=FALSE, ...) {
 	bib <- readLines(bib, ...)
 	# skip empty lines and comments
 	bib <- bib[nchar(bib) > 0 & substring(bib, 1, 1) != "%"]
@@ -41,6 +43,9 @@ read_bib <- function(bib, ...) {
 							paste(bib[,1], bib[,2], sep="_")),3])
 	new_bib <- with(new_bib, do.call(rbind, split(value, as.integer(refid))))
 	colnames(new_bib) <- fields
+	if(journaltitle & ("journal" %in% colnames(new_bib)))
+		new_bib$journaltitle[is.na(new_bib$journaltitle)] <-
+				new_bib$journal[is.na(new_bib$journaltitle)]
 	colnames(type)[1:2] <- c("bib_type","bibtexkey")
 	# TODO: perhaps define S3 object
 	return(cbind(type[,c("bib_type","bibtexkey")], new_bib[match(type[,"refid"],
