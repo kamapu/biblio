@@ -31,8 +31,8 @@ setGeneric("update_report",
 setMethod("update_report", signature(db="data.frame", bib="data.frame"),
 		function(db, bib, print_only=TRUE, ...) {
 			OUT <- list()
-			OUT$deleted <- with(bib, bibtexkey[!bibtexkey %in% db$bibtexkey])
-			OUT$added <- with(db, bibtexkey[!bibtexkey %in% bib$bibtexkey])
+			OUT$deleted <- with(db, bibtexkey[!bibtexkey %in% bib$bibtexkey])
+			OUT$added <- with(bib, bibtexkey[!bibtexkey %in% db$bibtexkey])
 			OUT$updated <- list()
 			common_keys <- intersect(db$bibtexkey, bib$bibtexkey)
 			common_cols <- intersect(colnames(db), colnames(bib))
