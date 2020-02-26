@@ -11,6 +11,7 @@ Depends:
 Imports:
     DBI,
     methods,
+    rpostgis,
     RPostgreSQL
 Suggests:
     devtools,

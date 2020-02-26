@@ -1,5 +1,6 @@
 #' @name add_files
 #' @aliases add_files<-
+#' @rdname add_files
 #' 
 #' @title Add List of Files from Additional Table
 #' 
@@ -27,8 +28,8 @@
 #'  
 #' @author Miguel Alvarez \email{kamapu78@@gmail.com}
 #' 
-#' @rdname add_files
-#' @export 
+#' @export add_files<-
+#' 
 "add_files<-" <- function(refs, value) {
 	if(!"bibtexkey" %in% colnames(refs))
 		stop("'bibtexkey' is a mandatory column in 'refs'.")
@@ -45,8 +46,10 @@
 }
 
 #' @rdname add_files
+#' @aliases get_files
 #' 
-#' @export 
+#' @export get_files
+#' 
 get_files <- function(refs) {
 	if(!all(c("bibtexkey", "file") %in% colnames(refs)))
 		stop("Columns 'bibtexkey' and 'file' are mandatory in 'refs'.")

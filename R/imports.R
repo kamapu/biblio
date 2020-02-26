@@ -1,2 +1,3 @@
-#' @importFrom DBI dbConnect dbReadTable dbSendQuery dbWriteTable
+#' @importFrom DBI dbConnect dbGetQuery dbReadTable dbSendQuery dbWriteTable
+#' @importFrom rpostgis pgInsert
 NULL

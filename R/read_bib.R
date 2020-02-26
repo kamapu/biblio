@@ -9,10 +9,12 @@
 #' @param bib Path to BibTeX file.
 #' @param journaltitle Logical value indicating whether empty values in field
 #'     'journaltitle' should be filled with respective values in 'journal'.
+#' @param df Logical value indicating whether the output should be converted to
+#'    a data frame (the default) or just provided as matrix.
 #' @param ... Further arguments passed to \code{\link{readLines}}.
 #' 
 #' @export 
-read_bib <- function(bib, journaltitle=FALSE, ...) {
+read_bib <- function(bib, journaltitle=FALSE, df=TRUE, ...) {
 	bib <- readLines(bib, ...)
 	# skip empty lines and comments
 	bib <- bib[nchar(bib) > 0 & substring(bib, 1, 1) != "%"]
@@ -48,6 +50,8 @@ read_bib <- function(bib, journaltitle=FALSE, ...) {
 				new_bib[is.na(new_bib[,"journaltitle"]), "journal"]
 	colnames(type)[1:2] <- c("bib_type","bibtexkey")
 	# TODO: perhaps define S3 object
-	return(cbind(type[,c("bib_type","bibtexkey")], new_bib[match(type[,"refid"],
-									rownames(new_bib)),]))
+	new_bib <- cbind(type[,c("bib_type","bibtexkey")],
+			new_bib[match(type[,"refid"], rownames(new_bib)),])
+	if(df) return(as.data.frame(new_bib, stringsAsFactors=FALSE)) else
+		return(new_bib)
 }
