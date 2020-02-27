@@ -151,7 +151,7 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 							"AND table_name = '", main_table,"';\n")
 					column_names <- unlist(dbGetQuery(db, Query))
 					to_add <- to_add[,colnames(to_add) %in% column_names]
-					if(get_files) {
+					if(get_files & ("file" %in% colnames(to_add))) {
 						new_files <- get_files(to_add)
 						pgInsert(db, c(name, main_table),
 								to_add[,colnames(to_add) != "file"])
@@ -159,7 +159,7 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 					} else pgInsert(db, c(name, main_table), to_add)
 				}
 				if(update & (length(Comp$updated) > 0)) {
-					if(get_files) {
+					if(get_files & ("file" %in% colnames(Comp$updated))) {
 						new_files <- rownames(Comp$updated)[Comp$updated[,
 										"file", drop=TRUE]]
 						new_files <- bib[bib$bibtexkey %in% new_files,]
