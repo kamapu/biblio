@@ -6,6 +6,7 @@
 \alias{update_report,data.frame,data.frame-method}
 \alias{update_report,PostgreSQLConnection,character-method}
 \alias{update_pg,PostgreSQLConnection,data.frame-method}
+\alias{update_pg,PostgreSQLConnection,character-method}
 \title{Compare Bibtex-files with Postgres databases and update}
 \usage{
 update_report(db, bib, ...)
@@ -29,6 +30,8 @@ update_pg(db, bib, ...)
   file_list = "file_list",
   ...
 )
+
+\S4method{update_pg}{PostgreSQLConnection,character}(db, bib, name, db_args = list(), bib_args = list(), ...)
 }
 \arguments{
 \item{db}{Either a data frame imported by \code{\link[=read_pg]{read_pg()}} or a connection

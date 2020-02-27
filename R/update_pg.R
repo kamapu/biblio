@@ -145,6 +145,12 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 				}
 				if(add & (length(Comp$added) > 0)) {
 					to_add <- bib[bib$bibtexkey %in% Comp$added,]
+					Query <- paste0("SELECT column_name\n",
+							"FROM information_schema.columns\n",
+							"WHERE table_schema = '", name, "'\n",
+							"AND table_name = '", main_table,"';\n")
+					column_names <- unlist(dbGetQuery(db, Query))
+					to_add <- to_add[,colnames(to_add) %in% column_names]
 					if(get_files) {
 						new_files <- get_files(to_add)
 						pgInsert(db, c(name, main_table),
@@ -154,7 +160,8 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 				}
 				if(update & (length(Comp$updated) > 0)) {
 					if(get_files) {
-						new_files <- rownames(Comp$updated)[Comp$updated$file]
+						new_files <- rownames(Comp$updated)[Comp$updated[,
+										"file", drop=TRUE]]
 						new_files <- bib[bib$bibtexkey %in% new_files,]
 						new_files <- get_files(new_files)
 						old_files <- unlist(dbGetQuery(db,
@@ -189,6 +196,16 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 					
 				}
 			}
-			if(any(!c(delete, add, update)))
+			if(any(c(delete, add, update)))
 				message("DONE!")
+		}
+)
+
+#' @rdname update_pg
+#' @aliases update_pg,PostgreSQLConnection,character-method
+#' 
+setMethod("update_pg", signature(db="PostgreSQLConnection", bib="character"),
+		function(db, bib, name, db_args=list(), bib_args=list(), ...) {
+			bib <- do.call(bib, bib_args)
+			update_pg(db, bib, name, db_args, ...)
 		})
