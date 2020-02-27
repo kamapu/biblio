@@ -206,6 +206,6 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 #' 
 setMethod("update_pg", signature(db="PostgreSQLConnection", bib="character"),
 		function(db, bib, name, db_args=list(), bib_args=list(), ...) {
-			bib <- do.call(bib, bib_args)
+			bib <- do.call(update_pg, c(bib, bib_args))
 			update_pg(db, bib, name, db_args, ...)
 		})
