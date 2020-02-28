@@ -128,6 +128,11 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 			if(all(c(delete, add, update) == FALSE)) {
 				update_report(db_tab, bib)
 			} else {
+				Query <- paste0("SELECT column_name\n",
+						"FROM information_schema.columns\n",
+						"WHERE table_schema = '", name, "'\n",
+						"AND table_name = '", main_table,"';\n")
+				column_names <- unlist(dbGetQuery(db, Query))
 				Comp <- update_report(db_tab, bib, print_only=FALSE)
 				if(delete & (length(Comp$deleted) > 0)) {
 					Query <- paste0("DELETE FROM \"", name, "\".\"",
@@ -145,11 +150,6 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 				}
 				if(add & (length(Comp$added) > 0)) {
 					to_add <- bib[bib$bibtexkey %in% Comp$added,]
-					Query <- paste0("SELECT column_name\n",
-							"FROM information_schema.columns\n",
-							"WHERE table_schema = '", name, "'\n",
-							"AND table_name = '", main_table,"';\n")
-					column_names <- unlist(dbGetQuery(db, Query))
 					to_add <- to_add[,colnames(to_add) %in% column_names]
 					if(get_files & ("file" %in% colnames(to_add))) {
 						new_files <- get_files(to_add)
@@ -181,11 +181,13 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 						for(i in rownames(Comp$updated)) {
 							new_entries <-
 									colnames(Comp$updated)[Comp$updated[i,]]
+							new_entries <- new_entries[new_entries %in%
+											column_names]
 							new_values <- bib[bib$bibtexkey == i, new_entries]
 							new_values <- gsub("'", "''", new_values)
 							new_values <- paste0("\"", new_entries,"\" = '",
 									new_values, "'")
-							new_values <- paste0(new_values, collapse=" AND ")
+							new_values <- paste0(new_values, collapse=",\n    ")
 							Query <- paste0("UPDATE \"", name, "\".\"",
 									main_table, "\"\n",
 									"SET ", new_values, "\n",
