@@ -24,8 +24,8 @@ data frame before using it.}
 \value{
 In \verb{add_files<-} the same data frame 'refs' with an inserted or updated
 column 'file'.
-For \code{get_files}, a data frame with three columns, namely 'bibtexkey', 'file'
-and 'mime', where every file is listed in aseparated row.
+For \code{get_files}, a data frame with three columns, namely 'bibtexkey', 'file',
+'mime', and 'description' where every file is listed in aseparated row.
 }
 \description{
 The function \verb{add_files<-} attempts to harmonize relational databases listing

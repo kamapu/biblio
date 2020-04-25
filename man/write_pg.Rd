@@ -4,20 +4,39 @@
 \alias{write_pg}
 \title{Writing References from Data Frame to a Postgres Table}
 \usage{
-write_pg(conn, name, value, ...)
+write_pg(
+  conn,
+  name,
+  df1,
+  df2,
+  main_table = "main_table",
+  file_list = "file_list",
+  overwrite = FALSE,
+  ...
+)
 }
 \arguments{
-\item{conn}{A connection established with \code{\link{dbConnect}}.}
+\item{conn}{A connection established with \code{\link[=dbConnect]{dbConnect()}}.}
 
 \item{name}{A character vector with the names of the schema and the table.}
 
-\item{value}{A data frame including the data to be inserted in the created
-table.}
+\item{df1}{A data frame with the content for the main table.}
 
-\item{...}{Further arguments passed to \code{\link{dbWriteTable}}.}
+\item{df2}{A data frame with the content for the file table.}
+
+\item{main_table}{A character value indicating the name of the main table in
+the database.}
+
+\item{file_list}{A character value indicating the name of the file list in
+the database.}
+
+\item{overwrite}{A logical value indicating whether existing tables should be
+overwritten or not.}
+
+\item{...}{Further arguments (not used).}
 }
 \description{
 This function implement the creation of a Postgres table and its population
-with data imported by \code{\link{read_bib}}. To import data from a Postgres
-table created by this function just use \code{\link{dbReadTable}}.
+with data imported by \code{\link[=read_bib]{read_bib()}}. To import data from a Postgres
+table created by this function just use \code{\link[=dbReadTable]{dbReadTable()}}.
 }

@@ -23,8 +23,8 @@
 #' @return
 #' In `add_files<-` the same data frame 'refs' with an inserted or updated
 #' column 'file'.
-#' For `get_files`, a data frame with three columns, namely 'bibtexkey', 'file'
-#' and 'mime', where every file is listed in aseparated row.
+#' For `get_files`, a data frame with three columns, namely 'bibtexkey', 'file',
+#' 'mime', and 'description' where every file is listed in aseparated row.
 #'  
 #' @author Miguel Alvarez \email{kamapu78@@gmail.com}
 #' 
@@ -61,5 +61,7 @@ get_files <- function(refs) {
 	refs <- do.call(rbind, strsplit(file_string$file, ":", fixed=TRUE))
 	file_string$file <- refs[,2]
 	file_string$mime <- refs[,3]
-	return(file_string)
+	file_string$description <- refs[,1]
+	file_string$description[file_string$description == ""] <- NA
+	return(file_string[!is.na(file_string$file),])
 }
