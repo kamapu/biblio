@@ -101,7 +101,7 @@ print_comp <- function(comp) {
 						"):\n'",
 						paste0(rownames(comp$added), collapse="' '"),
 						"'\n\n"))
-	if(length(comp$updated) > 0)
+	if(nrow(comp$updated) > 0)
 		for(i in rownames(comp$updated)) {
 			cat(paste0("## updates in entry '", i, "':\n"))
 			for(j in colnames(comp$updated)[comp$updated[i,]]) {
@@ -109,7 +109,8 @@ print_comp <- function(comp) {
 								": ", comp$new_vals[i,j], "\n\n"))
 			}
 		}
-	if(sum(sapply(comp, length)) == 0)
+	if((length(comp$deleted) == 0) & (nrow(comp$added) == 0) &
+			(nrow(comp$updated) == 0))
 		cat("## no changes detected\n")
 }
 
