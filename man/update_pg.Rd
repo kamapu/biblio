@@ -4,16 +4,13 @@
 \alias{update_pg}
 \alias{update_report}
 \alias{update_report,data.frame,data.frame-method}
-\alias{update_report,PostgreSQLConnection,character-method}
 \alias{update_pg,PostgreSQLConnection,data.frame-method}
 \alias{update_pg,PostgreSQLConnection,character-method}
 \title{Compare Bibtex-files with Postgres databases and update}
 \usage{
 update_report(db, bib, ...)
 
-\S4method{update_report}{data.frame,data.frame}(db, bib, print_only = TRUE, ...)
-
-\S4method{update_report}{PostgreSQLConnection,character}(db, bib, name, db_args = list(), bib_args = list(), ...)
+\S4method{update_report}{data.frame,data.frame}(db, bib, get_files = TRUE, print_only = TRUE, ...)
 
 update_pg(db, bib, ...)
 
@@ -22,7 +19,6 @@ update_pg(db, bib, ...)
   bib,
   name,
   db_args = list(),
-  get_files = TRUE,
   delete = FALSE,
   add = FALSE,
   update = FALSE,
@@ -42,6 +38,10 @@ file. This data set represent an updated version of 'db'.}
 
 \item{...}{Further arguments passed among methods.}
 
+\item{get_files}{Logical value indicating whether a list of files should be
+extracted from 'bib' or not. If \code{TRUE}, then function \code{\link[=get_files]{get_files()}} will
+be applied.}
+
 \item{print_only}{Logical value indicating whether the outcome will be only
 printed in the console or stored as a list.}
 
@@ -49,12 +49,6 @@ printed in the console or stored as a list.}
 This argument is passed to \code{\link[=read_pg]{read_pg()}}.}
 
 \item{db_args}{List of named arguments passed to \code{\link[=read_pg]{read_pg()}}.}
-
-\item{bib_args}{List of named arguments passed to \code{\link[=read_bib]{read_bib()}}.}
-
-\item{get_files}{Logical value indicating whether a list of files should be
-extracted from 'bib' or not. If \code{TRUE}, then function \code{\link[=get_files]{get_files()}} will
-be applied.}
 
 \item{delete}{Logical value indicating whether missing entries in 'bib' have
 to be deleted in 'db'.}
@@ -70,6 +64,8 @@ Postgres (see \code{\link[=read_pg]{read_pg()}}).}
 
 \item{file_list}{Character value indicating the name of file list table in
 Postgres (see \code{\link[=read_pg]{read_pg()}}).}
+
+\item{bib_args}{List of named arguments passed to \code{\link[=read_bib]{read_bib()}}.}
 }
 \description{
 When changes done in the Bibtex duplicated file, they can be briefly

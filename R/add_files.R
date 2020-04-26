@@ -19,6 +19,9 @@
 #'     mandatory. The occurrence of all bibtexkey values in 'value' will be
 #'     cross-checked and evenctually cause an error, thus you may clean this
 #'     data frame before using it.
+#' @param priority Character value. A keyword used as file description to define
+#'     which is the main document in the entry. Files including this description
+#'     will be listed first in the output bibtex file (JabRef style).
 #' 
 #' @return
 #' In `add_files<-` the same data frame 'refs' with an inserted or updated
@@ -30,14 +33,16 @@
 #' 
 #' @export add_files<-
 #' 
-"add_files<-" <- function(refs, value) {
+"add_files<-" <- function(refs, priority="main text", value) {
 	if(!"bibtexkey" %in% colnames(refs))
 		stop("'bibtexkey' is a mandatory column in 'refs'.")
 	if(any(!c("bibtexkey", "file", "mime") %in% colnames(value)))
 		stop("'bibtexkey', 'file' and 'mime' are mandatory fields in 'value'.")
 	if(any(!value$bibtexkey %in% refs$bibtexkey))
 		stop("Some values of 'bibtexkey' in 'value' are not present in 'refs'.")
-	value$file <- with(value, paste("", file, mime, sep=":"))
+	value <- value[order(value$description == priority, decreasing=TRUE),]
+	value$description[is.na(value$description)] <- ""
+	value$file <- with(value, paste(description, file, mime, sep=":"))
 	value <- split(value, value$bibtexkey)
 	value <- do.call(rbind, lapply(value, function(x)
 						c(x$bibtexkey[1], paste0(x$file, collapse=";"))))

@@ -6,7 +6,7 @@
 \alias{get_files}
 \title{Add List of Files from Additional Table}
 \usage{
-add_files(refs) <- value
+add_files(refs, priority = "main text") <- value
 
 get_files(refs)
 }
@@ -14,6 +14,10 @@ get_files(refs)
 \item{refs}{A data frame including reference entries imported from BibTeX
 databases by \code{\link{read_bib}}. At least a column called 'bibtexkey'
 have to be included in this table.}
+
+\item{priority}{Character value. A keyword used as file description to define
+which is the main document in the entry. Files including this description
+will be listed first in the output bibtex file (JabRef style).}
 
 \item{value}{A data frame listing files with respective bibtexkey and
 MIME-Type. In this table the columns 'bibtexkey', 'file', and 'mime' are

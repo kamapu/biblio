@@ -17,34 +17,18 @@
 #'     the database.
 #' @param overwrite A logical value indicating whether existing tables should be
 #'     overwritten or not.
-#' @param ... Further arguments (not used).
+#' @param ... Further arguments passed to pgInsert.
 #' 
 #' @export write_pg
 #' 
 write_pg <- function(conn, name, df1, df2, main_table="main_table",
 		file_list="file_list", overwrite=FALSE, ...) {
 	# Create Schema if missing
-	Query <- paste0("SELECT EXISTS(SELECT 1 FROM pg_namespace",
+	Query <- paste0("SELECT EXISTS(SELECT 1 FROM pg_namespace", "\n",
 			"WHERE nspname = '", name,"');\n")
 	EX <- unlist(dbGetQuery(conn, Query))
 	if(!EX) {
 		Query <- paste0("CREATE SCHEMA \"", name, "\";")
-		dbSendQuery(conn, Query)
-	}
-	# Check existence of main table
-	Query <- paste0("SELECT EXISTS (\n",
-			"SELECT FROM information_schema.tables\n",
-			"WHERE table_schema = '", name,"'\n",
-			"AND table_name = '", main_table,"'\n",
-			");\n")
-	EX <- unlist(dbGetQuery(conn, Query))
-	if(EX & !overwrite)
-		stop(paste0("Table '", main_table, "' already exists. ",
-						"Consider option 'overwrite=TRUE'."))
-	if(EX & overwrite) {
-		warning(paste0("Table '", main_table, "' already exists ",
-						"and will be overwritten."))
-		Query <- paste0("DROP TABLE \"", name, "\".\"", main_table, "\";\n")
 		dbSendQuery(conn, Query)
 	}
 	# Check existence of file list
@@ -63,12 +47,28 @@ write_pg <- function(conn, name, df1, df2, main_table="main_table",
 		Query <- paste0("DROP TABLE \"", name, "\".\"", file_list, "\";\n")
 		dbSendQuery(conn, Query)
 	}
+	# Check existence of main table
+	Query <- paste0("SELECT EXISTS (\n",
+			"SELECT FROM information_schema.tables\n",
+			"WHERE table_schema = '", name,"'\n",
+			"AND table_name = '", main_table,"'\n",
+			");\n")
+	EX <- unlist(dbGetQuery(conn, Query))
+	if(EX & !overwrite)
+		stop(paste0("Table '", main_table, "' already exists. ",
+						"Consider option 'overwrite=TRUE'."))
+	if(EX & overwrite) {
+		warning(paste0("Table '", main_table, "' already exists ",
+						"and will be overwritten."))
+		Query <- paste0("DROP TABLE \"", name, "\".\"", main_table, "\";\n")
+		dbSendQuery(conn, Query)
+	}
 	# Writing tables
-	desc_tab <- read_ods(file.path(path.package("biblio"), "fields_list.ods"),
-			"main_table")
+	suppressMessages(desc_tab <- read_ods(file.path(path.package("biblio"),
+							"fields_list.ods"), "main_table"))
 	desc_tab <- desc_tab[desc_tab$field != "file",]
-	desc_fl <- read_ods(file.path(path.package("biblio"), "fields_list.ods"),
-			"file_list")
+	suppressMessages(desc_fl <- read_ods(file.path(path.package("biblio"),
+							"fields_list.ods"), "file_list"))
 	message("Creating tables...")
 	# Main table
 	Query <- with(desc_tab, {
@@ -103,28 +103,14 @@ write_pg <- function(conn, name, df1, df2, main_table="main_table",
 	with(desc_fl, {
 				for(i in 1:length(field)) {
 					Query <- paste0("COMMENT ON COLUMN \"", name, "\".\"",
-							main_table, "\".\"", field[i], "\"\nIS '",
+							file_list, "\".\"", field[i], "\"\nIS '",
 							description[i], "';\n")
 					dbSendQuery(conn, Query)
 				}
 			})
 	# Inserting data
 	message("Inserting data...")
-	pgInsert(conn, c(name, main_table), df1)
-	pgInsert(conn, c(name, file_list), df2)
+	pgInsert(conn, c(name, main_table), df1, ...)
+	pgInsert(conn, c(name, file_list), df2, ...)
 	message("DONE!")
 }
-
-## write_pg <- function(conn, name, value, ...) {
-##     # TODO: Use S4 method for PostgreSQLConnection,character,data.frame
-##     # TODO: Files should be exported in a different table
-##     if(!"bibtexkey" %in% colnames(value))
-##         stop("The column 'bibtexkey' is mandatory in 'value'.")
-##     # TODO: Build a list of field names from the documentation (perhaps also comments)
-##     if(any(duplicated(value$bibtexkey)))
-##         stop("Duplicated values are not allowed in column 'bibtexkey'.")
-##     dbWriteTable(conn, name, value, ...)
-##     Query <- paste0("ALTER TABLE \"", paste(name, collapse="\".\""), "\"\n",
-##             "ADD PRIMARY KEY (bibtexkey);\n")
-##     dbSendQuery(conn, Query)
-## }

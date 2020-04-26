@@ -33,7 +33,7 @@ the database.}
 \item{overwrite}{A logical value indicating whether existing tables should be
 overwritten or not.}
 
-\item{...}{Further arguments (not used).}
+\item{...}{Further arguments passed to pgInsert.}
 }
 \description{
 This function implement the creation of a Postgres table and its population
