@@ -150,7 +150,7 @@ sql_update <- function(conn, obj, name, key, ...) {
 				"SET \"", with(obj,
 						paste0(paste0(colnames(updated)[updated[i,]],
 										"\" = '", new_vals[i,updated[i,]]),
-								collapse="'\nAND ")), "'\n",
+								collapse="'\nAND \"")), "'\n",
 				"WHERE \"", key, "\" = '", i, "';")
 		dbSendQuery(conn, Query)
 	}
