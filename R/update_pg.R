@@ -123,12 +123,20 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
 								"bibtexkey")
 				}
 				if(update) {
-					if(nrow(Comp_mt$updated) > 0)
+					if(nrow(Comp_mt$updated) > 0) {
+						for(i in colnames(Comp_mt$new_vals))
+							Comp_mt$new_vals[,i] <- gsub("'", "''",
+									Comp_mt$new_vals[,i], fixed=TRUE)
 						biblio:::sql_update(db, Comp_mt, c(name, main_table),
 								"bibtexkey")
-					if(nrow(Comp_fl$updated) > 0)
+					}
+					if(nrow(Comp_fl$updated) > 0) {
+						for(i in colnames(Comp_fl$new_vals))
+							Comp_fl$new_vals[,i] <- gsub("'", "''",
+									Comp_fl$new_vals[,i], fixed=TRUE)
 						biblio:::sql_update(db, Comp_fl, c(name, file_list),
 								"file")
+					}
 				}
 			}
 			if(any(c(add, delete, update)))
