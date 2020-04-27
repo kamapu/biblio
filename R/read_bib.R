@@ -14,7 +14,7 @@
 #' @param ... Further arguments passed to \code{\link{readLines}}.
 #' 
 #' @export 
-read_bib <- function(bib, journaltitle=FALSE, df=TRUE, ...) {
+read_bib <- function(bib, journaltitle=TRUE, df=TRUE, ...) {
 	bib <- readLines(bib, ...)
 	# skip empty lines and comments
 	bib <- bib[nchar(bib) > 0 & substring(bib, 1, 1) != "%"]

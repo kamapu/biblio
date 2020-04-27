@@ -4,7 +4,7 @@
 \alias{read_bib}
 \title{Read BibTeX Databases}
 \usage{
-read_bib(bib, journaltitle = FALSE, df = TRUE, ...)
+read_bib(bib, journaltitle = TRUE, df = TRUE, ...)
 }
 \arguments{
 \item{bib}{Path to BibTeX file.}

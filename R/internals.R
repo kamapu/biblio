@@ -97,7 +97,7 @@ print_comp <- function(comp) {
 						paste0(comp$deleted, collapse="' '"),
 						"'\n\n"))
 	if(nrow(comp$added) > 0)
-		cat(paste0("## added entries (", length(comp$added),
+		cat(paste0("## added entries (", nrow(comp$added),
 						"):\n'",
 						paste0(rownames(comp$added), collapse="' '"),
 						"'\n\n"))
