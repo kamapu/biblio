@@ -17,7 +17,7 @@ A method for a brief overview on the content of a 'lib_df' object.
 }
 \examples{
 Bib <- read_bib(bib=file.path(path.package("biblio"),
-    "luebert_pliscoff.bib"))
+    "LuebertPliscoff.bib"))
 Bib
 
 }

@@ -12,10 +12,9 @@
 #' 
 #' @examples
 #' Bib <- read_bib(bib=file.path(path.package("biblio"),
-#'     "luebert_pliscoff.bib"))
+#'     "LuebertPliscoff.bib"))
 #' Bib
 #' 
-#' @export print
 #' @method print lib_df
 #' 
 print.lib_df <- function(x, ...) {

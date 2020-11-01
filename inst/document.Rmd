@@ -1,0 +1,31 @@
+---
+title: A lorem ipsum example
+author: Nobody
+output: html_document
+bibliography: LuebertPliscoff.bib
+---
+
+# Introduction
+
+Lorem ipsum dolor sit amet, @oberdorfer1960 nascetur nibh lorem ac ac auctor,
+congue mauris.
+Vivamus tristique ante a in taciti quis tellus [@veblen1995;@veblen1996]. Nostra
+sed viverra amet tristique. Aliquam ridiculus tellus quis. Mattis ut rutrum at
+fusce vivamus cubilia pharetra nam sed? Lacus ligula mattis dui pretium etiam
+lorem donec phasellus urna interdum et sollicitudin morbi [@oberdorfer1960]. Ut
+lacinia, eros curabitur. Sed arcu in dictum nunc vestibulum, vivamus dolor curae
+ligula. Tellus, non justo tempus sit, vel. Natoque, purus consectetur ante
+dignissim fermentum. Volutpat egestas per neque felis eros tortor efficitur
+[@oberdorfer1960].
+
+## About this text
+
+Donec est eget in, mollis curae sit a placerat tincidunt quis nunc tellus
+quisque massa [@veblen1996;@pollmann2004]. Sem nec lacinia sem sed mollis nec eu vulputate litora luctus
+dictumst lorem semper, natoque. Et nunc, ut cras taciti varius nunc ligula vel
+mi sit sagittis. Erat nulla mauris justo at vestibulum tristique ullamcorper,
+sollicitudin litora. Auctor tempus eu mattis massa, in ridiculus metus iaculis
+lacus velit in nostra. Montes, eget penatibus ante platea amet aenean aenean
+potenti justo [@ramirez2005].
+
+# References

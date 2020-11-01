@@ -3,6 +3,8 @@
 # Author: Miguel Alvarez
 ###############################################################################
 
+setwd("data-raw")
+
 ## Writing the document example
 rmd_text <- c("# Introduction",
 		"",
@@ -16,6 +18,47 @@ writeLines(rmd_text, "document.Rmd")
 # Bibtexkeys from bib file
 keys <- c("bibkey_a", "bibkey_b", "bibkey_c", "bibkey_d",
 		"Noname2000", "Ladybug1999", "Ladybug2009", "Ladybug2009a")
+
+
+# Generic
+match_keys <- function (x, ...) {
+	UseMethod("match_keys", x)
+}
+
+# Method
+match_keys.lib_df <- function(x, rmd_file, ...) {
+	rmd_file <- readLines(rmd_file, ...)
+	keys <- paste0("@", x$bibtexkey)
+	cited_refs <- list()
+	for(i in 1:length(rmd_file)) {
+		cited_refs[[i]] <- data.frame(
+				bibtexkey=sub("@", "", str_extract(rmd_file[i], keys)),
+				line=i, stringsAsFactors=FALSE)
+	}
+	cited_refs <- do.call(rbind, cited_refs)
+	cited_refs <- cited_refs[!is.na(cited_refs$bibtexkey), ]
+	return(cited_refs)
+}
+
+
+library(biblio)
+library(stringr)
+
+
+Bib <- read_bib("inst/LuebertPliscoff.bib")
+
+Test <- match_keys(Bib, rmd_file="inst/document.Rmd")
+
+aggregate(line ~ bibtexkey, data=Test, FUN=length)
+
+
+
+
+
+setwd(gsub("/data-raw", "", getwd()))
+
+
+
 keys <- paste0("@", keys)
 
 # Read document

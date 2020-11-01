@@ -1,0 +1,7 @@
+# Introduction
+
+Lorem ipsum dolor sit amet [@bibkey_a], consectetur adipisici elit [@bibkey_b],
+sed eiusmod tempor incidunt ut labore et dolore magna aliqua [@bibkey_c;@bibkey_d].
+
+According to @Noname2000, the world is round [@Ladybug1999;Ladybug2009].
+This knowledge got lost [@Ladybug2009a].

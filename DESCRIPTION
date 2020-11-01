@@ -13,7 +13,8 @@ Imports:
     methods,
     readODS,
     rpostgis,
-    RPostgreSQL
+    RPostgreSQL,
+    stringr
 Suggests:
     devtools,
     rmarkdown,

@@ -2,7 +2,7 @@
 
 export("add_files<-")
 export(get_files)
-export(print)
+export(match_keys)
 export(read_bib)
 export(write_bib)
 export(write_pg)
@@ -16,3 +16,4 @@ importFrom(DBI,dbSendQuery)
 importFrom(DBI,dbWriteTable)
 importFrom(readODS,read_ods)
 importFrom(rpostgis,pgInsert)
+importFrom(stringr,str_extract)
