@@ -13,12 +13,12 @@ read_pg(conn, name, ...)
   main_table = "main_table",
   file_list = "file_list",
   add_files = TRUE,
-  journal = FALSE,
   ...
 )
 }
 \arguments{
-\item{conn}{A database connection established with \code{\link[=dbConnect]{dbConnect()}}.}
+\item{conn}{A database connection established with \code{\link[=dbConnect]{dbConnect()}} or
+\code{\link[dbaccess:connect_db]{dbaccess::connect_db2()}}.}
 
 \item{name}{Name of the database corresponding to a schema in the PostgreSQL
 database.}

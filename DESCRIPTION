@@ -1,5 +1,5 @@
 Package: biblio
-Version: 0.0.1.9005
+Version: 0.0.1.9006
 Encoding: UTF-8
 Title: Interacting with BibTeX Databases
 Authors@R: c(
@@ -16,18 +16,16 @@ Imports:
     RPostgreSQL
 Suggests:
     devtools,
-    goodpractice,
-    knitr,
-    stringi,
-    testthat,
     rmarkdown,
     covr
+Remotes:
+    gitlab::kamapu/dbaccess,
+    github::kamapu/yamlme
 LazyData: true
 Description: Reading and writing BibTeX files by using data frames. Also
     interactions with PostgreSQL databases are implemented.
 License: GPL (>= 2)
 URL: https://github.com/kamapu/biblio
 BugReports: https://github.com/kamapu/taxlist/issues
-VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

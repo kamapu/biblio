@@ -7,14 +7,10 @@
 #' will be inserted as character values.
 #' 
 #' @param bib Path to BibTeX file.
-#' @param journaltitle Logical value indicating whether empty values in field
-#'     'journaltitle' should be filled with respective values in 'journal'.
-#' @param df Logical value indicating whether the output should be converted to
-#'    a data frame (the default) or just provided as matrix.
 #' @param ... Further arguments passed to \code{\link{readLines}}.
 #' 
 #' @export 
-read_bib <- function(bib, journaltitle=TRUE, df=TRUE, ...) {
+read_bib <- function(bib, ...) {
 	bib <- readLines(bib, ...)
 	# skip empty lines and comments
 	bib <- bib[nchar(bib) > 0 & substring(bib, 1, 1) != "%"]
@@ -29,7 +25,6 @@ read_bib <- function(bib, journaltitle=TRUE, df=TRUE, ...) {
 	type <- cbind(type, refid)
 	type <- type[type[,1] != "Comment",]
 	bib <- bib[bib[,1] %in% type[,3],]
-	rm(refid) # for security
 	# warn duplicated bibtexkeys
 	if(any(duplicated(type[,3])))
 		warning("Some duplicated values for 'bibtexkey' in 'bib'.")
@@ -45,13 +40,11 @@ read_bib <- function(bib, journaltitle=TRUE, df=TRUE, ...) {
 							paste(bib[,1], bib[,2], sep="_")),3])
 	new_bib <- with(new_bib, do.call(rbind, split(value, as.integer(refid))))
 	colnames(new_bib) <- fields
-	if(journaltitle & ("journal" %in% colnames(new_bib)))
-		new_bib[is.na(new_bib[,"journaltitle"]), "journaltitle"] <-
-				new_bib[is.na(new_bib[,"journaltitle"]), "journal"]
 	colnames(type)[1:2] <- c("bib_type","bibtexkey")
-	# TODO: perhaps define S3 object
 	new_bib <- cbind(type[,c("bib_type","bibtexkey")],
 			new_bib[match(type[,"refid"], rownames(new_bib)),])
-	if(df) return(as.data.frame(new_bib, stringsAsFactors=FALSE)) else
-		return(new_bib)
+	# Defining S3 class
+	new_bib <- as.data.frame(new_bib, stringsAsFactors=FALSE)
+	class(new_bib) <- c("lib_df", "data.frame")
+	return(new_bib)
 }

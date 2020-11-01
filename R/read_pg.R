@@ -6,7 +6,8 @@
 #' @description 
 #' Databases tabulated in PostgreSQL will be imported in a data frame.
 #' 
-#' @param conn A database connection established with [dbConnect()].
+#' @param conn A database connection established with [dbConnect()] or
+#'     [dbaccess::connect_db2()].
 #' @param name Name of the database corresponding to a schema in the PostgreSQL
 #'     database.
 #' @param main_table A character value indicating the name of the main table in
@@ -32,13 +33,12 @@ setGeneric("read_pg",
 #' 
 setMethod("read_pg", signature(conn="PostgreSQLConnection", name="character"),
 		function(conn, name, main_table="main_table", file_list="file_list",
-				add_files=TRUE, journal=FALSE, ...) {
+				add_files=TRUE, ...) {
 			Refs <- dbReadTable(conn, c(name, main_table))
 			if(add_files) {
 				Files <- dbReadTable(conn, c(name, file_list))
 				add_files(Refs) <- Files
 			}
-			if(journal)
-				Refs$journal <- Refs$journaltitle
+			class(Refs) <- c("lib_df", "data.frame")
 			return(Refs)
 		})

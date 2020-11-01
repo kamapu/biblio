@@ -4,16 +4,10 @@
 \alias{read_bib}
 \title{Read BibTeX Databases}
 \usage{
-read_bib(bib, journaltitle = TRUE, df = TRUE, ...)
+read_bib(bib, ...)
 }
 \arguments{
 \item{bib}{Path to BibTeX file.}
-
-\item{journaltitle}{Logical value indicating whether empty values in field
-'journaltitle' should be filled with respective values in 'journal'.}
-
-\item{df}{Logical value indicating whether the output should be converted to
-a data frame (the default) or just provided as matrix.}
 
 \item{...}{Further arguments passed to \code{\link{readLines}}.}
 }

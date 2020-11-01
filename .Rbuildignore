@@ -1,4 +1,5 @@
 ^readings$
 ^data-raw$
+^build-pkg$
 ^README\.Rmd$
 ^README\.md$
