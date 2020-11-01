@@ -3,6 +3,7 @@
 export("add_files<-")
 export(get_files)
 export(match_keys)
+export(print)
 export(read_bib)
 export(write_bib)
 export(write_pg)

@@ -15,6 +15,7 @@
 #'     "LuebertPliscoff.bib"))
 #' Bib
 #' 
+#' @export print
 #' @method print lib_df
 #' 
 print.lib_df <- function(x, ...) {
