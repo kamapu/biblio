@@ -9,7 +9,13 @@
 #' @param bib Path to BibTeX file.
 #' @param ... Further arguments passed to \code{\link{readLines}}.
 #' 
-#' @export 
+#' #' @examples
+#' Bib <- read_bib(bib=file.path(path.package("biblio"),
+#'     "LuebertPliscoff.bib"))
+#' Bib
+#' 
+#' @export read_bib
+#' 
 read_bib <- function(bib, ...) {
 	bib <- readLines(bib, ...)
 	# skip empty lines and comments

@@ -9,7 +9,12 @@ read_bib(bib, ...)
 \arguments{
 \item{bib}{Path to BibTeX file.}
 
-\item{...}{Further arguments passed to \code{\link{readLines}}.}
+\item{...}{Further arguments passed to \code{\link{readLines}}.
+
+#' @examples
+Bib <- read_bib(bib=file.path(path.package("biblio"),
+"LuebertPliscoff.bib"))
+Bib}
 }
 \description{
 Reading BibTeX databases and importing into R as a data frame. All the fields

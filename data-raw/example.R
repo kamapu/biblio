@@ -3,6 +3,22 @@
 # Author: Miguel Alvarez
 ###############################################################################
 
+remotes::install_github("kamapu/biblio")
+library(biblio)
+
+
+
+Bib <- read_bib(bib=file.path(path.package("biblio"),
+    "LuebertPliscoff.bib"))
+Bib
+
+match_keys(x=Bib, rmd_file=file.path(path.package("biblio"),
+				"document.Rmd"))
+
+
+###
+
+
 setwd("data-raw")
 
 ## Writing the document example
