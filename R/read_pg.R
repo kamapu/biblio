@@ -17,8 +17,6 @@
 #'     attributes.
 #' @param add_files Logical value indicating whether information in table
 #'     'file_list' should be appended to the output or not.
-#' @param journal Logical value. If `TRUE`, a column 'journal' as duplicated of
-#'     'journaltitle' will be inserted in the output.
 #' @param ... Further arguments passed among methods.
 #' 
 #' @exportMethod read_pg

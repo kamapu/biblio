@@ -34,9 +34,6 @@ attributes.}
 
 \item{add_files}{Logical value indicating whether information in table
 'file_list' should be appended to the output or not.}
-
-\item{journal}{Logical value. If \code{TRUE}, a column 'journal' as duplicated of
-'journaltitle' will be inserted in the output.}
 }
 \description{
 Databases tabulated in PostgreSQL will be imported in a data frame.

@@ -2,6 +2,7 @@
 
 export("add_files<-")
 export(get_files)
+export(print)
 export(read_bib)
 export(write_bib)
 export(write_pg)
