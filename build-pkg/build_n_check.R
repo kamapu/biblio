@@ -4,9 +4,12 @@
 ################################################################################
 
 # required_packages
-pkgs <- c("devtools",
-		"rmarkdown")
-gisrepos::require_now(pkgs, update=TRUE, dependencies=TRUE)
+remotes::install_github("r-lib/devtools")
+remotes::install_github("rstudio/rmarkdown")
+remotes::install_github("r-lib/roxygen2")
+
+library(devtools)
+library(rmarkdown)
 
 # document package
 document()

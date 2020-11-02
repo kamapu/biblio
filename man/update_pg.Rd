@@ -3,18 +3,18 @@
 \name{update_pg}
 \alias{update_pg}
 \alias{update_report}
-\alias{update_report,data.frame,data.frame-method}
-\alias{update_pg,PostgreSQLConnection,data.frame-method}
+\alias{update_report,lib_df,lib_df-method}
+\alias{update_pg,PostgreSQLConnection,lib_df-method}
 \alias{update_pg,PostgreSQLConnection,character-method}
 \title{Compare Bibtex-files with Postgres databases and update}
 \usage{
 update_report(db, bib, ...)
 
-\S4method{update_report}{data.frame,data.frame}(db, bib, get_files = TRUE, print_only = TRUE, ...)
+\S4method{update_report}{lib_df,lib_df}(db, bib, get_files = TRUE, print_only = TRUE, ...)
 
 update_pg(db, bib, ...)
 
-\S4method{update_pg}{PostgreSQLConnection,data.frame}(
+\S4method{update_pg}{PostgreSQLConnection,lib_df}(
   db,
   bib,
   name,

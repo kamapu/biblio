@@ -44,9 +44,9 @@ setGeneric("update_report",
 )
 
 #' @rdname update_pg
-#' @aliases update_report,data.frame,data.frame-method
+#' @aliases update_report,lib_df,lib_df-method
 #' 
-setMethod("update_report", signature(db="data.frame", bib="data.frame"),
+setMethod("update_report", signature(db="lib_df", bib="lib_df"),
 		function(db, bib, get_files=TRUE, print_only=TRUE, ...) {
 			# Printing heads
 			pr_head <- list()
@@ -92,9 +92,9 @@ setGeneric("update_pg",
 )
 
 #' @rdname update_pg
-#' @aliases update_pg,PostgreSQLConnection,data.frame-method
+#' @aliases update_pg,PostgreSQLConnection,lib_df-method
 #' 
-setMethod("update_pg", signature(db="PostgreSQLConnection", bib="data.frame"),
+setMethod("update_pg", signature(db="PostgreSQLConnection", bib="lib_df"),
 		function(db, bib, name, db_args=list(), delete=FALSE, add=FALSE,
 				update=FALSE, main_table="main_table", file_list="file_list",
 				...) {
