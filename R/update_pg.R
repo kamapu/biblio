@@ -109,10 +109,14 @@ setMethod("update_pg", signature(db="PostgreSQLConnection", bib="lib_df"),
 				Comp_mt <- biblio:::compare_df(db_tab, bib, "bibtexkey")
 				Comp_fl <- biblio:::compare_df(db_fl, bib_fl, "file")
 				if(add) {
-					if(nrow(Comp_mt$added) > 0)
+					if(nrow(Comp_mt$added) > 0) {
+						class(Comp_mt$added) <- "data.frame"
 						pgInsert(db, c(name, main_table), Comp_mt$added, ...)
-					if(nrow(Comp_fl$added) > 0)
+					}
+					if(nrow(Comp_fl$added) > 0) {
+						class(Comp_fl$added) <- "data.frame"
 						pgInsert(db, c(name, file_list), Comp_fl$added, ...)
+					}
 				}
 				if(delete) {
 					if(length(Comp_fl$deleted) > 0)

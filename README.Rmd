@@ -31,10 +31,35 @@ A copy of the references cited in the book of [Luebert & Pliscoff
 (2016)](https://doi.org/10.5281/zenodo.60800) is also installed with this
 package.
 
-```{r eval=FALSE}
-Bib <- read_bib()
+```{r}
+library(biblio)
+Bib <- read_bib(bib=file.path(path.package("biblio"), "LuebertPliscoff.bib"))
+Bib
 ```
 
+A "fake" r-markdown document is also installed to test the
+function `match_keys()`, which is able to recognize the bibtexkeys in use
+within an r-markdown docuemnt.
 
+```{r}
+cited_refs <- match_keys(x=Bib, rmd_file=file.path(path.package("biblio"),
+				"document.Rmd"))
+cited_refs
+```
 
+The output shows the respective bibtexkey by its occurrence in the document
+(line number).
+With this output it is also possible to do some statistics.
 
+```{r}
+stats_refs <- aggregate(line ~ bibtexkey, data=cited_refs, FUN=length)
+
+# Number of citations in text
+sum(stats_refs$line)
+
+# Number of cited articles
+nrow(stats_refs)
+
+# Respective frequency to know rare citations in text
+stats_refs[order(stats_refs$line), ]
+```
