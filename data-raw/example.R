@@ -6,7 +6,8 @@
 remotes::install_github("kamapu/biblio")
 library(biblio)
 
-
+library(devtools)
+install()
 
 Bib <- read_bib(bib=file.path(path.package("biblio"),
     "LuebertPliscoff.bib"))

@@ -31,7 +31,7 @@ match_keys <- function (x, ...) {
 
 #' @rdname match_keys
 #' 
-#' @method match_keys lib_df
+#' @S3method match_keys lib_df
 #' 
 match_keys.lib_df <- function(x, rmd_file, ...) {
 	rmd_file <- readLines(rmd_file, ...)

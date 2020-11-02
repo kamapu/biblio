@@ -15,8 +15,7 @@
 #'     "LuebertPliscoff.bib"))
 #' Bib
 #' 
-#' @export print
-#' @method print lib_df
+#' @S3method print lib_df
 #' 
 print.lib_df <- function(x, ...) {
 	cat(paste0("Object of class 'lib_df'\n\n",
