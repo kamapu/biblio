@@ -2,17 +2,20 @@
 % Please edit documentation in R/match_keys.R
 \name{match_keys}
 \alias{match_keys}
+\alias{match_keys.character}
 \alias{match_keys.lib_df}
 \title{Match bibtexkeys used in an r-markdown document}
 \usage{
 match_keys(x, ...)
+
+\method{match_keys}{character}(x, rmd_file, ...)
 
 \method{match_keys}{lib_df}(x, rmd_file, ...)
 }
 \arguments{
 \item{x}{An object of class 'lib_df'.}
 
-\item{...}{Further arguments passed among methods (not in use).}
+\item{...}{Further arguments passed to \code{\link[=readLines]{readLines()}}.}
 
 \item{rmd_file}{A character vector indicating the path to the r-markdown file
 to be scanned.}

@@ -17,7 +17,7 @@
 #' @param x An object of class 'lib_df'.
 #' @param rmd_file A character vector indicating the path to the r-markdown file
 #'     to be scanned.
-#' @param ... Further arguments passed among methods (not in use).
+#' @param ... Further arguments passed to [readLines()].
 #' 
 #' @return 
 #' A data frame with two columns, `bibtexkey` for the found keys and `line`
@@ -31,12 +31,12 @@ match_keys <- function (x, ...) {
 
 #' @rdname match_keys
 #' 
-#' @method match_keys lib_df
+#' @method match_keys character
 #' @export 
 #' 
-match_keys.lib_df <- function(x, rmd_file, ...) {
+match_keys.character <- function(x, rmd_file, ...) {
 	rmd_file <- readLines(rmd_file, ...)
-	keys <- paste0("@", x$bibtexkey)
+	keys <- paste0("@", x)
 	cited_refs <- list()
 	for(i in 1:length(rmd_file)) {
 		cited_refs[[i]] <- data.frame(
@@ -46,4 +46,14 @@ match_keys.lib_df <- function(x, rmd_file, ...) {
 	cited_refs <- do.call(rbind, cited_refs)
 	cited_refs <- cited_refs[!is.na(cited_refs$bibtexkey), ]
 	return(cited_refs)
+}
+
+#' @rdname match_keys
+#' 
+#' @method match_keys lib_df
+#' @export 
+#' 
+match_keys.lib_df <- function(x, rmd_file, ...) {
+	keys <- paste(x$bibtexkey)
+	return(match_keys(x=keys, rmd_file=rmd_file, ...))
 }
