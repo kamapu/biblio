@@ -68,3 +68,15 @@ setMethod("compare_df", signature(x = "data.frame", y = "data.frame",
 			class(OUT) <- c("comp_df", "list")
 			return(OUT)
 		})
+
+#' @rdname compare_df
+#' 
+#' @aliases compare_df,lib_df,lib_df,missing-method
+#' 
+setMethod("compare_df", signature(x = "lib_df", y = "lib_df",
+				key = "missing"), function(x, y, ...) {
+			key <- "bibtexkey"
+			class(x) <- "data.frame"
+			class(y) <- "data.frame"
+			compare_df(x = x, y = y, key = key, ...)
+		})
