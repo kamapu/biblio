@@ -3,9 +3,12 @@
 \name{print}
 \alias{print}
 \alias{print.lib_df}
+\alias{print.comp_df}
 \title{Print content of lib_df objects}
 \usage{
 \method{print}{lib_df}(x, ...)
+
+\method{print}{comp_df}(x, ...)
 }
 \arguments{
 \item{x}{An object of class 'lib_df'.}

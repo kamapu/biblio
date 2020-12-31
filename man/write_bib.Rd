@@ -2,9 +2,12 @@
 % Please edit documentation in R/write_bib.R
 \name{write_bib}
 \alias{write_bib}
+\alias{write_bib,lib_df,character-method}
 \title{Write BibTeX Files}
 \usage{
-write_bib(obj, file, encoding = "UTF-8", ...)
+write_bib(obj, file, ...)
+
+\S4method{write_bib}{lib_df,character}(obj, file, encoding = "UTF-8", ...)
 }
 \arguments{
 \item{obj}{A data frame with bibliographic entries.}
@@ -12,10 +15,10 @@ write_bib(obj, file, encoding = "UTF-8", ...)
 \item{file}{A character value with the path and the name of the file to be
 written.}
 
+\item{...}{Further arguments passed to \code{\link{file}}.}
+
 \item{encoding}{Character value with the encoding (passed to
 \code{\link{file}}).}
-
-\item{...}{Further arguments passed to \code{\link{file}}.}
 }
 \description{
 BibTeX databases can be created from data frames, interacting with Postgres

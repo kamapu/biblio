@@ -16,9 +16,10 @@ Imports:
     RPostgreSQL,
     stringr
 Suggests:
+    covr,
     devtools,
     rmarkdown,
-    covr
+    testthat
 Remotes:
     gitlab::kamapu/dbaccess,
     github::kamapu/yamlme
