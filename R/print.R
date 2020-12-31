@@ -1,5 +1,7 @@
 #' @name print
 #' 
+#' @rdname print
+#' 
 #' @title Print content of lib_df objects
 #' 
 #' @description 
@@ -23,4 +25,27 @@ print.lib_df <- function(x, ...) {
 					"Number of references: ", nrow(x), "\n",
 					"Number of variables: ", ncol(x), "\n",
 					"Duplicated entries: ", any(duplicated(x$bibtexkey)), "\n"))
+}
+
+#' @rdname print
+#' 
+#' @method print comp_df
+#' 
+print.comp_df <- function(x, ...) {
+	if(length(x$deleted) > 0)
+		cat(paste0("## deleted entries (", length(x$deleted), "):\n'",
+						paste0(x$deleted, collapse="' '"), "'\n\n"))
+	if(nrow(x$added) > 0)
+		cat(paste0("## added entries (", nrow(x$added), "):\n'",
+						paste0(rownames(x$added), collapse="' '"), "'\n\n"))
+	if(nrow(x$updated) > 0)
+		for(i in rownames(x$updated)) {
+			cat(paste0("## updates in entry '", i, "':\n"))
+			for(j in colnames(x$updated)[x$updated[i,]]) {
+				cat(paste0("old ", j, ": ", x$old_vals[i,j], "\nnew ", j,
+								": ", x$new_vals[i,j], "\n\n"))
+			}
+		}
+	if((length(x$deleted) == 0) & (nrow(x$added) == 0) & (nrow(x$updated) == 0))
+		cat("## no changes detected\n")
 }
