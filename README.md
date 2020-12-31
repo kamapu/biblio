@@ -1,5 +1,16 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- Use snippet 'render_markdown' for it -->
+
 # biblio
+
+<!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.com/kamapu/biblio.svg?branch=master)](https://travis-ci.com/kamapu/biblio)
+[![Codecov test
+coverage](https://codecov.io/gh/kamapu/biblio/branch/master/graph/badge.svg)](https://codecov.io/gh/kamapu/biblio?branch=master)
+<!-- badges: end -->
 
 An R-package to manage bibliographic references. This package is focused
 on data import-export to a data frame format based on the software
@@ -20,7 +31,7 @@ this package.
 
 ``` r
 library(biblio)
-Bib <- read_bib(bib=file.path(path.package("biblio"), "LuebertPliscoff.bib"))
+Bib <- read_bib(bib = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
 Bib
 #> Object of class 'lib_df'
 #> 
@@ -34,7 +45,7 @@ A “fake” r-markdown document is also installed to test the function
 an r-markdown docuemnt.
 
 ``` r
-cited_refs <- match_keys(x=Bib, rmd_file=file.path(path.package("biblio"),
+cited_refs <- match_keys(x = Bib, rmd_file = file.path(path.package("biblio"),
                 "document.Rmd"))
 cited_refs
 #>            bibtexkey line
@@ -53,7 +64,7 @@ document (line number). With this output it is also possible to do some
 statistics.
 
 ``` r
-stats_refs <- aggregate(line ~ bibtexkey, data=cited_refs, FUN=length)
+stats_refs <- aggregate(line ~ bibtexkey, data = cited_refs, FUN = length)
 
 # Number of citations in text
 sum(stats_refs$line)

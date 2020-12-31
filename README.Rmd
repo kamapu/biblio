@@ -4,6 +4,9 @@ output:
     html_preview: false
 ---
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- Use snippet 'render_markdown' for it -->
+
 ```{r,echo=FALSE}
 knitr::opts_chunk$set(
   collapse=TRUE,
@@ -13,6 +16,11 @@ knitr::opts_chunk$set(
 ```
 
 # biblio
+
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.com/kamapu/biblio.svg?branch=master)](https://travis-ci.com/kamapu/biblio)
+[![Codecov test coverage](https://codecov.io/gh/kamapu/biblio/branch/master/graph/badge.svg)](https://codecov.io/gh/kamapu/biblio?branch=master)
+<!-- badges: end -->
 
 An R-package to manage bibliographic references. This package is focused on
 data import-export to a data frame format based on the software
@@ -33,7 +41,7 @@ package.
 
 ```{r}
 library(biblio)
-Bib <- read_bib(bib=file.path(path.package("biblio"), "LuebertPliscoff.bib"))
+Bib <- read_bib(bib = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
 Bib
 ```
 
@@ -42,7 +50,7 @@ function `match_keys()`, which is able to recognize the bibtexkeys in use
 within an r-markdown docuemnt.
 
 ```{r}
-cited_refs <- match_keys(x=Bib, rmd_file=file.path(path.package("biblio"),
+cited_refs <- match_keys(x = Bib, rmd_file = file.path(path.package("biblio"),
 				"document.Rmd"))
 cited_refs
 ```
@@ -52,7 +60,7 @@ The output shows the respective bibtexkey by its occurrence in the document
 With this output it is also possible to do some statistics.
 
 ```{r}
-stats_refs <- aggregate(line ~ bibtexkey, data=cited_refs, FUN=length)
+stats_refs <- aggregate(line ~ bibtexkey, data = cited_refs, FUN = length)
 
 # Number of citations in text
 sum(stats_refs$line)
