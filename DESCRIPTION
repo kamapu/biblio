@@ -19,7 +19,8 @@ Suggests:
     covr,
     devtools,
     rmarkdown,
-    testthat
+    testthat,
+    yamlme
 Remotes:
     gitlab::kamapu/dbaccess,
     github::kamapu/yamlme
