@@ -40,23 +40,23 @@ Bib
 #> Duplicated entries: FALSE
 ```
 
-A “fake” r-markdown document is also installed to test the function
-`match_keys()`, which is able to recognize the bibtexkeys in use within
-an r-markdown docuemnt.
+An example of r-markdown document is also installed to test the function
+`detect_keys()`, which is able to recognize the bibtexkeys in use within
+an r-markdown document.
 
 ``` r
-cited_refs <- match_keys(x = Bib, rmd_file = file.path(path.package("biblio"),
-                "document.Rmd"))
+my_documents <- readLines(file.path(path.package("biblio"), "document.Rmd"))
+cited_refs <- detect_keys(my_documents)
 cited_refs
-#>            bibtexkey line
-#> 15475 oberdorfer1960   10
-#> 18899     veblen1996   12
-#> 19752     veblen1995   12
-#> 23980 oberdorfer1960   15
-#> 30784 oberdorfer1960   19
-#> 39311     veblen1996   24
-#> 40321   pollmann2004   24
-#> 48731    ramirez2005   29
+#>        bibtexkey line
+#> 1 oberdorfer1960   10
+#> 2     veblen1995   12
+#> 3     veblen1996   12
+#> 4 oberdorfer1960   15
+#> 5 oberdorfer1960   19
+#> 6     veblen1996   24
+#> 7   pollmann2004   24
+#> 8    ramirez2005   29
 ```
 
 The output shows the respective bibtexkey by its occurrence in the
@@ -75,11 +75,11 @@ nrow(stats_refs)
 #> [1] 5
 
 # Respective frequency to know rare citations in text
-stats_refs[order(stats_refs$line), ]
+stats_refs[order(stats_refs$line, decreasing = TRUE), ]
 #>        bibtexkey line
+#> 1 oberdorfer1960    3
+#> 5     veblen1996    2
 #> 2   pollmann2004    1
 #> 3    ramirez2005    1
 #> 4     veblen1995    1
-#> 5     veblen1996    2
-#> 1 oberdorfer1960    3
 ```
