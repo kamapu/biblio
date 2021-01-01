@@ -11,7 +11,7 @@ detect_keys(x, ...)
 }
 \arguments{
 \item{x}{A character vector to be scanned, for instance a file imported
-either by \code{\link[=readLines]{readLines()}} or \code{\link[=read_rmd]{read_rmd()}}.}
+either by \code{\link[=readLines]{readLines()}} or \code{\link[yamlme:read_rmd]{yamlme::read_rmd()}}.}
 
 \item{...}{Further arguments passed among methods.}
 }
@@ -27,4 +27,13 @@ a line of the original document.
 
 This function is based on \code{bbt_detect_citations()} from the package
 \href{rbbt}{https://github.com/paleolimbot/rbbt}.
+}
+\examples{
+## Read installed r-markdown document
+my_documents <- readLines(file.path(path.package("biblio"), "document.Rmd"))
+
+## Screen for citations
+cited_refs <- detect_keys(my_documents)
+cited_refs
+
 }

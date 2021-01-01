@@ -45,13 +45,13 @@ Bib <- read_bib(bib = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
 Bib
 ```
 
-A "fake" r-markdown document is also installed to test the
-function `match_keys()`, which is able to recognize the bibtexkeys in use
-within an r-markdown docuemnt.
+An example of r-markdown document is also installed to test the
+function `detect_keys()`, which is able to recognize the bibtexkeys in use
+within an r-markdown document.
 
 ```{r}
-cited_refs <- match_keys(x = Bib, rmd_file = file.path(path.package("biblio"),
-				"document.Rmd"))
+my_documents <- readLines(file.path(path.package("biblio"), "document.Rmd"))
+cited_refs <- detect_keys(my_documents)
 cited_refs
 ```
 
@@ -69,5 +69,5 @@ sum(stats_refs$line)
 nrow(stats_refs)
 
 # Respective frequency to know rare citations in text
-stats_refs[order(stats_refs$line), ]
+stats_refs[order(stats_refs$line, decreasing = TRUE), ]
 ```

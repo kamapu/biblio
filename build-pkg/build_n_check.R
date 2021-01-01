@@ -10,12 +10,13 @@ remotes::install_github("r-lib/roxygen2")
 
 library(devtools)
 library(rmarkdown)
+library(covr)
 
 # document package
 document()
 
-# write README.md
-render("README.Rmd")
+# Report coverage
+report()
 
 # Build package
 pkg_loc <- build(path="build-pkg")
@@ -26,11 +27,16 @@ pkg_loc <- build(path="build-pkg")
 Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
 check_built(path=pkg_loc)
 
+## After check -----------------------------------------------------------------
+
+# write README.md
+render("README.Rmd")
+
 ## GARBAGE ---------------------------------------------------------------------
 
 # Needed packages
 ## library(devtools)
-## library(covr)
+## 
 ## library(goodpractice)
 ## library(rmarkdown)
 ## library(knitr)

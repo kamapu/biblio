@@ -21,6 +21,14 @@
 #' A data frame with two columns, `bibtexkey` for the found keys and `line`
 #' with the line number of the occurrence of the key in the document.
 #' 
+#' @examples 
+#' ## Read installed r-markdown document
+#' my_documents <- readLines(file.path(path.package("biblio"), "document.Rmd"))
+#' 
+#' ## Screen for citations
+#' cited_refs <- detect_keys(my_documents)
+#' cited_refs
+#' 
 #' @export detect_keys
 #' 
 detect_keys <- function (x, ...) {
