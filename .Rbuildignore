@@ -6,3 +6,4 @@
 ^build-pkg$
 ^README\.Rmd$
 ^README\.md$
+^\.github$
