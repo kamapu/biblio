@@ -1,5 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- Use snippet 'render_markdown' for it -->
 
 # biblio
@@ -10,6 +11,7 @@
 status](https://travis-ci.com/kamapu/biblio.svg?branch=master)](https://travis-ci.com/kamapu/biblio)
 [![Codecov test
 coverage](https://codecov.io/gh/kamapu/biblio/branch/master/graph/badge.svg)](https://codecov.io/gh/kamapu/biblio?branch=master)
+[![R-CMD-check](https://github.com/kamapu/biblio/workflows/R-CMD-check/badge.svg)](https://github.com/kamapu/biblio/actions)
 <!-- badges: end -->
 
 An R-package to manage bibliographic references. This package is focused
