@@ -47,8 +47,8 @@ An example of r-markdown document is also installed to test the function
 an r-markdown document.
 
 ``` r
-my_documents <- readLines(file.path(path.package("biblio"), "document.Rmd"))
-cited_refs <- detect_keys(my_documents)
+my_document <- readLines(file.path(path.package("biblio"), "document.Rmd"))
+cited_refs <- detect_keys(my_document)
 cited_refs
 #>        bibtexkey line
 #> 1 oberdorfer1960   10
@@ -59,6 +59,29 @@ cited_refs
 #> 6     veblen1996   24
 #> 7   pollmann2004   24
 #> 8    ramirez2005   29
+```
+
+Alternatively to the last option, you can use the function `read_rmd()`
+from the package [`yamlme`](https://kamapu.github.io/rpkg/yamlme/). Note
+that in this case the position of the citation may change because
+`detect_keys()` will start counting lines after the yaml-header.
+
+``` r
+library(yamlme)
+my_document <- read_rmd(file.path(path.package("biblio"), "document.Rmd"))
+#> The yaml-header is not imported by this fucnion. Use 'update()' to re-write the header.
+cited_refs <- detect_keys(my_document)
+#> Lines are counted only at the body of the document.
+cited_refs
+#>        bibtexkey line
+#> 1 oberdorfer1960    4
+#> 2     veblen1995    6
+#> 3     veblen1996    6
+#> 4 oberdorfer1960    9
+#> 5 oberdorfer1960   13
+#> 6     veblen1996   18
+#> 7   pollmann2004   18
+#> 8    ramirez2005   23
 ```
 
 The output shows the respective bibtexkey by its occurrence in the
