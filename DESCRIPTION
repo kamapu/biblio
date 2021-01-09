@@ -14,13 +14,13 @@ Imports:
     readODS,
     rpostgis,
     RPostgreSQL,
-    stringr
+    stringr,
+    yamlme
 Suggests:
     covr,
     devtools,
     rmarkdown,
-    testthat,
-    yamlme
+    testthat
 Remotes:
     gitlab::kamapu/dbaccess,
     github::kamapu/yamlme

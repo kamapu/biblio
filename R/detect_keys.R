@@ -13,8 +13,8 @@
 #' This function is based on `bbt_detect_citations()` from the package
 #' \href{rbbt}{https://github.com/paleolimbot/rbbt}.
 #' 
-#' @param x A character vector to be scanned, for instance a file imported
-#'     either by [readLines()] or [yamlme::read_rmd()].
+#' @param x A character vector, a file imported by [readLines()] or an object
+#'    imported by [read_rmd()].
 #' @param ... Further arguments passed among methods.
 #' 
 #' @return 
@@ -23,10 +23,10 @@
 #' 
 #' @examples 
 #' ## Read installed r-markdown document
-#' my_documents <- readLines(file.path(path.package("biblio"), "document.Rmd"))
+#' my_document <- readLines(file.path(path.package("biblio"), "document.Rmd"))
 #' 
 #' ## Screen for citations
-#' cited_refs <- detect_keys(my_documents)
+#' cited_refs <- detect_keys(my_document)
 #' cited_refs
 #' 
 #' @export detect_keys
@@ -55,4 +55,14 @@ detect_keys.character <- function(x, ...) {
 	Keys <- do.call(c, Keys)
 	# Final output
 	return(data.frame(bibtexkey = Keys, line = Lines))
+}
+
+#' @rdname detect_keys
+#' 
+#' @method detect_keys rmd_doc
+#' @export 
+#' 
+detect_keys.rmd_doc <- function(x, ...) {
+	message("Lines are counted only at the body of the document.")
+	detect_keys(x[["body"]])
 }

@@ -1,7 +1,10 @@
 context("detecting citations in r-markdown documents")
 
 test_that("bibtex files are read", {
-			my_documents <- readLines(file.path(path.package("biblio"),
+			my_document <- readLines(file.path(path.package("biblio"),
 							"document.Rmd"))
-			expect_is(detect_keys(my_documents), "data.frame")
+			expect_is(detect_keys(my_document), "data.frame")
+			## my_document <- read_rmd(file.path(path.package("biblio"),
+			##                 "document.Rmd"))
+			## expect_is(detect_keys(my_document), "data.frame")
 		})

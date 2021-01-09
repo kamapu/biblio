@@ -3,15 +3,18 @@
 \name{detect_keys}
 \alias{detect_keys}
 \alias{detect_keys.character}
+\alias{detect_keys.rmd_doc}
 \title{Detect bibtexkeys used in an r-markdown document}
 \usage{
 detect_keys(x, ...)
 
 \method{detect_keys}{character}(x, ...)
+
+\method{detect_keys}{rmd_doc}(x, ...)
 }
 \arguments{
-\item{x}{A character vector to be scanned, for instance a file imported
-either by \code{\link[=readLines]{readLines()}} or \code{\link[yamlme:read_rmd]{yamlme::read_rmd()}}.}
+\item{x}{A character vector, a file imported by \code{\link[=readLines]{readLines()}} or an object
+imported by \code{\link[=read_rmd]{read_rmd()}}.}
 
 \item{...}{Further arguments passed among methods.}
 }
@@ -30,10 +33,10 @@ This function is based on \code{bbt_detect_citations()} from the package
 }
 \examples{
 ## Read installed r-markdown document
-my_documents <- readLines(file.path(path.package("biblio"), "document.Rmd"))
+my_document <- readLines(file.path(path.package("biblio"), "document.Rmd"))
 
 ## Screen for citations
-cited_refs <- detect_keys(my_documents)
+cited_refs <- detect_keys(my_document)
 cited_refs
 
 }
