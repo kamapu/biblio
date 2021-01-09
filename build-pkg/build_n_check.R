@@ -30,7 +30,7 @@ check_built(path=pkg_loc)
 ## After check -----------------------------------------------------------------
 
 # write README.md
-render("README.Rmd")
+# render("README.Rmd")
 
 ## GARBAGE ---------------------------------------------------------------------
 

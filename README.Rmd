@@ -51,8 +51,20 @@ function `detect_keys()`, which is able to recognize the bibtexkeys in use
 within an r-markdown document.
 
 ```{r}
-my_documents <- readLines(file.path(path.package("biblio"), "document.Rmd"))
-cited_refs <- detect_keys(my_documents)
+my_document <- readLines(file.path(path.package("biblio"), "document.Rmd"))
+cited_refs <- detect_keys(my_document)
+cited_refs
+```
+
+Alternatively to the last option, you can use the function `read_rmd()` from
+the package [`yamlme`](https://kamapu.github.io/rpkg/yamlme/).
+Note that in this case the position of the citation may change because
+`detect_keys()` will start counting lines after the yaml-header.
+
+```{r}
+library(yamlme)
+my_document <- read_rmd(file.path(path.package("biblio"), "document.Rmd"))
+cited_refs <- detect_keys(my_document)
 cited_refs
 ```
 

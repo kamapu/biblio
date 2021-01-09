@@ -1,5 +1,5 @@
 Package: biblio
-Version: 0.0.1.9007
+Version: 0.0.1.9008
 Encoding: UTF-8
 Title: Interacting with BibTeX Databases
 Authors@R: c(
