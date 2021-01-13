@@ -12,7 +12,8 @@ reflist(obj, ...)
   obj,
   filename,
   bib_file,
-  delete_files = TRUE,
+  delete_rmd = TRUE,
+  delete_bib = delete_rmd,
   browse_file = TRUE,
   title = "Automatic Reference List",
   output = "html_document",
@@ -22,7 +23,7 @@ reflist(obj, ...)
   ...
 )
 
-\S4method{reflist}{character}(obj, filename, bib_file, ...)
+\S4method{reflist}{character}(obj, filename, ...)
 }
 \arguments{
 \item{obj}{A \code{lib_df} object to produce the reference list. In the character
@@ -40,8 +41,11 @@ including extension (.bib). In the lib_df method it can be omitted and
 will then named by \code{\link[=tempfile]{tempfile()}}. In the character method it is not
 required.}
 
-\item{delete_files}{A logical value indicating whether written files (Rmd
-and bibtex) should be deleted after rendering or not.}
+\item{delete_rmd}{A logical value indicating whether written Rmd file should
+be deleted after rendering html or not.}
+
+\item{delete_bib}{A logical value indicating whether written bib file should
+be deleted after rendering html or not.}
 
 \item{browse_file}{A logical value indicating whether the resulting html file
 should be opened in a browser or not.}

@@ -24,8 +24,10 @@
 #'     including extension (.bib). In the lib_df method it can be omitted and
 #'     will then named by [tempfile()]. In the character method it is not
 #'     required.
-#' @param delete_files A logical value indicating whether written files (Rmd
-#'     and bibtex) should be deleted after rendering or not.
+#' @param delete_rmd A logical value indicating whether written Rmd file should
+#'     be deleted after rendering html or not.
+#' @param delete_bib A logical value indicating whether written bib file should
+#'     be deleted after rendering html or not.
 #' @param browse_file A logical value indicating whether the resulting html file
 #'     should be opened in a browser or not.
 #' @param encoding A character value indicating the encoding string. It is
@@ -48,11 +50,10 @@ setGeneric("reflist",
 #' @aliases reflist,lib_df-method
 #' 
 setMethod("reflist", signature(obj = "lib_df"),
-		function(obj, filename, bib_file, delete_files = TRUE,
-				browse_file = TRUE,
-				title = "Automatic Reference List",
-				output = "html_document", nocite = "'@*'", urlcolor = "blue",
-				encoding = "UTF-8", ...) {
+		function(obj, filename, bib_file, delete_rmd = TRUE,
+				delete_bib = delete_rmd, browse_file = TRUE,
+				title = "Automatic Reference List", output = "html_document",
+				nocite = "'@*'", urlcolor = "blue", encoding = "UTF-8", ...) {
 			# write bib file
 			if(missing(bib_file))
 				bib_file <- tempfile(pattern = "ref", tmpdir = ".",
@@ -66,12 +67,19 @@ setMethod("reflist", signature(obj = "lib_df"),
 			# render file
 			render_rmd(input = filename)
 			# delete intermediary files
-			if(delete_files) {
+			w_files <- c(filename, bib_file)
+			if(delete_rmd) {
 				file.remove(filename)
+				w_files <- w_files[w_files != filename]
+			}
+			if(delete_bib) {
 				file.remove(bib_file)
-			} else
-				message(paste0("\n## Intermediary files:\n   ", filename,
-								"\n   ", bib_file, "\n"))
+				w_files <- w_files[w_files != bib_file]
+			}
+			# message for intermediary files
+			if(length(w_files) > 0)
+				message(paste0("\n## Intermediary files:\n   ", paste0(w_files,
+										collapse = "\n   "), "\n"))
 			# open the result
 			if(browse_file)
 				browseURL(url = gsub(".Rmd", ".html", filename))
@@ -84,11 +92,11 @@ setMethod("reflist", signature(obj = "lib_df"),
 #' @aliases reflist,character-method
 #' 
 setMethod("reflist", signature(obj = "character"),
-		function(obj, filename, bib_file, ...) {
+		function(obj, filename, ...) {
 			# Exchange arguments
 			bib_file <- obj
 			obj <- biblio::read_bib(obj)
 			# Execute lib_df method
 			reflist(obj = obj, filename = filename, bib_file = bib_file,
-					delete_files = FALSE, ...)
+					delete_bib = FALSE, ...)
 		})
