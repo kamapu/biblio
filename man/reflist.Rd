@@ -12,7 +12,7 @@ reflist(obj, ...)
   obj,
   filename,
   bib_file,
-  delete_rmd = TRUE,
+  delete_rmd = FALSE,
   delete_bib = delete_rmd,
   browse_file = TRUE,
   title = "Automatic Reference List",

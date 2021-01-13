@@ -50,7 +50,7 @@ setGeneric("reflist",
 #' @aliases reflist,lib_df-method
 #' 
 setMethod("reflist", signature(obj = "lib_df"),
-		function(obj, filename, bib_file, delete_rmd = TRUE,
+		function(obj, filename, bib_file, delete_rmd = FALSE,
 				delete_bib = delete_rmd, browse_file = TRUE,
 				title = "Automatic Reference List", output = "html_document",
 				nocite = "'@*'", urlcolor = "blue", encoding = "UTF-8", ...) {
