@@ -35,7 +35,7 @@ this package.
 
 ``` r
 library(biblio)
-Bib <- read_bib(bib = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
+Bib <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
 Bib
 #> Object of class 'lib_df'
 #> 
@@ -73,7 +73,7 @@ that in this case the position of the citation may change because
 ``` r
 library(yamlme)
 my_document <- read_rmd(file.path(path.package("biblio"), "document.Rmd"))
-#> The yaml-header will not be imported by this function. Use 'update()' to re-write the header.
+#> The yaml-header is not imported by this fucnion. Use 'update()' to re-write the header.
 cited_refs <- detect_keys(my_document)
 #> Lines are counted only at the body of the document.
 cited_refs
@@ -134,7 +134,7 @@ library(yamlme)
 
 # Subset and assignment
 Bib2 <- subset(x = Bib, subset = as.integer(year) > 2005)
-my_reflist <- reflist(obj = Bib2, filename = "my_reflist", browse_file = FALSE)
+my_reflist <- reflist(x = Bib2, filename = "my_reflist", browse_file = FALSE)
 
 # Updating and rendering
 my_reflist <- update(
