@@ -8,7 +8,7 @@
 #' BibTeX databases can be created from data frames, interacting with Postgres
 #' databases.
 #' 
-#' @param obj A data frame with bibliographic entries.
+#' @param x A data frame with bibliographic entries.
 #' @param file A character value with the path and the name of the file to be
 #'     written.
 #' @param encoding Character value with the encoding (passed to
@@ -18,7 +18,7 @@
 #' @exportMethod write_bib
 #' 
 setGeneric("write_bib",
-		function(obj, file, ...)
+		function(x, file, ...)
 			standardGeneric("write_bib")
 )
 
@@ -26,17 +26,17 @@ setGeneric("write_bib",
 #' 
 #' @aliases write_bib,lib_df,character-method
 #' 
-setMethod("write_bib", signature(obj = "lib_df", file = "character"),
-		function(obj, file, encoding = "UTF-8", ...) {
+setMethod("write_bib", signature(x = "lib_df", file = "character"),
+		function(x, file, encoding = "UTF-8", ...) {
 			# Entries as named characters
-			Vars <- colnames(obj)
-			obj <- split(as.matrix(obj), 1:nrow(obj))
-			obj <- lapply(obj, function(x, n) {
+			Vars <- colnames(x)
+			x <- split(as.matrix(x), 1:nrow(x))
+			x <- lapply(x, function(x, n) {
 						names(x) <- n
 						x[!is.na(x)]
 					}, Vars)
 			# Final format
-			obj <- lapply(obj, function(x) {
+			x <- lapply(x, function(x) {
 						prefix <- paste(" ", names(x), "= {")
 						#rep("  {", length(x))
 						prefix[1:2] <- c("@", "{")
@@ -47,7 +47,7 @@ setMethod("write_bib", signature(obj = "lib_df", file = "character"),
 			# Write file
 			con <- file(file, "wb", encoding = encoding, ...)
 			writeBin(charToRaw(paste0(c("% Encoding: ", encoding, "\n",
-											unlist(obj)),
+											unlist(x)),
 									collapse="")), con, endian="little")
 			close(con)
 		})

@@ -15,7 +15,7 @@
 #' A html file will be written by [write_rmd()] and [render_rmd()] in the
 #' working directory and displayed by [browseURL()].
 #' 
-#' @param obj A `lib_df` object to produce the reference list. In the character
+#' @param x A `lib_df` object to produce the reference list. In the character
 #'     method, a character value indicating the path of a bibtex file
 #'     (passed to [biblio::read_bib()]).
 #' @param filename A character value with the name for the written Rmd file,
@@ -41,7 +41,7 @@
 #' @exportMethod reflist
 #' 
 setGeneric("reflist",
-		function(obj, ...)
+		function(x, ...)
 			standardGeneric("reflist")
 )
 
@@ -49,8 +49,8 @@ setGeneric("reflist",
 #' 
 #' @aliases reflist,lib_df-method
 #' 
-setMethod("reflist", signature(obj = "lib_df"),
-		function(obj, filename, bib_file, delete_rmd = FALSE,
+setMethod("reflist", signature(x = "lib_df"),
+		function(x, filename, bib_file, delete_rmd = FALSE,
 				delete_bib = delete_rmd, browse_file = TRUE,
 				title = "Automatic Reference List", output = "html_document",
 				nocite = "'@*'", urlcolor = "blue", encoding = "UTF-8", ...) {
@@ -58,7 +58,7 @@ setMethod("reflist", signature(obj = "lib_df"),
 			if(missing(bib_file))
 				bib_file <- tempfile(pattern = "ref", tmpdir = ".",
 						fileext = ".bib")
-			biblio::write_bib(obj = obj, file = bib_file, encoding = encoding)
+			biblio::write_bib(x = x, file = bib_file, encoding = encoding)
 			# write Rmd file
 			filename <- paste0(filename, ".Rmd")
 			rmd_document <- write_rmd(title = title, output = output,
@@ -83,7 +83,7 @@ setMethod("reflist", signature(obj = "lib_df"),
 			# open the result
 			if(browse_file)
 				browseURL(url = gsub(".Rmd", ".html", filename))
-			# return rmd_doc object if necessary
+			# return rmd_doc xect if necessary
 			invisible(rmd_document)
 		})
 
@@ -91,12 +91,12 @@ setMethod("reflist", signature(obj = "lib_df"),
 #' 
 #' @aliases reflist,character-method
 #' 
-setMethod("reflist", signature(obj = "character"),
-		function(obj, filename, ...) {
+setMethod("reflist", signature(x = "character"),
+		function(x, filename, ...) {
 			# Exchange arguments
-			bib_file <- obj
-			obj <- biblio::read_bib(obj)
+			bib_file <- x
+			x <- biblio::read_bib(x)
 			# Execute lib_df method
-			reflist(obj = obj, filename = filename, bib_file = bib_file,
+			reflist(x = x, filename = filename, bib_file = bib_file,
 					delete_bib = FALSE, ...)
 		})

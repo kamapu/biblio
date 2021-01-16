@@ -9,11 +9,7 @@ Authors@R: c(
 Depends:
     R(>= 3.5.0)
 Imports:
-    DBI,
     methods,
-    readODS,
-    rpostgis,
-    RPostgreSQL,
     stringr,
     yamlme
 Suggests:
@@ -21,12 +17,8 @@ Suggests:
     devtools,
     rmarkdown,
     testthat
-Remotes:
-    gitlab::kamapu/dbaccess,
-    github::kamapu/yamlme
 LazyData: true
-Description: Reading and writing BibTeX files by using data frames. Also
-    interactions with PostgreSQL databases are implemented.
+Description: Reading and writing BibTeX files using data frames in R sessions.
 License: GPL (>= 2)
 URL: https://github.com/kamapu/biblio
 BugReports: https://github.com/kamapu/taxlist/issues

@@ -5,12 +5,12 @@
 \alias{write_bib,lib_df,character-method}
 \title{Write BibTeX Files}
 \usage{
-write_bib(obj, file, ...)
+write_bib(x, file, ...)
 
-\S4method{write_bib}{lib_df,character}(obj, file, encoding = "UTF-8", ...)
+\S4method{write_bib}{lib_df,character}(x, file, encoding = "UTF-8", ...)
 }
 \arguments{
-\item{obj}{A data frame with bibliographic entries.}
+\item{x}{A data frame with bibliographic entries.}
 
 \item{file}{A character value with the path and the name of the file to be
 written.}

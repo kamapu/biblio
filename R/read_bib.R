@@ -6,51 +6,50 @@
 #' Reading BibTeX databases and importing into R as a data frame. All the fields
 #' will be inserted as character values.
 #' 
-#' @param bib Path to BibTeX file.
+#' @param x Path to BibTeX file.
 #' @param ... Further arguments passed to \code{\link{readLines}}.
 #' 
 #' #' @examples
-#' Bib <- read_bib(bib=file.path(path.package("biblio"),
-#'     "LuebertPliscoff.bib"))
-#' Bib
+#' x <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
+#' x
 #' 
 #' @export read_bib
 #' 
-read_bib <- function(bib, ...) {
-	bib <- readLines(bib, ...)
+read_bib <- function(x, ...) {
+	x <- readLines(x, ...)
 	# skip empty lines and comments
-	bib <- bib[nchar(bib) > 0 & substring(bib, 1, 1) != "%"]
+	x <- x[nchar(x) > 0 & substring(x, 1, 1) != "%"]
 	# get index for reference
-	bib <- cbind(cumsum(substring(bib, 1, 1) == "@"), bib)
+	x <- cbind(cumsum(substring(x, 1, 1) == "@"), x)
 	# get type, key and id
-	refid <- bib[substring(bib[,2], 1, 1) == "@", 1]
-	type <- substring(bib[,2], 2, nchar(bib[,2]) - 1)
-	type <- strsplit(type[substring(bib[,2], 1, 1) == "@"], "{", fixed=TRUE)
+	refid <- x[substring(x[,2], 1, 1) == "@", 1]
+	type <- substring(x[,2], 2, nchar(x[,2]) - 1)
+	type <- strsplit(type[substring(x[,2], 1, 1) == "@"], "{", fixed=TRUE)
 	type <- do.call(rbind, type)
 	# skip comment fields
 	type <- cbind(type, refid)
 	type <- type[type[,1] != "Comment",]
-	bib <- bib[bib[,1] %in% type[,3],]
+	x <- x[x[,1] %in% type[,3],]
 	# warn duplicated bibtexkeys
 	if(any(duplicated(type[,3])))
-		warning("Some duplicated values for 'bibtexkey' in 'bib'.")
+		warning("Some duplicated values for 'bibtexkey' in 'x'.")
 	# getting list of entry fields
-	bib <- bib[grepl(" = ", bib[,2], fixed=TRUE),]
-	bib <- cbind(bib[,1], do.call(rbind, strsplit(bib[,2], " = ", TRUE)))
-	bib[,2] <- trimws(bib[,2], "both")
-	bib[,3] <- substring(bib[,3], 2, nchar(bib[,3]) - 2)
-	fields <- unique(bib[,2])
+	x <- x[grepl(" = ", x[,2], fixed=TRUE),]
+	x <- cbind(x[,1], do.call(rbind, strsplit(x[,2], " = ", TRUE)))
+	x[,2] <- trimws(x[,2], "both")
+	x[,3] <- substring(x[,3], 2, nchar(x[,3]) - 2)
+	fields <- unique(x[,2])
 	# Output table
-	new_bib <- expand.grid(field=fields, refid=type[,3], stringsAsFactors=FALSE)
-	new_bib$value <- with(new_bib, bib[match(paste(refid, field, sep="_"),
-							paste(bib[,1], bib[,2], sep="_")),3])
-	new_bib <- with(new_bib, do.call(rbind, split(value, as.integer(refid))))
-	colnames(new_bib) <- fields
+	new_x <- expand.grid(field=fields, refid=type[,3], stringsAsFactors=FALSE)
+	new_x$value <- with(new_x, x[match(paste(refid, field, sep="_"),
+							paste(x[,1], x[,2], sep="_")),3])
+	new_x <- with(new_x, do.call(rbind, split(value, as.integer(refid))))
+	colnames(new_x) <- fields
 	colnames(type)[1:2] <- c("bib_type","bibtexkey")
-	new_bib <- cbind(type[,c("bib_type","bibtexkey")],
-			new_bib[match(type[,"refid"], rownames(new_bib)),])
+	new_x <- cbind(type[,c("bib_type","bibtexkey")],
+			new_x[match(type[,"refid"], rownames(new_x)),])
 	# Defining S3 class
-	new_bib <- as.data.frame(new_bib, stringsAsFactors=FALSE)
-	class(new_bib) <- c("lib_df", "data.frame")
-	return(new_bib)
+	new_x <- as.data.frame(new_x, stringsAsFactors=FALSE)
+	class(new_x) <- c("lib_df", "data.frame")
+	return(new_x)
 }

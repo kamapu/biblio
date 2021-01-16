@@ -6,10 +6,10 @@
 \alias{reflist,character-method}
 \title{Write a Reference List in HTML}
 \usage{
-reflist(obj, ...)
+reflist(x, ...)
 
 \S4method{reflist}{lib_df}(
-  obj,
+  x,
   filename,
   bib_file,
   delete_rmd = FALSE,
@@ -23,10 +23,10 @@ reflist(obj, ...)
   ...
 )
 
-\S4method{reflist}{character}(obj, filename, ...)
+\S4method{reflist}{character}(x, filename, ...)
 }
 \arguments{
-\item{obj}{A \code{lib_df} object to produce the reference list. In the character
+\item{x}{A \code{lib_df} object to produce the reference list. In the character
 method, a character value indicating the path of a bibtex file
 (passed to \code{\link[=read_bib]{read_bib()}}).}
 

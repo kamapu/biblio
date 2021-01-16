@@ -13,8 +13,7 @@
 #' @author Miguel Alvarez
 #' 
 #' @examples
-#' Bib <- read_bib(bib=file.path(path.package("biblio"),
-#'     "LuebertPliscoff.bib"))
+#' Bib <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
 #' Bib
 #' 
 #' @method print lib_df

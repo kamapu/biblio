@@ -13,7 +13,7 @@ test_that("comparison is working for data frames", {
 
 # TODO: Resolve the error in next test
 test_that("comparison is working for 'lib_df' objects", {
-            Bib <- read_bib(bib = file.path(path.package("biblio"),
+            Bib <- read_bib(x = file.path(path.package("biblio"),
                             "LuebertPliscoff.bib"))
             expect_is(compare_df(Bib, Bib), "list")
         })

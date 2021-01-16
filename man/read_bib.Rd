@@ -4,17 +4,16 @@
 \alias{read_bib}
 \title{Read BibTeX Databases}
 \usage{
-read_bib(bib, ...)
+read_bib(x, ...)
 }
 \arguments{
-\item{bib}{Path to BibTeX file.}
+\item{x}{Path to BibTeX file.}
 
 \item{...}{Further arguments passed to \code{\link{readLines}}.
 
 #' @examples
-Bib <- read_bib(bib=file.path(path.package("biblio"),
-"LuebertPliscoff.bib"))
-Bib}
+x <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
+x}
 }
 \description{
 Reading BibTeX databases and importing into R as a data frame. All the fields
