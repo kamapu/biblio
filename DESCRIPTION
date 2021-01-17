@@ -10,6 +10,7 @@ Depends:
     R(>= 3.5.0)
 Imports:
     methods,
+    readODS,
     stringr,
     yamlme
 Suggests:
