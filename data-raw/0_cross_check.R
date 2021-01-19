@@ -3,7 +3,27 @@
 # Author: Miguel Alvarez
 ################################################################################
 
+library(devtools)
+
+install_github("kamapu/biblio")
+install_github("kamapu/biblioDB")
+
 library(biblio)
+library(biblioDB)
+
+Bib <- new_lib()
+
+file_list(Bib)
+
+
+
+# Debug
+x <- Bib
+
+
+
+
+
 library(rpostgis)
 
 conn <- dbConnect("PostgreSQL", dbname="references_db", host="localhost",
