@@ -115,7 +115,6 @@ my_reflist <- reflist(x = Bib2, filename = "my_reflist", browse_file = FALSE)
 # Updating and rendering
 my_reflist <- update(
 		object = my_reflist,
-		filename = "my_reflist",
 		title = "Reference List (PDF version)",
 		author = "myself",
 		output = "pdf_document",
