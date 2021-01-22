@@ -2,7 +2,10 @@
 
 S3method(detect_keys,character)
 S3method(detect_keys,rmd_doc)
+S3method(print,comp_df)
 S3method(print,lib_df)
+S3method(update,data.frame)
+S3method(update,lib_df)
 export(detect_keys)
 export(new_lib)
 export(read_bib)

@@ -29,6 +29,7 @@ print.lib_df <- function(x, ...) {
 #' @rdname print
 #' 
 #' @method print comp_df
+#' @export 
 #' 
 print.comp_df <- function(x, ...) {
 	if(length(x$deleted) > 0)
@@ -39,9 +40,10 @@ print.comp_df <- function(x, ...) {
 						paste0(rownames(x$added), collapse="' '"), "'\n\n"))
 	if(nrow(x$updated) > 0)
 		for(i in rownames(x$updated)) {
-			cat(paste0("## updates in entry '", i, "':\n"))
+			cat(paste0("## updates in entry '", i, "'\n"))
 			for(j in colnames(x$updated)[x$updated[i,]]) {
-				cat(paste0("old ", j, ": ", x$old_vals[i,j], "\nnew ", j,
+				cat(paste0(" - old ", j, ": ", x$old_vals[i,j],
+								"\n - new ", j,
 								": ", x$new_vals[i,j], "\n\n"))
 			}
 		}
