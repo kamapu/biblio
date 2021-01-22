@@ -4,6 +4,9 @@
 \alias{update}
 \alias{update.data.frame}
 \alias{update.lib_df}
+\alias{update<-}
+\alias{update<-,data.frame,data.frame-method}
+\alias{update<-,lib_df,lib_df-method}
 \title{Update data frames}
 \usage{
 \method{update}{data.frame}(object, revision, key, delete = FALSE, add = FALSE, update = FALSE, ...)
@@ -17,6 +20,19 @@
   update = FALSE,
   ...
 )
+
+update(object, ...) <- value
+
+\S4method{update}{data.frame,data.frame}(object, key, delete = FALSE, add = FALSE, update = FALSE, ...) <- value
+
+\S4method{update}{lib_df,lib_df}(
+  object,
+  key = "bibtexkey",
+  delete = FALSE,
+  add = FALSE,
+  update = FALSE,
+  ...
+) <- value
 }
 \arguments{
 \item{object}{A data frame or a \linkS4class{lib_df} object representing the
@@ -33,6 +49,8 @@ should be carried out. If all are 'FALSE', this function will just report
 differences as done by \link{compare_df}.}
 
 \item{...}{Further arguments passed among methods.}
+
+\item{value}{The updated version of 'object' in the replace methods.}
 }
 \description{
 This function compares two versions of the same data frame and detect changes

@@ -12,6 +12,7 @@
 #' @param object A data frame or a [lib_df-class] object representing the
 #'     original version.
 #' @param revision The updated version of 'object' to be compared.
+#' @param value The updated version of 'object' in the replace methods.
 #' @param key A character value indicating the column used as identifier. This
 #'     variable have to be in both versions otherwise this function will
 #'     retrieve an error.
@@ -44,6 +45,8 @@
 #' # do update
 #' iris <- update(iris, iris_mod, key = "id", delete = TRUE, add = TRUE,
 #'     update = TRUE)
+#' 
+#' @rdname update
 #' 
 #' @method update data.frame
 #' @export
@@ -93,3 +96,40 @@ update.lib_df <- function(object, revision, key = "bibtexkey", delete = FALSE,
 		invisible(object)
 	}
 }
+
+
+#' @rdname update
+#' 
+#' @aliases update<-
+#' 
+#' @exportMethod update<-
+#' 
+setGeneric("update<-", function(object, ..., value)
+			standardGeneric("update<-"))
+
+#' @rdname update
+#' 
+#' @aliases update<-,data.frame,data.frame-method
+#' 
+setReplaceMethod("update", signature(object = "data.frame",
+				value = "data.frame"),
+		function(object, key, delete = FALSE, add = FALSE, update = FALSE, ...,
+				value) {
+			if(all(!c(delete, add, update)))
+				return(object) else
+				update(object = object, revision = value, key = key,
+						delete = delete, add = add, update = update, ...)
+		})
+
+#' @rdname update
+#' 
+#' @aliases update<-,lib_df,lib_df-method
+#' 
+setReplaceMethod("update", signature(object = "lib_df", value = "lib_df"),
+		function(object, key = "bibtexkey", delete = FALSE, add = FALSE,
+				update = FALSE, ..., value) {
+			if(all(!c(delete, add, update)))
+				return(object) else
+				update(object = object, revision = value, key = key,
+						delete = delete, add = add, update = update, ...)
+		})
