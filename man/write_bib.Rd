@@ -2,20 +2,20 @@
 % Please edit documentation in R/write_bib.R
 \name{write_bib}
 \alias{write_bib}
-\alias{write_bib,lib_df,character-method}
+\alias{write_bib.lib_df}
 \title{Write BibTeX Files}
 \usage{
-write_bib(x, file, ...)
+write_bib(x, ...)
 
-\S4method{write_bib}{lib_df,character}(x, file, encoding = "UTF-8", ...)
+\method{write_bib}{lib_df}(x, file, encoding = "UTF-8", ...)
 }
 \arguments{
 \item{x}{A data frame with bibliographic entries.}
 
+\item{...}{Further arguments passed to \code{\link{file}}.}
+
 \item{file}{A character value with the path and the name of the file to be
 written.}
-
-\item{...}{Further arguments passed to \code{\link{file}}.}
 
 \item{encoding}{Character value with the encoding (passed to
 \code{\link{file}}).}

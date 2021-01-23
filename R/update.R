@@ -97,7 +97,6 @@ update.lib_df <- function(object, revision, key = "bibtexkey", delete = FALSE,
 	}
 }
 
-
 #' @rdname update
 #' 
 #' @aliases update<-

@@ -15,9 +15,6 @@ library(covr)
 # document package
 document()
 
-# Report coverage
-report()
-
 # Build package
 pkg_loc <- build(path="build-pkg")
 
@@ -26,6 +23,9 @@ pkg_loc <- build(path="build-pkg")
 ## Sys.setlocale("LC_ALL", "en_US.iso88591") # TODO: review this error
 Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
 check_built(path=pkg_loc)
+
+# Report coverage
+report()
 
 ## After check -----------------------------------------------------------------
 
