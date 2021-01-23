@@ -28,8 +28,12 @@ setMethod("compare_df", signature(x = "data.frame", y = "data.frame",
 				key = "character"), function(x, y, key, ...) {
 			# Compare variables in data frames
 			common_cols <- intersect(colnames(x), colnames(y))
-			if(!setequal(colnames(x), colnames(y)))
-				warning(paste("Mismatching columns in input data frames.",
+			## if(!setequal(colnames(x), colnames(y)))
+			if(any(!colnames(y) %in% colnames(x)))
+				warning(paste("Some columns of 'y' are not in 'x'.",
+								"Only common variables will be compared"))
+			if(any(!colnames(x) %in% colnames(y)))
+				warning(paste("Some columns of 'x' are not in 'y'.",
 								"Only common variables will be compared"))
 			# Other checks
 			if(!key %in% common_cols)

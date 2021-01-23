@@ -1,6 +1,5 @@
 ^\.dbeaver$
 ^\.project$
-^\.travis.yml$
 ^readings$
 ^data-raw$
 ^build-pkg$
