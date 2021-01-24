@@ -48,5 +48,5 @@ print.comp_df <- function(x, ...) {
 			}
 		}
 	if((length(x$deleted) == 0) & (nrow(x$added) == 0) & (nrow(x$updated) == 0))
-		cat("## no changes detected\n")
+		cat("## no changes detected\n\n")
 }
