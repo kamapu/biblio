@@ -12,10 +12,8 @@ library(devtools)
 library(rmarkdown)
 library(covr)
 
-# document package
-document()
-
 # Build package
+document()
 pkg_loc <- build(path="build-pkg")
 
 # Test the package

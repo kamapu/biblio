@@ -26,7 +26,7 @@ read_bib <- function(x, ...) {
 	type <- substring(x[,2], 2, nchar(x[,2]) - 1)
 	type <- strsplit(type[substring(x[,2], 1, 1) == "@"], "{", fixed=TRUE)
 	type <- do.call(rbind, type)
-	# skip comment fields
+	# skip comment Notice
 	type <- cbind(type, refid)
 	type <- type[type[,1] != "Comment",]
 	x <- x[x[,1] %in% type[,3],]
@@ -34,15 +34,34 @@ read_bib <- function(x, ...) {
 	if(any(duplicated(type[,3])))
 		warning("Some duplicated values for 'bibtexkey' in 'x'.")
 	# getting list of entry fields
-	x <- x[grepl(" = ", x[,2], fixed=TRUE),]
-	x <- cbind(x[,1], do.call(rbind, strsplit(x[,2], " = ", TRUE)))
-	x[,2] <- trimws(x[,2], "both")
-	x[,3] <- substring(x[,3], 2, nchar(x[,3]) - 2)
-	fields <- unique(x[,2])
+	x <- x[substr(x[ , 2], 1, 1) != "@" & substr(x[ , 2], 1, 1) != "}", ]
+	x[ , 2] <- gsub("\\s+", " ", str_trim(x[ , 2]))
+	## x[,2] <- trimws(x[,2], "both")
+	Content <- strsplit(x[ , 2], " = {", fixed = TRUE)
+	Content <- lapply(Content, function(x) {
+				if(length(x) == 1)
+					x <- c(NA, x)
+				return(x)
+			})
+	Content <- cbind(x[ , 1], do.call(rbind, Content))
+	# Fill NAs forward (Stack Overflow: 7735647)
+	Content[ , 2] <- c(NA, na.omit(Content[ , 2]))[cumsum(!is.na(Content[ ,
+									2])) + 1]
+	# Skip trailing field symbol
+	idx <- substr(Content[ , 3], nchar(Content[ , 3]) - 1,
+			nchar(Content[ , 3])) == "},"
+	Content[idx, 3] <- substr(Content[idx, 3], 1, nchar(Content[idx, 3]) - 2)
+	# Aggregate for multiple lines entries
+	Content <- as.data.frame(Content, stringsAsFactors = FALSE)
+	colnames(Content) <- c("refid", "field", "value")
+	Content <- aggregate(value ~ refid + field, data = Content,
+			FUN = function(x) paste0(x, collapse = "\n"))
 	# Output table
-	new_x <- expand.grid(field=fields, refid=type[,3], stringsAsFactors=FALSE)
-	new_x$value <- with(new_x, x[match(paste(refid, field, sep="_"),
-							paste(x[,1], x[,2], sep="_")),3])
+	fields <- unique(Content$field)
+	new_x <- expand.grid(field = fields, refid = type[ , 3],
+			stringsAsFactors = FALSE)
+	new_x$value <- with(new_x, Content[match(paste(refid, field, sep = "_"),
+							paste(Content$refid, Content$field, sep = "_")), 3])
 	new_x <- with(new_x, do.call(rbind, split(value, as.integer(refid))))
 	colnames(new_x) <- fields
 	colnames(type)[1:2] <- c("bib_type","bibtexkey")
