@@ -9,13 +9,14 @@ read_bib(x, ...)
 \arguments{
 \item{x}{Path to BibTeX file.}
 
-\item{...}{Further arguments passed to \code{\link{readLines}}.
-
-#' @examples
-x <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
-x}
+\item{...}{Further arguments passed to \code{\link{readLines}}.}
 }
 \description{
 Reading BibTeX databases and importing into R as a data frame. All the fields
 will be inserted as character values.
+}
+\examples{
+x <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
+x
+
 }

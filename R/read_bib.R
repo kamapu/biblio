@@ -9,7 +9,7 @@
 #' @param x Path to BibTeX file.
 #' @param ... Further arguments passed to \code{\link{readLines}}.
 #' 
-#' #' @examples
+#' @examples
 #' x <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
 #' x
 #' 
