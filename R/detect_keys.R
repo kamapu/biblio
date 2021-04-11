@@ -14,8 +14,10 @@
 #' \href{rbbt}{https://github.com/paleolimbot/rbbt}.
 #' 
 #' @param x A character vector, a file imported by [readLines()] or an object
-#'    imported by [read_rmd()].
-#' @param ... Further arguments passed among methods.
+#'     imported by [read_rmd()]. If the character vector is the name of a Rmd
+#'     file, [readLines()] will be internally called to read it.
+#' @param ... Further arguments passed among methods. In character-method they
+#'     are passed to [readLines()].
 #' 
 #' @return 
 #' A data frame with two columns, `bibtexkey` for the found keys and `line`
@@ -41,6 +43,9 @@ detect_keys <- function (x, ...) {
 #' @export 
 #' 
 detect_keys.character <- function(x, ...) {
+	# If character the name of a file
+	if(length(x) == 1 & substr(x[1], nchar(x) - 3, nchar(x)) == ".Rmd")
+		x <- readLines(x, ...)
 	# Code from rbbt::detect_citations()
 	match_str <- function(content)
 		stringr::str_match_all(
@@ -64,5 +69,5 @@ detect_keys.character <- function(x, ...) {
 #' 
 detect_keys.rmd_doc <- function(x, ...) {
 	message("Lines are counted only at the body of the document.")
-	detect_keys(x[["body"]])
+	detect_keys(x[["body"]], ...)
 }

@@ -14,9 +14,11 @@ detect_keys(x, ...)
 }
 \arguments{
 \item{x}{A character vector, a file imported by \code{\link[=readLines]{readLines()}} or an object
-imported by \code{\link[=read_rmd]{read_rmd()}}.}
+imported by \code{\link[=read_rmd]{read_rmd()}}. If the character vector is the name of a Rmd
+file, \code{\link[=readLines]{readLines()}} will be internally called to read it.}
 
-\item{...}{Further arguments passed among methods.}
+\item{...}{Further arguments passed among methods. In character-method they
+are passed to \code{\link[=readLines]{readLines()}}.}
 }
 \value{
 A data frame with two columns, \code{bibtexkey} for the found keys and \code{line}
