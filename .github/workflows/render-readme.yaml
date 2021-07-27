@@ -20,7 +20,7 @@ jobs:
       
       # Install packages needed
       - name: install required packages
-        run: Rscript -e 'install.packages(c("devtools", "rmarkdown", "yamlme"))'
+        run: Rscript -e 'install.packages(c("remotes", "rmarkdown", "yamlme"))'
       
       # Install packages needed from GitHub
       - name: install from GitHub
