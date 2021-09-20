@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>biblio</name>
-	<comment></comment>
+	<comment>
+		R-package dealing with Bibtex databases.
+	</comment>
 	<projects>
 	</projects>
 	<buildSpec>
