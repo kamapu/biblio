@@ -9,7 +9,7 @@
 #' [Luebert and Pliscoff (2017)](https://www.uchile.cl/publicaciones/141285/sinopsis-bioclimatica-y-vegetacional-de-chile).
 #' 
 #' @source 
-#' [10.5281/zenodo.60800](https://doi.org/10.5281/zenodo.60800)
+#' \doi{10.5281/zenodo.60800}
 #' 
 #' @examples 
 #' data(synopsis)
