@@ -3,7 +3,9 @@
 \name{print}
 \alias{print}
 \alias{print.lib_df}
+\alias{print,lib_df-method}
 \alias{print.comp_df}
+\alias{print,comp_df-method}
 \title{Print content of lib_df objects}
 \usage{
 \method{print}{lib_df}(x, ...)
@@ -16,11 +18,11 @@
 \item{...}{Further arguments passed among methods.}
 }
 \description{
-A method for a brief overview on the content of a 'lib_df' object.
+A method for a brief overview on the content of a \linkS4class{lib_df} or a
+\linkS4class{comp_df} object.
 }
 \examples{
-Bib <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
-Bib
+synopsis
 
 }
 \author{

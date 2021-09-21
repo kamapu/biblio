@@ -1,6 +1,6 @@
 #' @name lib_df-class
 #' 
-#' @title Class containing library entries
+#' @title Electronic library
 #' 
 #' @description 
 #' An S3 class for library entries. This class inherits properties from data
@@ -12,7 +12,7 @@ setOldClass(c("lib_df", "data.frame"))
 
 #' @name comp_df-class
 #' 
-#' @title Comparison between two data frames
+#' @title Compared libraries
 #' 
 #' @description 
 #' An S3 class for compared data frames. A list containing added, deleted

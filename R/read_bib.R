@@ -10,8 +10,9 @@
 #' @param ... Further arguments passed to \code{\link{readLines}}.
 #' 
 #' @examples
-#' x <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
-#' x
+#' Refs <- read_bib(x = file.path(path.package("biblio"),
+#'   "LuebertPliscoff.bib"))
+#' Refs
 #' 
 #' @export read_bib
 #' 

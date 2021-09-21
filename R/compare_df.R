@@ -2,16 +2,41 @@
 #' 
 #' @rdname compare_df
 #' 
-#' @title Compare data frames
+#' @title Compare data frames and libraries
 #' 
 #' @description 
-#' Detect changes between two versions of a data frame.
+#' Report on differences between two versions of the same data frame or
+#' electronic library.
+#' When used for data frames, you need to indicate the variable containing IDs
+#' for each entry, while applied to [lib_df-class] objects, the variable
+#' 'bibtexkey' will be considered as ID per default.
+#' 
+#' The output printed in the console will advice about added and deleted entries
+#' in 'y' as well as any change in the entries common to both versions.
 #' 
 #' @param x The reference data frame.
 #' @param y The updated data frame.
 #' @param key A character value with the name of the variable used as primary
 #'     key in the tables.
 #' @param ... Further arguments passed among methods.
+#' 
+#' @seealso 
+#' [biblio::update()], [lib_df-class], [comp_df-class]
+#' 
+#' @return 
+#' A S3 object of class [comp_df-class], which can be printed in the console by
+#' [biblio::print()].
+#' 
+#' @examples 
+#' # Partially matching libraries
+#' Refs1 <- synopsis[1:10, ]
+#' Refs2 <- synopsis[6:15, ]
+#' 
+#' # some modification in second library
+#' Refs2[3, "title"] <- "New Title"
+#' 
+#' # compare libraries
+#' compare_df(Refs1, Refs2)
 #' 
 #' @exportMethod compare_df
 #' 

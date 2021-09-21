@@ -6,12 +6,12 @@
 #' 
 #' @description 
 #' This function screens a character vector (usually an imported r-markdown
-#' document) for the use of citations by bibtexkeys ('@@bibtexkey'), retrieving
+#' document) for the use of citations by bibtexkeys (`@@bibtexkey`), retrieving
 #' the detected key with its occurrence in the vector, assuming each element as
 #' a line of the original document.
 #' 
 #' This function is based on `bbt_detect_citations()` from the package
-#' \href{rbbt}{https://github.com/paleolimbot/rbbt}.
+#' [rbbt](https://github.com/paleolimbot/rbbt).
 #' 
 #' @param x A character vector, a file imported by [readLines()] or an object
 #'     imported by [read_rmd()]. If the character vector is the name of a Rmd
@@ -39,6 +39,8 @@ detect_keys <- function (x, ...) {
 
 #' @rdname detect_keys
 #' 
+#' @aliases detect_keys,character-method
+#' 
 #' @method detect_keys character
 #' @export 
 #' 
@@ -63,6 +65,8 @@ detect_keys.character <- function(x, ...) {
 }
 
 #' @rdname detect_keys
+#' 
+#' @aliases detect_keys,rmd_doc-method
 #' 
 #' @method detect_keys rmd_doc
 #' @export 

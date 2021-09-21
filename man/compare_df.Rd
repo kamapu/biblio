@@ -4,7 +4,7 @@
 \alias{compare_df}
 \alias{compare_df,data.frame,data.frame,character-method}
 \alias{compare_df,lib_df,lib_df,missing-method}
-\title{Compare data frames}
+\title{Compare data frames and libraries}
 \usage{
 compare_df(x, y, key, ...)
 
@@ -22,6 +22,32 @@ key in the tables.}
 
 \item{...}{Further arguments passed among methods.}
 }
+\value{
+A S3 object of class \linkS4class{comp_df}, which can be printed in the console by
+\code{\link[=print]{print()}}.
+}
 \description{
-Detect changes between two versions of a data frame.
+Report on differences between two versions of the same data frame or
+electronic library.
+When used for data frames, you need to indicate the variable containing IDs
+for each entry, while applied to \linkS4class{lib_df} objects, the variable
+'bibtexkey' will be considered as ID per default.
+
+The output printed in the console will advice about added and deleted entries
+in 'y' as well as any change in the entries common to both versions.
+}
+\examples{
+# Partially matching libraries
+Refs1 <- synopsis[1:10, ]
+Refs2 <- synopsis[6:15, ]
+
+# some modification in second library
+Refs2[3, "title"] <- "New Title"
+
+# compare libraries
+compare_df(Refs1, Refs2)
+
+}
+\seealso{
+\code{\link[=update]{update()}}, \linkS4class{lib_df}, \linkS4class{comp_df}
 }

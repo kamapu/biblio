@@ -3,7 +3,9 @@
 \name{detect_keys}
 \alias{detect_keys}
 \alias{detect_keys.character}
+\alias{detect_keys,character-method}
 \alias{detect_keys.rmd_doc}
+\alias{detect_keys,rmd_doc-method}
 \title{Detect bibtexkeys used in an r-markdown document}
 \usage{
 detect_keys(x, ...)
@@ -26,12 +28,12 @@ with the line number of the occurrence of the key in the document.
 }
 \description{
 This function screens a character vector (usually an imported r-markdown
-document) for the use of citations by bibtexkeys ('@bibtexkey'), retrieving
+document) for the use of citations by bibtexkeys (\verb{@bibtexkey}), retrieving
 the detected key with its occurrence in the vector, assuming each element as
 a line of the original document.
 
 This function is based on \code{bbt_detect_citations()} from the package
-\href{rbbt}{https://github.com/paleolimbot/rbbt}.
+\href{https://github.com/paleolimbot/rbbt}{rbbt}.
 }
 \examples{
 ## Read installed r-markdown document

@@ -2,10 +2,13 @@
 #' 
 #' @rdname print
 #' 
+#' @aliases print,lib_df-method
+#' 
 #' @title Print content of lib_df objects
 #' 
 #' @description 
-#' A method for a brief overview on the content of a 'lib_df' object.
+#' A method for a brief overview on the content of a [lib_df-class] or a
+#' [comp_df-class] object.
 #' 
 #' @param x An object of class 'lib_df'.
 #' @param ... Further arguments passed among methods.
@@ -13,10 +16,10 @@
 #' @author Miguel Alvarez
 #' 
 #' @examples
-#' Bib <- read_bib(x = file.path(path.package("biblio"), "LuebertPliscoff.bib"))
-#' Bib
+#' synopsis
 #' 
 #' @method print lib_df
+#' 
 #' @export
 #' 
 print.lib_df <- function(x, ...) {
@@ -28,7 +31,10 @@ print.lib_df <- function(x, ...) {
 
 #' @rdname print
 #' 
+#' @aliases print,comp_df-method
+#' 
 #' @method print comp_df
+#' 
 #' @export 
 #' 
 print.comp_df <- function(x, ...) {

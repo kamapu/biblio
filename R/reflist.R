@@ -20,10 +20,9 @@
 #'     (passed to [biblio::read_bib()]).
 #' @param filename A character value with the name for the written Rmd file,
 #'     without file extension.
-#' @param bib_file A character value with the name for the written bibtex file,
-#'     including extension (.bib). In the lib_df method it can be omitted and
-#'     will then named by [tempfile()]. In the character method it is not
-#'     required.
+#' @param bib_file A character value with the name for the written bibtex file.
+#'     In the lib_df method it can be omitted and will then named by
+#'     [tempfile()]. In the character method it is not required.
 #' @param delete_rmd A logical value indicating whether written Rmd file should
 #'     be deleted after rendering html or not.
 #' @param delete_bib A logical value indicating whether written bib file should
@@ -38,6 +37,11 @@
 #' @param ... Further arguments passed to [write_rmd()] by the lib_df method, or
 #'     to the lib_df method by the character method.
 #' 
+#' @examples
+#' \dontrun{
+#' reflist(synopsis)
+#' }
+#' 
 #' @exportMethod reflist
 #' 
 setGeneric("reflist",
@@ -50,7 +54,7 @@ setGeneric("reflist",
 #' @aliases reflist,lib_df-method
 #' 
 setMethod("reflist", signature(x = "lib_df"),
-		function(x, filename, bib_file, delete_rmd = FALSE,
+		function(x, filename = "references", bib_file, delete_rmd = FALSE,
 				delete_bib = delete_rmd, browse_file = TRUE,
 				title = "Automatic Reference List", output = "html_document",
 				nocite = "'@*'", urlcolor = "blue", encoding = "UTF-8", ...) {
@@ -58,6 +62,9 @@ setMethod("reflist", signature(x = "lib_df"),
 			if(missing(bib_file))
 				bib_file <- tempfile(pattern = "ref", tmpdir = ".",
 						fileext = ".bib")
+			N <- nchar(bib_file)
+			if(substring(tolower(bib_file), N - 3, N) != ".bib")
+				bib_file <- paste0(bib_file, ".bib")
 			biblio::write_bib(x = x, file = bib_file, encoding = encoding)
 			# write Rmd file
 			filename <- paste0(filename, ".Rmd")
@@ -92,10 +99,13 @@ setMethod("reflist", signature(x = "lib_df"),
 #' @aliases reflist,character-method
 #' 
 setMethod("reflist", signature(x = "character"),
-		function(x, filename, ...) {
+		function(x, filename = "references", ...) {
 			# Exchange arguments
 			bib_file <- x
-			x <- biblio::read_bib(x)
+			N <- nchar(bib_file)
+			if(substring(tolower(bib_file), N - 3, N) != ".bib")
+				bib_file <- paste0(bib_file, ".bib")
+			x <- biblio::read_bib(bib_file)
 			# Execute lib_df method
 			reflist(x = x, filename = filename, bib_file = bib_file,
 					delete_bib = FALSE, ...)

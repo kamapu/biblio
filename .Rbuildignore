@@ -2,6 +2,7 @@
 ^\.project$
 ^readings$
 ^data-raw$
+^waste$
 ^build-pkg$
 ^README\.Rmd$
 ^README\.md$

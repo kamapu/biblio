@@ -10,7 +10,7 @@ reflist(x, ...)
 
 \S4method{reflist}{lib_df}(
   x,
-  filename,
+  filename = "references",
   bib_file,
   delete_rmd = FALSE,
   delete_bib = delete_rmd,
@@ -23,7 +23,7 @@ reflist(x, ...)
   ...
 )
 
-\S4method{reflist}{character}(x, filename, ...)
+\S4method{reflist}{character}(x, filename = "references", ...)
 }
 \arguments{
 \item{x}{A \code{lib_df} object to produce the reference list. In the character
@@ -36,10 +36,9 @@ to the lib_df method by the character method.}
 \item{filename}{A character value with the name for the written Rmd file,
 without file extension.}
 
-\item{bib_file}{A character value with the name for the written bibtex file,
-including extension (.bib). In the lib_df method it can be omitted and
-will then named by \code{\link[=tempfile]{tempfile()}}. In the character method it is not
-required.}
+\item{bib_file}{A character value with the name for the written bibtex file.
+In the lib_df method it can be omitted and will then named by
+\code{\link[=tempfile]{tempfile()}}. In the character method it is not required.}
 
 \item{delete_rmd}{A logical value indicating whether written Rmd file should
 be deleted after rendering html or not.}
@@ -67,4 +66,10 @@ result can be assigned to an object for further edition
 
 A html file will be written by \code{\link[=write_rmd]{write_rmd()}} and \code{\link[=render_rmd]{render_rmd()}} in the
 working directory and displayed by \code{\link[=browseURL]{browseURL()}}.
+}
+\examples{
+\dontrun{
+reflist(synopsis)
+}
+
 }

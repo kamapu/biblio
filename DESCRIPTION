@@ -1,5 +1,5 @@
 Package: biblio
-Version: 0.0.1.9008
+Version: 0.0.1
 Encoding: UTF-8
 Title: Interacting with BibTeX Databases
 Authors@R: c(
@@ -10,7 +10,6 @@ Depends:
     R(>= 3.5.0)
 Imports:
     methods,
-    readODS,
     stringr,
     yamlme
 Suggests:
@@ -24,4 +23,4 @@ License: GPL (>= 2)
 URL: https://github.com/kamapu/biblio
 BugReports: https://github.com/kamapu/biblio/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1.9000
+RoxygenNote: 7.1.2
