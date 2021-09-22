@@ -17,6 +17,9 @@
 
 \item{...}{Further arguments passed among methods.}
 }
+\value{
+An invisible object, printed in the console.
+}
 \description{
 A method for a brief overview on the content of a \linkS4class{lib_df} or a
 \linkS4class{comp_df} object.

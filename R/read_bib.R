@@ -7,7 +7,10 @@
 #' will be inserted as character values.
 #' 
 #' @param x Path to BibTeX file.
-#' @param ... Further arguments passed to \code{\link{readLines}}.
+#' @param ... Further arguments passed to [readLines()].
+#' 
+#' @return 
+#' An object of class [lib_df-class].
 #' 
 #' @examples
 #' Refs <- read_bib(x = file.path(path.package("biblio"),

@@ -9,7 +9,10 @@ read_bib(x, ...)
 \arguments{
 \item{x}{Path to BibTeX file.}
 
-\item{...}{Further arguments passed to \code{\link{readLines}}.}
+\item{...}{Further arguments passed to \code{\link[=readLines]{readLines()}}.}
+}
+\value{
+An object of class \linkS4class{lib_df}.
 }
 \description{
 Reading BibTeX databases and importing into R as a data frame. All the fields

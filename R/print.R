@@ -18,6 +18,9 @@
 #' @examples
 #' synopsis
 #' 
+#' @return 
+#' An invisible object, printed in the console.
+#' 
 #' @method print lib_df
 #' 
 #' @export

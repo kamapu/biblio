@@ -15,6 +15,9 @@
 #'     \code{\link{file}}).
 #' @param ... Further arguments passed to \code{\link{file}}.
 #' 
+#' @return 
+#' A bibtex file.
+#' 
 #' @export 
 #' 
 write_bib <- function (x, ...) {

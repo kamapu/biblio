@@ -56,6 +56,11 @@ value NULL (not recommended for nocite).}
 \item{encoding}{A character value indicating the encoding string. It is
 passed to \code{\link[=write_bib]{write_bib()}}.}
 }
+\value{
+By default a html document with ta list of references. The output can be
+modified to other options using \strong{R-markdown} (see documentation for the
+package \href{https://kamapu.github.io/rpkg/yamlme/}{yamlme}).
+}
 \description{
 A fast way to produce a reference list in an html document from a \code{lib_df}
 object.

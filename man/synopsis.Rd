@@ -8,7 +8,7 @@
 An object of class \code{lib_df} (inherits from \code{data.frame}) with 1701 rows and 23 columns.
 }
 \source{
-\href{https://doi.org/10.5281/zenodo.60800}{10.5281/zenodo.60800}
+\doi{10.5281/zenodo.60800}
 }
 \usage{
 synopsis

@@ -20,6 +20,9 @@ written.}
 \item{encoding}{Character value with the encoding (passed to
 \code{\link{file}}).}
 }
+\value{
+A bibtex file.
+}
 \description{
 BibTeX databases can be created from data frames, interacting with Postgres
 databases.

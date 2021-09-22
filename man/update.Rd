@@ -52,6 +52,10 @@ differences as done by \link{compare_df}.}
 
 \item{value}{The updated version of 'object' in the replace methods.}
 }
+\value{
+Either an invisible output with a print in the console or an updated object
+of class \linkS4class{lib_df}.
+}
 \description{
 This function compares two versions of the same data frame and detect changes
 as additions, deleted entries or updates (modified entries).

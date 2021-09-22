@@ -37,6 +37,11 @@
 #' @param ... Further arguments passed to [write_rmd()] by the lib_df method, or
 #'     to the lib_df method by the character method.
 #' 
+#' @return 
+#' By default a html document with ta list of references. The output can be
+#' modified to other options using **R-markdown** (see documentation for the
+#' package [yamlme](https://kamapu.github.io/rpkg/yamlme/)).
+#' 
 #' @examples
 #' \dontrun{
 #' reflist(synopsis)

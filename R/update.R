@@ -21,6 +21,10 @@
 #'     differences as done by [compare_df].
 #' @param ... Further arguments passed among methods.
 #' 
+#' @return 
+#' Either an invisible output with a print in the console or an updated object
+#' of class [lib_df-class].
+#' 
 #' @examples 
 #' # modifying the data set iris
 #' data(iris)
