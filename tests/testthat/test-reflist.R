@@ -1,6 +1,8 @@
 context("writing reference lists")
 
 test_that("Backups are written", {
+			skip_on_os(os = "solaris")
+						
 			Bib <- read_bib(x = file.path(path.package("biblio"),
 							"LuebertPliscoff.bib"))
 			reflist(x = Bib, filename = "test_refs", bib_file = "refs.bib",

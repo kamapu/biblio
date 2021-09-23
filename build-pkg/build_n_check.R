@@ -4,13 +4,15 @@
 ################################################################################
 
 # required_packages
-remotes::install_github("r-lib/devtools")
-remotes::install_github("rstudio/rmarkdown")
-remotes::install_github("r-lib/roxygen2")
+remotes::install_github("r-lib/devtools", dependencies = TRUE)
+remotes::install_github("rstudio/rmarkdown", dependencies = TRUE)
+remotes::install_github("r-lib/roxygen2", dependencies = TRUE)
+remotes::install_github("r-hub/rhub", dependencies = TRUE)
 
 library(devtools)
 library(rmarkdown)
 library(covr)
+library(rhub)
 
 # Build package
 ## source("data-raw/import-references.R")
@@ -18,11 +20,14 @@ document()
 pkg_loc <- build(path = "build-pkg")
 build_manual(path = "build-pkg")
 
+# check in solaris
+rhub::check(platform = "solaris-x86-patched")
+
 # Test the package
 ## Sys.setenv(LANG="en_US.iso88591")
 ## Sys.setlocale("LC_ALL", "en_US.iso88591") # TODO: review this error
 ## Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
-check_built(path=pkg_loc)
+check_built(path = pkg_loc)
 
 # Report coverage
 report()
