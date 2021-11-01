@@ -2,7 +2,7 @@
 #' 
 #' @rdname reflist
 #' 
-#' @title Write a Reference List in HTML
+#' @title Write a Reference List in rmarkdown
 #' 
 #' @description 
 #' A fast way to produce a reference list in an html document from a `lib_df`
@@ -38,9 +38,8 @@
 #'     to the lib_df method by the character method.
 #' 
 #' @return 
-#' By default a html document with ta list of references. The output can be
-#' modified to other options using **R-markdown** (see documentation for the
-#' package [yamlme](https://kamapu.github.io/rpkg/yamlme/)).
+#' An invisible object of class `rmd_doc`. A Rmd file will be written by
+#' [write_rmd()] as well.
 #' 
 #' @examples
 #' \dontrun{
@@ -48,7 +47,6 @@
 #' }
 #' 
 #' @exportMethod reflist
-#' 
 setGeneric("reflist",
 		function(x, ...)
 			standardGeneric("reflist")
@@ -76,8 +74,6 @@ setMethod("reflist", signature(x = "lib_df"),
 			rmd_document <- write_rmd(title = title, output = output,
 					bibliography = bib_file, nocite = nocite,
 					urlcolor = urlcolor, filename = filename, ...)
-			# render file
-			render_rmd(input = filename)
 			# delete intermediary files
 			w_files <- c(filename, bib_file)
 			if(delete_rmd) {

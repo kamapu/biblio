@@ -18,7 +18,10 @@ library(rhub)
 ## source("data-raw/import-references.R")
 document()
 pkg_loc <- build(path = "build-pkg")
-build_manual(path = "build-pkg")
+## build_manual(path = "build-pkg")
+
+# common check
+check_built(path = pkg_loc)
 
 # check in solaris
 rhub::check(platform = "solaris-x86-patched")
@@ -27,7 +30,7 @@ rhub::check(platform = "solaris-x86-patched")
 ## Sys.setenv(LANG="en_US.iso88591")
 ## Sys.setlocale("LC_ALL", "en_US.iso88591") # TODO: review this error
 ## Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
-check_built(path = pkg_loc)
+
 
 # Report coverage
 report()
