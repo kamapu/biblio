@@ -6,16 +6,16 @@ test_that("Backups are written", {
 			Bib <- read_bib(x = file.path(path.package("biblio"),
 							"LuebertPliscoff.bib"))
 			reflist(x = Bib, filename = "test_refs", bib_file = "refs.bib",
-					delete_rmd = FALSE, browse_file = FALSE)
+					delete_rmd = FALSE)
 			
 			expect_true(file.exists("refs.bib"))
 			expect_true(file.exists("test_refs.Rmd"))
-			expect_true(file.exists("test_refs.html"))
+      ## expect_true(file.exists("test_refs.html"))
 			
 			reflist(x = file.path(path.package("biblio"),
 							"LuebertPliscoff.bib"), filename = "test_refs2",
-					delete_rmd = FALSE, browse_file = FALSE)
+					delete_rmd = FALSE)
 			
 			expect_true(file.exists("test_refs2.Rmd"))
-			expect_true(file.exists("test_refs2.html"))
+      ## expect_true(file.exists("test_refs2.html"))
 		})

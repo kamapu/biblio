@@ -4,7 +4,7 @@
 \alias{reflist}
 \alias{reflist,lib_df-method}
 \alias{reflist,character-method}
-\title{Write a Reference List in HTML}
+\title{Write a Reference List in rmarkdown}
 \usage{
 reflist(x, ...)
 
@@ -14,7 +14,6 @@ reflist(x, ...)
   bib_file,
   delete_rmd = FALSE,
   delete_bib = delete_rmd,
-  browse_file = TRUE,
   title = "Automatic Reference List",
   output = "html_document",
   nocite = "'@*'",
@@ -46,9 +45,6 @@ be deleted after rendering html or not.}
 \item{delete_bib}{A logical value indicating whether written bib file should
 be deleted after rendering html or not.}
 
-\item{browse_file}{A logical value indicating whether the resulting html file
-should be opened in a browser or not.}
-
 \item{title, output, nocite, urlcolor}{Arguments used for the yaml-header in
 r-markdown and passed to \code{\link[=write_rmd]{write_rmd()}}. They can be cancelled using the
 value NULL (not recommended for nocite).}
@@ -57,13 +53,12 @@ value NULL (not recommended for nocite).}
 passed to \code{\link[=write_bib]{write_bib()}}.}
 }
 \value{
-By default a html document with ta list of references. The output can be
-modified to other options using \strong{R-markdown} (see documentation for the
-package \href{https://kamapu.github.io/rpkg/yamlme/}{yamlme}).
+An invisible object of class \code{rmd_doc}. A Rmd file will be written by
+\code{\link[=write_rmd]{write_rmd()}} as well.
 }
 \description{
-A fast way to produce a reference list in an html document from a \code{lib_df}
-object.
+A fast way to produce a reference list in an r-markdown document from a
+\code{lib_df} object.
 
 This function may or may not produce intermediate files (bib and Rmd) and the
 result can be assigned to an object for further edition

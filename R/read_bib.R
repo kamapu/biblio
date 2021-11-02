@@ -55,6 +55,13 @@ read_bib <- function(x, ...) {
 	idx <- substr(Content[ , 3], nchar(Content[ , 3]) - 1,
 			nchar(Content[ , 3])) == "},"
 	Content[idx, 3] <- substr(Content[idx, 3], 1, nchar(Content[idx, 3]) - 2)
+  # Resolve problems with last entry without comma symbol
+  # In that case a trailing curly bracket remains in entry
+  open_bk <- str_count(Content[ , 3], fixed("{"))
+  close_bk <- str_count(Content[ , 3], fixed("}"))
+  end_bk <- substr(Content[ , 3], nchar(Content[ , 3]), nchar(Content[ , 3]))
+  idx <- (close_bk == open_bk + 1) & (end_bk == "}")
+  Content[idx, 3] <- substr(Content[idx, 3], 1, nchar(Content[idx, 3]) - 1)
 	# Aggregate for multiple lines entries
 	Content <- as.data.frame(Content, stringsAsFactors = FALSE)
 	colnames(Content) <- c("refid", "field", "value")

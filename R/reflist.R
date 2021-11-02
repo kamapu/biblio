@@ -5,8 +5,8 @@
 #' @title Write a Reference List in rmarkdown
 #' 
 #' @description 
-#' A fast way to produce a reference list in an html document from a `lib_df`
-#' object.
+#' A fast way to produce a reference list in an r-markdown document from a
+#' `lib_df` object.
 #' 
 #' This function may or may not produce intermediate files (bib and Rmd) and the
 #' result can be assigned to an object for further edition
@@ -27,8 +27,6 @@
 #'     be deleted after rendering html or not.
 #' @param delete_bib A logical value indicating whether written bib file should
 #'     be deleted after rendering html or not.
-#' @param browse_file A logical value indicating whether the resulting html file
-#'     should be opened in a browser or not.
 #' @param encoding A character value indicating the encoding string. It is
 #'     passed to [biblio::write_bib()].
 #' @param title,output,nocite,urlcolor Arguments used for the yaml-header in
@@ -58,9 +56,9 @@ setGeneric("reflist",
 #' 
 setMethod("reflist", signature(x = "lib_df"),
 		function(x, filename = "references", bib_file, delete_rmd = FALSE,
-				delete_bib = delete_rmd, browse_file = TRUE,
-				title = "Automatic Reference List", output = "html_document",
-				nocite = "'@*'", urlcolor = "blue", encoding = "UTF-8", ...) {
+				delete_bib = delete_rmd, title = "Automatic Reference List",
+        output = "html_document", nocite = "'@*'", urlcolor = "blue",
+        encoding = "UTF-8", ...) {
 			# write bib file
 			if(missing(bib_file))
 				bib_file <- tempfile(pattern = "ref", tmpdir = ".",
@@ -68,7 +66,7 @@ setMethod("reflist", signature(x = "lib_df"),
 			N <- nchar(bib_file)
 			if(substring(tolower(bib_file), N - 3, N) != ".bib")
 				bib_file <- paste0(bib_file, ".bib")
-			biblio::write_bib(x = x, file = bib_file, encoding = encoding)
+			write_bib(x = x, file = bib_file, encoding = encoding)
 			# write Rmd file
 			filename <- paste0(filename, ".Rmd")
 			rmd_document <- write_rmd(title = title, output = output,
@@ -88,9 +86,6 @@ setMethod("reflist", signature(x = "lib_df"),
 			if(length(w_files) > 0)
 				message(paste0("\n## Intermediary files:\n   ", paste0(w_files,
 										collapse = "\n   "), "\n"))
-			# open the result
-			if(browse_file)
-				browseURL(url = gsub(".Rmd", ".html", filename))
 			# return rmd_doc xect if necessary
 			invisible(rmd_document)
 		})
@@ -106,7 +101,7 @@ setMethod("reflist", signature(x = "character"),
 			N <- nchar(bib_file)
 			if(substring(tolower(bib_file), N - 3, N) != ".bib")
 				bib_file <- paste0(bib_file, ".bib")
-			x <- biblio::read_bib(bib_file)
+			x <- read_bib(bib_file)
 			# Execute lib_df method
 			reflist(x = x, filename = filename, bib_file = bib_file,
 					delete_bib = FALSE, ...)

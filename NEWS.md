@@ -9,3 +9,6 @@ biblio 0.0.3
 ### Improvements
 
 ### Bug Fixes
+
+* Function `read_bib()` was not working properly if the last tag in an entry
+  did not ended with a comma. Now it is solved

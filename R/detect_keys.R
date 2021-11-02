@@ -50,9 +50,9 @@ detect_keys.character <- function(x, ...) {
 		x <- readLines(x, ...)
 	# Code from rbbt::detect_citations()
 	match_str <- function(content)
-		stringr::str_match_all(
+		str_match_all(
 				content,
-				stringr::regex("[^a-zA-Z0-9\\\\]@([a-zA-Z0-9_.-]+[a-zA-Z0-9])",
+				regex("[^a-zA-Z0-9\\\\]@([a-zA-Z0-9_.-]+[a-zA-Z0-9])",
 						multiline = TRUE, dotall = TRUE))[[1]][ , 2,
 				drop =  TRUE]
 	# keys and lines

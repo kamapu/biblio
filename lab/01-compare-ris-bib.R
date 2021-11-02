@@ -3,5 +3,5 @@
 # Author: Miguel Alvarez
 ################################################################################
 
-
+Bib <- read_bib("lab/references-assefa.bib")
 
