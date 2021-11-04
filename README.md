@@ -98,9 +98,11 @@ stats_refs <- aggregate(line ~ bibtexkey, data = cited_refs, FUN = length)
 # Number of citations in text
 sum(stats_refs$line)
 #> [1] 8
+
 # Number of cited articles
 nrow(stats_refs)
 #> [1] 5
+
 # Respective frequency to know rare citations in text
 stats_refs[order(stats_refs$line, decreasing = TRUE), ]
 #>        bibtexkey line
