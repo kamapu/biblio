@@ -10,6 +10,8 @@
 [![R-CMD-check](https://github.com/kamapu/biblio/workflows/R-CMD-check/badge.svg)](https://github.com/kamapu/biblio/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/kamapu/biblio/branch/master/graph/badge.svg)](https://codecov.io/gh/kamapu/biblio?branch=master)
+![r-universe](https://kamapu.r-universe.dev/badges/biblio)
+
 <!-- badges: end -->
 
 An R-package to manage bibliographic references. This package is focused
