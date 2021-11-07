@@ -31,7 +31,6 @@ rhub::check(platform = "solaris-x86-patched")
 ## Sys.setlocale("LC_ALL", "en_US.iso88591") # TODO: review this error
 ## Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
 
-
 # Report coverage
 report()
 
