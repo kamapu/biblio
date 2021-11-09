@@ -1,3 +1,11 @@
+biblio 0.0.4
+============
+
+### Bug Fixes
+
+* Use of `tempfile()` to test `write_bib()` and solve issues regarding
+  violation of CRAN policies.
+
 biblio 0.0.3
 ============
 
