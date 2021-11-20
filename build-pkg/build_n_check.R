@@ -26,6 +26,9 @@ check_built(path = pkg_loc)
 # check in solaris
 rhub::check(platform = "solaris-x86-patched")
 
+# check in solaris
+rhub::check(platform = "solaris-x86-patched")
+
 # Test the package
 ## Sys.setenv(LANG="en_US.iso88591")
 ## Sys.setlocale("LC_ALL", "en_US.iso88591") # TODO: review this error

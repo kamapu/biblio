@@ -1,5 +1,5 @@
 Package: biblio
-Version: 0.0.4
+Version: 0.0.5
 Encoding: UTF-8
 Title: Interacting with BibTeX Databases
 Authors@R: c(
@@ -7,7 +7,7 @@ Authors@R: c(
         role=c("aut","cre"), comment=c(ORCID="0000-0003-1500-1834"))
     )
 Depends:
-    R(>= 3.5.0)
+    R(>= 4.0.0)
 Imports:
     methods,
     stringr,
