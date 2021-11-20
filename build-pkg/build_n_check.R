@@ -14,28 +14,37 @@ library(rmarkdown)
 library(covr)
 library(rhub)
 
-# Build package
 ## source("data-raw/import-references.R")
 document()
-pkg_loc <- build(path = "build-pkg")
-## build_manual(path = "build-pkg")
+
+# clean built package and manual
+Folder <- "build-pkg"
+Files <- list.files(Folder, ".tar.gz|.pdf")
+unlink(file.path(Folder, Files))
+
+# Re-build package and manual
+pkg_loc <- build(path = Folder)
+build_manual(path = Folder)
 
 # common check
 check_built(path = pkg_loc)
 
-# check in solaris
-rhub::check(platform = "solaris-x86-patched")
-
-# check in solaris
-rhub::check(platform = "solaris-x86-patched")
-
-# Test the package
-## Sys.setenv(LANG="en_US.iso88591")
-## Sys.setlocale("LC_ALL", "en_US.iso88591") # TODO: review this error
-## Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
-
 # Report coverage
 report()
+
+# Additional checks
+## 
+## # check in solaris
+## rhub::check(platform = "solaris-x86-patched")
+## 
+## # check in solaris
+## rhub::check(platform = "solaris-x86-patched")
+## 
+## # Test the package
+## ## Sys.setenv(LANG="en_US.iso88591")
+## ## Sys.setlocale("LC_ALL", "en_US.iso88591") # TODO: review this error
+## ## Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
+## 
 
 ## After check -----------------------------------------------------------------
 
