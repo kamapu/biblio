@@ -1,5 +1,5 @@
 Package: biblio
-Version: 0.0.5
+Version: 0.0.6
 Encoding: UTF-8
 Title: Interacting with BibTeX Databases
 Authors@R: c(
@@ -21,7 +21,8 @@ LazyData: true
 SystemRequirements: pandoc (>= 1.14) - http://pandoc.org
 Description: Reading and writing BibTeX files using data frames in R sessions.
 License: GPL (>= 2)
-URL: https://github.com/kamapu/biblio
+URL: https://github.com/kamapu/biblio,
+    https://kamapu.github.io/biblio/
 BugReports: https://github.com/kamapu/biblio/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2.9000

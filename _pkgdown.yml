@@ -1,0 +1,5 @@
+url: https://kamapu.github.io/biblio/
+template:
+  bootstrap: 5
+  bootswatch: cerulean
+

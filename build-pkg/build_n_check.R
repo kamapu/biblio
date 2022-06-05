@@ -4,7 +4,8 @@
 ################################################################################
 
 # required_packages
-remotes::install_github("r-lib/devtools", dependencies = TRUE)
+remotes::install_github("r-lib/devtools", dependencies = TRUE, force = TRUE)
+## install.packages("devtools", dependencies = TRUE)
 remotes::install_github("rstudio/rmarkdown", dependencies = TRUE)
 remotes::install_github("r-lib/roxygen2", dependencies = TRUE)
 remotes::install_github("r-hub/rhub", dependencies = TRUE)
@@ -18,6 +19,7 @@ library(rhub)
 document()
 
 # clean built package and manual
+## Folder <- tempdir()
 Folder <- "build-pkg"
 Files <- list.files(Folder, ".tar.gz|.pdf")
 unlink(file.path(Folder, Files))
