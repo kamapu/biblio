@@ -69,10 +69,12 @@ data(iris)
 iris$id <- 1:nrow(iris) # ID column added
 
 # rows to add using mean values per species
-iris_mod <- aggregate(cbind(Sepal.Length, Sepal.Width, Petal.Length,
-    Petal.Width) ~ Species, data = iris, FUN = mean)
+iris_mod <- aggregate(cbind(
+  Sepal.Length, Sepal.Width, Petal.Length,
+  Petal.Width
+) ~ Species, data = iris, FUN = mean)
 iris_mod$id <- (1:nrow(iris_mod)) + nrow(iris)
-iris_mod <- do.call(rbind, list(iris, iris_mod[ , colnames(iris)]))
+iris_mod <- do.call(rbind, list(iris, iris_mod[, colnames(iris)]))
 
 # delete some entries
 iris_mod <- iris_mod[-c(15, 75, 105, 145), ]
@@ -85,7 +87,9 @@ iris_mod$Petal.Width[c(20, 50)] <- 0
 update(iris, iris_mod, key = "id")
 
 # do update
-iris <- update(iris, iris_mod, key = "id", delete = TRUE, add = TRUE,
-    update = TRUE)
+iris <- update(iris, iris_mod,
+  key = "id", delete = TRUE, add = TRUE,
+  update = TRUE
+)
 
 }

@@ -19,8 +19,10 @@ Reading BibTeX databases and importing into R as a data frame. All the fields
 will be inserted as character values.
 }
 \examples{
-Refs <- read_bib(x = file.path(path.package("biblio"),
-  "LuebertPliscoff.bib"))
+Refs <- read_bib(x = file.path(
+  path.package("biblio"),
+  "LuebertPliscoff.bib"
+))
 Refs
 
 }

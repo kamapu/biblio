@@ -23,8 +23,10 @@ with the references of the book
 data(synopsis)
 
 ## Import from installed bibtex file
-synopsis <- read_bib(x = file.path(path.package("biblio"),
-  "LuebertPliscoff.bib"))
+synopsis <- read_bib(x = file.path(
+  path.package("biblio"),
+  "LuebertPliscoff.bib"
+))
 
 }
 \keyword{datasets}

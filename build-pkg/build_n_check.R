@@ -3,125 +3,56 @@
 # Author: Miguel Alvarez
 ################################################################################
 
-# required_packages
-remotes::install_github("r-lib/devtools", dependencies = TRUE, force = TRUE)
-## install.packages("devtools", dependencies = TRUE)
-remotes::install_github("rstudio/rmarkdown", dependencies = TRUE)
-remotes::install_github("r-lib/roxygen2", dependencies = TRUE)
-remotes::install_github("r-hub/rhub", dependencies = TRUE)
-
 library(devtools)
-library(rmarkdown)
-library(covr)
-library(rhub)
+library(styler)
+library(knitr)
+library(qpdf)
 
-## source("data-raw/import-references.R")
+# Clean session
+rm(list = ls())
+
+# Clean folder
+unlink(file.path("build-pkg", list.files("build-pkg", ".tar.gz")))
+unlink(file.path("build-pkg", list.files("build-pkg", ".pdf")))
+
+# re-style scripts
+style_pkg()
+
+# Write data
+source("data-raw/create-data.R")
+
+# Purl vignette R-code
+purl("vignettes/taxlist-intro.Rmd", "vignettes/taxlist-intro.R")
+
+# write documentation
 document()
 
-# clean built package and manual
-## Folder <- tempdir()
-Folder <- "build-pkg"
-Files <- list.files(Folder, ".tar.gz|.pdf")
-unlink(file.path(Folder, Files))
-
-# Re-build package and manual
-pkg_loc <- build(path = Folder)
-build_manual(path = Folder)
-
-# common check
+# Build and check package
+Folder = "build-pkg"
+pkg_loc <- build(path = Folder, args = "--resave-data")
 check_built(path = pkg_loc)
+
+# a posteriori
+build_manual(path = Folder)
+install()
 
 # Report coverage
 report()
 
-# Additional checks
-## 
-## # check in solaris
-## rhub::check(platform = "solaris-x86-patched")
-## 
-## # check in solaris
-## rhub::check(platform = "solaris-x86-patched")
-## 
-## # Test the package
-## ## Sys.setenv(LANG="en_US.iso88591")
-## ## Sys.setlocale("LC_ALL", "en_US.iso88591") # TODO: review this error
-## ## Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
-## 
-
-## After check -----------------------------------------------------------------
-
-# write README.md
-# render("README.Rmd")
-
-## GARBAGE ---------------------------------------------------------------------
-
-# Needed packages
-## library(devtools)
-## 
-## library(goodpractice)
-## library(rmarkdown)
-## library(knitr)
-## library(pkgdown)
-## library(codemetar)
-
-# Document package
-## document()
-
-# Report coverage
-## report()
-
 # Carry out the tests
-## test()
+test()
 
-## # Write data set
+# Write data set
 ## source("data-raw/Easplist/Easplist.R")
-## 
-## # Purl vignette R-code
-## purl("vignettes/taxlist-intro.Rmd", "vignettes/taxlist-intro.R")
-## 
-## # Check application of good practices
-## gp()
+
+# Check application of good practices
+gp()
 
 # Codemetar
 # write_codemeta()
 
-## # Build package
-## pkg_loc <- build(path="build-pkg")
-## 
-## # Test the package
-## ## Sys.setenv(LANG="en_US.iso88591")
-## Sys.setlocale("LC_ALL", "en_US.iso88591")
-## Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
-## check_built(path=pkg_loc)
-## 
-## # After check ------------------------------------------------------------------
-## 
-## # Install the package
-## ## install()
-## 
-## # Render readme-file.
-## render("README.Rmd")
-## 
-## # Check on Win-builder
-## browseURL("https://win-builder.r-project.org/")
-## 
-## # submit to CRAN
+# Render readme-file.
+render("README.Rmd")
 
-
-# Render package-site
-# pkgdown::build_home()
-# Render package-site
-## usethis::use_pkgdown()
-## pkgdown::build_site(preview=FALSE)
-## 
-## # Copy site
-## r_path <- gsub("/taxlist", "", getwd())
-## pkg_path <- file.path(r_path, "kamapu.github.io", "rpkg")
-## 
-## file.copy("docs", pkg_path, recursive=TRUE)
-## unlink("docs", recursive=TRUE)
-## 
-## unlink(file.path(pkg_path, "taxlist"), recursive=TRUE)
-## file.rename(file.path(pkg_path, "docs"), file.path(pkg_path, "taxlist"))
-## 
-## file.copy("README-figures", file.path(pkg_path, "taxlist"), recursive=TRUE)
+# Check on Win-builder
+browseURL("https://win-builder.r-project.org/")
