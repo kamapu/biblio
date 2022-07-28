@@ -1,8 +1,8 @@
 pandoc: 2.14.2
-pkgdown: 2.0.3
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-06-07T06:24Z
+last_built: 2022-07-28T14:35Z
 urls:
   reference: https://kamapu.github.io/biblio/reference
   article: https://kamapu.github.io/biblio/articles
