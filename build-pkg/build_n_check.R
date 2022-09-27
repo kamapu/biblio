@@ -18,11 +18,11 @@ unlink(file.path("build-pkg", list.files("build-pkg", ".pdf")))
 # re-style scripts
 style_pkg()
 
-# Write data
-source("data-raw/create-data.R")
-
-# Purl vignette R-code
-purl("vignettes/taxlist-intro.Rmd", "vignettes/taxlist-intro.R")
+## # Write data
+## source("data-raw/create-data.R")
+## 
+## # Purl vignette R-code
+## purl("vignettes/taxlist-intro.Rmd", "vignettes/taxlist-intro.R")
 
 # write documentation
 document()

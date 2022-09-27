@@ -39,7 +39,6 @@
 #' compare_df(Refs1, Refs2)
 #'
 #' @exportMethod compare_df
-#'
 setGeneric(
   "compare_df",
   function(x, y, key, ...) {
@@ -106,9 +105,7 @@ setMethod("compare_df", signature(
 })
 
 #' @rdname compare_df
-#'
 #' @aliases compare_df,lib_df,lib_df,missing-method
-#'
 setMethod("compare_df", signature(
   x = "lib_df", y = "lib_df",
   key = "missing"

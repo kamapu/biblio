@@ -63,8 +63,8 @@ print.comp_df <- function(x, ...) {
   }
   if (length(x$added) > 0) {
     cat(paste0(
-      "## added entries (", nrow(x$added), "):\n'",
-      paste0(rownames(x$added), collapse = "' '"), "'\n\n"
+      "## added entries (", length(x$added), "):\n'",
+      paste0(x$added, collapse = "' '"), "'\n\n"
     ))
   }
   if (nrow(x$updated) > 0) {

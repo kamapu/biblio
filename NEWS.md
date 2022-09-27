@@ -1,6 +1,10 @@
 biblio 0.0.7
 ============
 
+### New Features
+
+* Function `update()` replaced by `update_data()` in this version.
+
 ### Improvements
 
 * Function `compare_df()` is also reporting added and deleted columns.
