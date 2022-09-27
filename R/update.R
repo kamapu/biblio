@@ -49,10 +49,12 @@
 #' update(iris, iris_mod, key = "id")
 #'
 #' # do update
+#' \dontrun{
 #' iris <- update(iris, iris_mod,
 #'   key = "id", delete = TRUE, add = TRUE,
 #'   update = TRUE
 #' )
+#' }
 #'
 #' @rdname update
 #'

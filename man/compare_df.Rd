@@ -13,9 +13,9 @@ compare_df(x, y, key, ...)
 \S4method{compare_df}{lib_df,lib_df,missing}(x, y, key, ...)
 }
 \arguments{
-\item{x}{The reference data frame.}
+\item{x}{The (old) reference data frame.}
 
-\item{y}{The updated data frame.}
+\item{y}{The updated (new) data frame.}
 
 \item{key}{A character value with the name of the variable used as primary
 key in the tables.}

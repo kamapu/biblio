@@ -1,3 +1,10 @@
+biblio 0.0.7
+============
+
+### Improvements
+
+* Function `compare_df()` is also reporting added and deleted columns.
+
 biblio 0.0.4
 ============
 
