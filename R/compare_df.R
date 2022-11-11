@@ -27,16 +27,7 @@
 #' A S3 object of class [comp_df-class], which can be printed in the console by
 #' [biblio::print()].
 #'
-#' @examples
-#' # Partially matching libraries
-#' Refs1 <- synopsis[1:10, ]
-#' Refs2 <- synopsis[6:15, ]
-#'
-#' # some modification in second library
-#' Refs2[3, "title"] <- "New Title"
-#'
-#' # compare libraries
-#' compare_df(Refs1, Refs2)
+#' @example examples/compare_df.R
 #'
 #' @exportMethod compare_df
 setGeneric(

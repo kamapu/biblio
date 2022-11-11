@@ -2,6 +2,7 @@
 ^\.project$
 ^readings$
 ^data-raw$
+^examples$
 ^lab$
 ^build-pkg$
 ^README\.Rmd$
@@ -10,3 +11,4 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^tests$

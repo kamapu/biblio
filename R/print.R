@@ -15,8 +15,7 @@
 #'
 #' @author Miguel Alvarez
 #'
-#' @examples
-#' synopsis
+#' @example examples/print.R
 #'
 #' @return
 #' An invisible object, printed in the console.
@@ -30,7 +29,7 @@ print.lib_df <- function(x, ...) {
     "Object of class 'lib_df'\n\n",
     "Number of references: ", nrow(x), "\n",
     "Number of variables: ", ncol(x), "\n",
-    "Duplicated entries: ", any(duplicated(x$bibtexkey)), "\n"
+    "Duplicated entries: ", sum(duplicated(x$bibtexkey)), "\n"
   ))
 }
 

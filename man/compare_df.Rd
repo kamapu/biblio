@@ -46,7 +46,6 @@ Refs2[3, "title"] <- "New Title"
 
 # compare libraries
 compare_df(Refs1, Refs2)
-
 }
 \seealso{
 \code{\link[=update]{update()}}, \linkS4class{lib_df}, \linkS4class{comp_df}

@@ -24,5 +24,4 @@ Refs <- read_bib(x = file.path(
   "LuebertPliscoff.bib"
 ))
 Refs
-
 }

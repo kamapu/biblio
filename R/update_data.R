@@ -39,36 +39,7 @@ insert_rows <- function(x, y) {
 #' Either an invisible output with a print in the console or an updated object
 #' of class [lib_df-class].
 #'
-#' @examples
-#' # modifying the data set iris
-#' data(iris)
-#' iris$id <- 1:nrow(iris) # ID column added
-#'
-#' # rows to add using mean values per species
-#' iris_mod <- aggregate(cbind(
-#'   Sepal.Length, Sepal.Width, Petal.Length,
-#'   Petal.Width
-#' ) ~ Species, data = iris, FUN = mean)
-#' iris_mod$id <- (1:nrow(iris_mod)) + nrow(iris)
-#' iris_mod <- do.call(rbind, list(iris, iris_mod[, colnames(iris)]))
-#'
-#' # delete some entries
-#' iris_mod <- iris_mod[-c(15, 75, 105, 145), ]
-#'
-#' # modify entries
-#' iris_mod$Petal.Length[c(20, 30)] <- 0
-#' iris_mod$Petal.Width[c(20, 50)] <- 0
-#'
-#' # just a comparison
-#' update_data(iris, iris_mod, key = "id")
-#'
-#' # do update
-#' \dontrun{
-#' iris <- update_data(iris, iris_mod,
-#'   key = "id", delete = TRUE, add = TRUE,
-#'   update = TRUE
-#' )
-#' }
+#' @example examples/update_data.R
 #'
 #' @rdname update_data
 #' @exportMethod update_data

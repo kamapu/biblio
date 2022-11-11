@@ -9,11 +9,10 @@
 #' databases.
 #'
 #' @param x A data frame with bibliographic entries.
-#' @param file A character value with the path and the name of the file to be
-#'     written.
-#' @param encoding Character value with the encoding (passed to
-#'     \code{\link{file}}).
-#' @param ... Further arguments passed to \code{\link{file}}.
+#' @param filename A character value with the path and the name of the file to
+#'     be written.
+#' @param encoding Character value with the encoding (passed to [file()]).
+#' @param ... Further arguments passed to [file()].
 #'
 #' @return
 #' A bibtex file.
@@ -29,7 +28,12 @@ write_bib <- function(x, ...) {
 #' @method write_bib lib_df
 #' @export
 #'
-write_bib.lib_df <- function(x, file, encoding = "UTF-8", ...) {
+write_bib.lib_df <- function(x, filename, encoding = "UTF-8", ...) {
+  if (missing(filename)) {
+    filename <- paste0(deparse(substitute(x)))
+  }
+  # In case of missing extension
+  filename <- paste0(file_path_sans_ext(filename), ".bib")
   # Entries as named characters
   Vars <- colnames(x)
   x <- split(as.matrix(x), 1:nrow(x))
@@ -47,7 +51,7 @@ write_bib.lib_df <- function(x, file, encoding = "UTF-8", ...) {
     paste0(paste0(prefix, x, suffix, collapse = ""), "}\n\n")
   })
   # Write file
-  con <- file(file, "wb", encoding = encoding, ...)
+  con <- file(filename, "wb", encoding = encoding, ...)
   writeBin(charToRaw(paste0(c(
     "% Encoding: ", encoding, "\n",
     unlist(x)
