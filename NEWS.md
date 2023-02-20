@@ -1,3 +1,19 @@
+biblio 0.0.7
+============
+
+### New Features
+
+* Function `update()` replaced by `update_data()` in this version.
+
+### Improvements
+
+* Function `compare_df()` is also reporting added and deleted columns.
+
+### Bug Fixes
+
+* Function `detect_keys()` was not detecting bibtexkeys inserted at the
+beginning of a text line in the Rmd file. This issue was solved here.
+
 biblio 0.0.4
 ============
 

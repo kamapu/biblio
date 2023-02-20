@@ -15,8 +15,7 @@
 #'
 #' @author Miguel Alvarez
 #'
-#' @examples
-#' synopsis
+#' @example examples/print.R
 #'
 #' @return
 #' An invisible object, printed in the console.
@@ -30,7 +29,7 @@ print.lib_df <- function(x, ...) {
     "Object of class 'lib_df'\n\n",
     "Number of references: ", nrow(x), "\n",
     "Number of variables: ", ncol(x), "\n",
-    "Duplicated entries: ", any(duplicated(x$bibtexkey)), "\n"
+    "Duplicated entries: ", sum(duplicated(x$bibtexkey)), "\n"
   ))
 }
 
@@ -43,16 +42,28 @@ print.lib_df <- function(x, ...) {
 #' @export
 #'
 print.comp_df <- function(x, ...) {
+  if (length(x$deleted_vars) > 0) {
+    cat(paste0(
+      "## deleted variables (", length(x$deleted_vars), "):\n'",
+      paste0(x$deleted_vars, collapse = "' '"), "'\n\n"
+    ))
+  }
+  if (length(x$added_vars) > 0) {
+    cat(paste0(
+      "## added variables (", length(x$added_vars), "):\n'",
+      paste0(x$added_vars, collapse = "' '"), "'\n\n"
+    ))
+  }
   if (length(x$deleted) > 0) {
     cat(paste0(
       "## deleted entries (", length(x$deleted), "):\n'",
       paste0(x$deleted, collapse = "' '"), "'\n\n"
     ))
   }
-  if (nrow(x$added) > 0) {
+  if (length(x$added) > 0) {
     cat(paste0(
-      "## added entries (", nrow(x$added), "):\n'",
-      paste0(rownames(x$added), collapse = "' '"), "'\n\n"
+      "## added entries (", length(x$added), "):\n'",
+      paste0(x$added, collapse = "' '"), "'\n\n"
     ))
   }
   if (nrow(x$updated) > 0) {
@@ -67,7 +78,9 @@ print.comp_df <- function(x, ...) {
       }
     }
   }
-  if ((length(x$deleted) == 0) & (nrow(x$added) == 0) & (nrow(x$updated) == 0)) {
+  if ((length(x$deleted_vars) == 0) & (length(x$added_vars) == 0) &
+    (length(x$deleted) == 0) & (length(x$added) == 0) &
+    (nrow(x$updated) == 0)) {
     cat("## no changes detected\n\n")
   }
 }

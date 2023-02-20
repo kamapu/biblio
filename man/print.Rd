@@ -25,8 +25,7 @@ A method for a brief overview on the content of a \linkS4class{lib_df} or a
 \linkS4class{comp_df} object.
 }
 \examples{
-synopsis
-
+print(synopsis)
 }
 \author{
 Miguel Alvarez

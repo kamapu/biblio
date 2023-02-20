@@ -14,8 +14,8 @@
 #' The output printed in the console will advice about added and deleted entries
 #' in 'y' as well as any change in the entries common to both versions.
 #'
-#' @param x The reference data frame.
-#' @param y The updated data frame.
+#' @param x The (old) reference data frame.
+#' @param y The updated (new) data frame.
 #' @param key A character value with the name of the variable used as primary
 #'     key in the tables.
 #' @param ... Further arguments passed among methods.
@@ -27,19 +27,9 @@
 #' A S3 object of class [comp_df-class], which can be printed in the console by
 #' [biblio::print()].
 #'
-#' @examples
-#' # Partially matching libraries
-#' Refs1 <- synopsis[1:10, ]
-#' Refs2 <- synopsis[6:15, ]
-#'
-#' # some modification in second library
-#' Refs2[3, "title"] <- "New Title"
-#'
-#' # compare libraries
-#' compare_df(Refs1, Refs2)
+#' @example examples/compare_df.R
 #'
 #' @exportMethod compare_df
-#'
 setGeneric(
   "compare_df",
   function(x, y, key, ...) {
@@ -56,26 +46,10 @@ setMethod("compare_df", signature(
   key = "character"
 ), function(x, y, key, ...) {
   # Compare variables in data frames
-  common_cols <- intersect(colnames(x), colnames(y))
-  ## if(!setequal(colnames(x), colnames(y)))
-  if (any(!colnames(y) %in% colnames(x))) {
-    warning(paste(
-      "Some columns of 'y' are not in 'x'.",
-      "Only common variables will be compared"
-    ))
-  }
-  if (any(!colnames(x) %in% colnames(y))) {
-    warning(paste(
-      "Some columns of 'x' are not in 'y'.",
-      "Only common variables will be compared"
-    ))
-  }
-  # Other checks
+  common_cols <- intersect(names(x), names(y))
+  # Some checks
   if (!key %in% common_cols) {
-    stop(paste(
-      "The value of 'key' is missing in the columns",
-      "of at least one input data frames."
-    ))
+    stop("The 'key' column has to be present in both compared data frames.")
   }
   if (any(duplicated(x[, key]))) {
     stop(paste("Duplicated key values found in 'x'."))
@@ -83,22 +57,24 @@ setMethod("compare_df", signature(
   if (any(duplicated(y[, key]))) {
     stop(paste("Duplicated key values found in 'y'."))
   }
+  # Added or deleted variables
+  del_vars <- names(x)[!names(x) %in% common_cols]
+  new_vars <- names(y)[!names(y) %in% common_cols]
+  # Added or deleted entries
+  common_idx <- intersect(x[[key]], y[[key]])
+  del_idx <- x[[key]][!x[[key]] %in% common_idx]
+  new_idx <- y[[key]][!y[[key]] %in% common_idx]
   # Compare entries
-  rownames(x) <- paste(x[, key])
-  rownames(y) <- paste(y[, key])
-  common_keys <- intersect(x[, key], y[, key])
-  added <- y[!y[, key] %in% common_keys, ]
-  deleted <- x[!x[, key] %in% common_keys, key]
-  # Updates
-  common_cols <- common_cols[common_cols != key]
+  rownames(x) <- paste(x[[key]])
+  x <- x[paste(common_idx), common_cols]
+  rownames(y) <- paste(y[[key]])
+  y <- y[paste(common_idx), common_cols]
   # Function to handle NAs in comparisons
   compareNA <- function(x, y) {
     same <- (x == y) | (is.na(x) & is.na(y))
     same[is.na(same)] <- FALSE
     return(!same)
   }
-  x <- x[paste(common_keys), common_cols]
-  y <- y[paste(common_keys), common_cols]
   updated <- x
   for (i in common_cols) {
     updated[, i] <- compareNA(x[, i], y[, i])
@@ -107,7 +83,10 @@ setMethod("compare_df", signature(
   row_sums <- rowSums(updated)
   col_sums <- colSums(updated)
   OUT <- list(
-    added = added, deleted = deleted,
+    added_vars = new_vars,
+    deleted_vars = del_vars,
+    added = new_idx,
+    deleted = del_idx,
     updated = updated[row_sums > 0, col_sums > 0, drop = FALSE],
     old_vals = x[row_sums > 0, col_sums > 0, drop = FALSE],
     new_vals = y[row_sums > 0, col_sums > 0, drop = FALSE]
@@ -117,9 +96,7 @@ setMethod("compare_df", signature(
 })
 
 #' @rdname compare_df
-#'
 #' @aliases compare_df,lib_df,lib_df,missing-method
-#'
 setMethod("compare_df", signature(
   x = "lib_df", y = "lib_df",
   key = "missing"

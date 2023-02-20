@@ -7,7 +7,6 @@
 #' frames.
 #'
 #' @exportClass lib_df
-#'
 setOldClass(c("lib_df", "data.frame"))
 
 #' @name comp_df-class
@@ -19,5 +18,4 @@ setOldClass(c("lib_df", "data.frame"))
 #' entries on the regarding a key column and cells that are modified.
 #'
 #' @exportClass comp_df
-#'
 setOldClass(c("comp_df", "list"))

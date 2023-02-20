@@ -13,9 +13,9 @@ compare_df(x, y, key, ...)
 \S4method{compare_df}{lib_df,lib_df,missing}(x, y, key, ...)
 }
 \arguments{
-\item{x}{The reference data frame.}
+\item{x}{The (old) reference data frame.}
 
-\item{y}{The updated data frame.}
+\item{y}{The updated (new) data frame.}
 
 \item{key}{A character value with the name of the variable used as primary
 key in the tables.}
@@ -46,7 +46,6 @@ Refs2[3, "title"] <- "New Title"
 
 # compare libraries
 compare_df(Refs1, Refs2)
-
 }
 \seealso{
 \code{\link[=update]{update()}}, \linkS4class{lib_df}, \linkS4class{comp_df}

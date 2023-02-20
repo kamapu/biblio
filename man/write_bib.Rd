@@ -7,18 +7,17 @@
 \usage{
 write_bib(x, ...)
 
-\method{write_bib}{lib_df}(x, file, encoding = "UTF-8", ...)
+\method{write_bib}{lib_df}(x, filename, encoding = "UTF-8", ...)
 }
 \arguments{
 \item{x}{A data frame with bibliographic entries.}
 
-\item{...}{Further arguments passed to \code{\link{file}}.}
+\item{...}{Further arguments passed to \code{\link[=file]{file()}}.}
 
-\item{file}{A character value with the path and the name of the file to be
-written.}
+\item{filename}{A character value with the path and the name of the file to
+be written.}
 
-\item{encoding}{Character value with the encoding (passed to
-\code{\link{file}}).}
+\item{encoding}{Character value with the encoding (passed to \code{\link[=file]{file()}}).}
 }
 \value{
 A bibtex file.

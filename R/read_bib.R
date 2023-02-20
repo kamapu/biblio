@@ -12,15 +12,9 @@
 #' @return
 #' An object of class [lib_df-class].
 #'
-#' @examples
-#' Refs <- read_bib(x = file.path(
-#'   path.package("biblio"),
-#'   "LuebertPliscoff.bib"
-#' ))
-#' Refs
+#' @example examples/read_bib.R
 #'
-#' @export read_bib
-#'
+#' @export
 read_bib <- function(x, ...) {
   x <- readLines(x, ...)
   # skip empty lines and comments

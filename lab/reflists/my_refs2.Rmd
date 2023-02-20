@@ -1,0 +1,11 @@
+---
+title: Automatic Reference List
+output:
+  pdf_document:
+    latex_engine: xelatex
+bibliography: my_refs2.bib
+nocite: '''@*'''
+urlcolor: blue
+encoding: UTF-8
+---
+

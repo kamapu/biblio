@@ -2,18 +2,18 @@
 % Please edit documentation in R/reflist.R
 \name{reflist}
 \alias{reflist}
-\alias{reflist,lib_df-method}
+\alias{reflist.character}
 \alias{reflist,character-method}
+\alias{reflist.lib_df}
+\alias{reflist,lib_df-method}
 \title{Write a Reference List in rmarkdown}
 \usage{
 reflist(x, ...)
 
-\S4method{reflist}{lib_df}(
+\method{reflist}{character}(
   x,
-  filename = "references",
-  bib_file,
-  delete_rmd = FALSE,
-  delete_bib = delete_rmd,
+  output_file,
+  delete_source = TRUE,
   title = "Automatic Reference List",
   output = "html_document",
   nocite = "'@*'",
@@ -22,27 +22,20 @@ reflist(x, ...)
   ...
 )
 
-\S4method{reflist}{character}(x, filename = "references", ...)
+\method{reflist}{lib_df}(x, filename, delete_source = TRUE, ...)
 }
 \arguments{
 \item{x}{A \code{lib_df} object to produce the reference list. In the character
 method, a character value indicating the path of a bibtex file
 (passed to \code{\link[=read_bib]{read_bib()}}).}
 
-\item{...}{Further arguments passed to \code{\link[=write_rmd]{write_rmd()}} by the lib_df method, or
-to the lib_df method by the character method.}
+\item{...}{Further arguments passed to the yaml header in the intermediate
+Rmarkdown document.}
 
-\item{filename}{A character value with the name for the written Rmd file,
-without file extension.}
+\item{output_file}{A character value with the name for the written Rmarkdown
+file.}
 
-\item{bib_file}{A character value with the name for the written bibtex file.
-In the lib_df method it can be omitted and will then named by
-\code{\link[=tempfile]{tempfile()}}. In the character method it is not required.}
-
-\item{delete_rmd}{A logical value indicating whether written Rmd file should
-be deleted after rendering html or not.}
-
-\item{delete_bib}{A logical value indicating whether written bib file should
+\item{delete_source}{A logical value indicating whether written bib file should
 be deleted after rendering html or not.}
 
 \item{title, output, nocite, urlcolor}{Arguments used for the yaml-header in
@@ -51,6 +44,9 @@ value NULL (not recommended for nocite).}
 
 \item{encoding}{A character value indicating the encoding string. It is
 passed to \code{\link[=write_bib]{write_bib()}}.}
+
+\item{filename}{A character value with the name for the written Rmd file,
+without file extension.}
 }
 \value{
 An invisible object of class \code{rmd_doc}. A Rmd file will be written by

@@ -10,7 +10,6 @@
 #' @return A `data.frame` object.
 #'
 #' @keywords internal
-
 ris2df <- function(x, ...) {
   x <- readLines(x, ...)
   # delete leading and trailing blanks
