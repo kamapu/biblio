@@ -25,6 +25,9 @@
     <loc>https://kamapu.github.io/biblio/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://kamapu.github.io/biblio/reference/insert_rows.html</loc>
+  </url>
+  <url>
     <loc>https://kamapu.github.io/biblio/reference/lib_df-class.html</loc>
   </url>
   <url>
@@ -43,7 +46,7 @@
     <loc>https://kamapu.github.io/biblio/reference/synopsis.html</loc>
   </url>
   <url>
-    <loc>https://kamapu.github.io/biblio/reference/update.html</loc>
+    <loc>https://kamapu.github.io/biblio/reference/update_data.html</loc>
   </url>
   <url>
     <loc>https://kamapu.github.io/biblio/reference/write_bib.html</loc>
