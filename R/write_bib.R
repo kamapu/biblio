@@ -52,11 +52,12 @@ write_bib.lib_df <- function(x, filename, encoding = "UTF-8", ...) {
   })
   # Write file
   con <- file(filename, "wb", encoding = encoding, ...)
-  writeBin(charToRaw(paste0(c(
-    "% Encoding: ", encoding, "\n",
-    unlist(x)
-  ),
-  collapse = ""
+  writeBin(charToRaw(paste0(
+    c(
+      "% Encoding: ", encoding, "\n",
+      unlist(x)
+    ),
+    collapse = ""
   )), con, endian = "little")
   close(con)
 }

@@ -1,13 +1,14 @@
 context("print methods")
 
 test_that("print is working for imported files", {
-  result <- evaluate_promise(print(read_bib(
-    x = file.path(
-      path.package("biblio"),
-      "LuebertPliscoff.bib"
-    )
-  )),
-  print = TRUE
+  result <- evaluate_promise(
+    print(read_bib(
+      x = file.path(
+        path.package("biblio"),
+        "LuebertPliscoff.bib"
+      )
+    )),
+    print = TRUE
   )
   expect_equal(grepl("Number of references", result$output), TRUE)
 })

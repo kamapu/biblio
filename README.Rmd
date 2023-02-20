@@ -9,9 +9,9 @@ output:
 
 ```{r,echo=FALSE}
 knitr::opts_chunk$set(
-  collapse=TRUE,
-  comment="#>",
-  fig.path="man/figures/"
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/"
 )
 ```
 
@@ -115,14 +115,16 @@ my_reflist <- reflist(x = Bib2, filename = "my_reflist", browse_file = FALSE)
 
 # Updating and rendering
 my_reflist <- update(
-		object = my_reflist,
-		title = "Reference List (PDF version)",
-		author = "myself",
-		output = "pdf_document",
-		body = txt_body(
-				"\\setlength{\\parindent}{-5mm}",
-				"\\setlength{\\leftskip}{5mm}",
-				"\\setlength{\\parskip}{8pt}"))
+  object = my_reflist,
+  title = "Reference List (PDF version)",
+  author = "myself",
+  output = "pdf_document",
+  body = txt_body(
+    "\\setlength{\\parindent}{-5mm}",
+    "\\setlength{\\leftskip}{5mm}",
+    "\\setlength{\\parskip}{8pt}"
+  )
+)
 render_rmd(my_reflist, output_file = "my_reflist")
 ```
 

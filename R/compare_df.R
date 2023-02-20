@@ -66,9 +66,9 @@ setMethod("compare_df", signature(
   new_idx <- y[[key]][!y[[key]] %in% common_idx]
   # Compare entries
   rownames(x) <- paste(x[[key]])
-  x <- x[paste(common_idx), common_cols]
+  x <- x[paste(common_idx), common_cols, drop = FALSE]
   rownames(y) <- paste(y[[key]])
-  y <- y[paste(common_idx), common_cols]
+  y <- y[paste(common_idx), common_cols, drop = FALSE]
   # Function to handle NAs in comparisons
   compareNA <- function(x, y) {
     same <- (x == y) | (is.na(x) & is.na(y))
