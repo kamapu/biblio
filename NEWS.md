@@ -1,3 +1,8 @@
+
+# biblio 0.0.9
+
+### Bug Fixes
+
 biblio 0.0.7
 ============
 
