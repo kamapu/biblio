@@ -10,7 +10,7 @@
 \usage{
 detect_keys(x, ...)
 
-\method{detect_keys}{character}(x, ...)
+\method{detect_keys}{character}(x, ext = "Rmd", ...)
 
 \method{detect_keys}{rmd_doc}(x, ...)
 }
@@ -21,6 +21,9 @@ file, \code{\link[=readLines]{readLines()}} will be internally called to read it
 
 \item{...}{Further arguments passed among methods. In character-method they
 are passed to \code{\link[=readLines]{readLines()}}.}
+
+\item{ext}{A character value indicating the extension of the document
+(i.e. Rmd or qmd).}
 }
 \value{
 A data frame with two columns, \code{bibtexkey} for the found keys and \code{line}

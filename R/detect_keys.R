@@ -16,6 +16,8 @@
 #' @param x A character vector, a file imported by [readLines()] or an object
 #'     imported by [read_rmd()]. If the character vector is the name of a Rmd
 #'     file, [readLines()] will be internally called to read it.
+#' @param ext A character value indicating the extension of the document
+#'     (i.e. Rmd or qmd).
 #' @param ... Further arguments passed among methods. In character-method they
 #'     are passed to [readLines()].
 #'
@@ -37,10 +39,12 @@ detect_keys <- function(x, ...) {
 #'
 #' @method detect_keys character
 #' @export
-#'
-detect_keys.character <- function(x, ...) {
+detect_keys.character <- function(x, ext = "Rmd", ...) {
   # If character the name of a file
-  if (length(x) == 1 & substr(x[1], nchar(x) - 3, nchar(x)) == ".Rmd") {
+  if (length(x) == 1 & substr(
+    x[1], nchar(x) - 3,
+    nchar(x)
+  ) == paste0(".", ext)) {
     x <- readLines(x, ...)
   }
   # Code from rbbt::detect_citations()
