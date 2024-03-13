@@ -1,6 +1,3 @@
-## Read installed r-markdown document
-my_document <- readLines(file.path(path.package("biblio"), "document.Rmd"))
-
-## Screen for citations
-cited_refs <- detect_keys(my_document)
+## Screen for citations in installed document
+cited_refs <- detect_keys(file.path(path.package("biblio"), "document.Rmd"))
 cited_refs

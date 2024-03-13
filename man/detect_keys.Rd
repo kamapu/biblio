@@ -10,20 +10,17 @@
 \usage{
 detect_keys(x, ...)
 
-\method{detect_keys}{character}(x, ext = "Rmd", ...)
+\method{detect_keys}{character}(x, ...)
 
 \method{detect_keys}{rmd_doc}(x, ...)
 }
 \arguments{
 \item{x}{A character vector, a file imported by \code{\link[=readLines]{readLines()}} or an object
 imported by \code{\link[=read_rmd]{read_rmd()}}. If the character vector is the name of a Rmd
-file, \code{\link[=readLines]{readLines()}} will be internally called to read it.}
+or a Quarto document, \code{\link[=readLines]{readLines()}} will be internally called to read it.}
 
 \item{...}{Further arguments passed among methods. In character-method they
 are passed to \code{\link[=readLines]{readLines()}}.}
-
-\item{ext}{A character value indicating the extension of the document
-(i.e. Rmd or qmd).}
 }
 \value{
 A data frame with two columns, \code{bibtexkey} for the found keys and \code{line}
@@ -39,10 +36,7 @@ This function is based on \code{bbt_detect_citations()} from the package
 \href{https://github.com/paleolimbot/rbbt}{rbbt}.
 }
 \examples{
-## Read installed r-markdown document
-my_document <- readLines(file.path(path.package("biblio"), "document.Rmd"))
-
-## Screen for citations
-cited_refs <- detect_keys(my_document)
+## Screen for citations in installed document
+cited_refs <- detect_keys(file.path(path.package("biblio"), "document.Rmd"))
 cited_refs
 }
