@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/kamapu/biblio/branch/master/graph/badge.svg)](https://codecov.io/gh/kamapu/biblio?branch=master)
 ![r-universe](https://kamapu.r-universe.dev/badges/biblio)
 
+[![R-CMD-check](https://github.com/kamapu/biblio/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kamapu/biblio/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 An R-package to manage bibliographic references. This package is focused on
