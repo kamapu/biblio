@@ -69,7 +69,7 @@ a line of the original document.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">detect_keys</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for character</span></span>
-<span><span class="fu">detect_keys</span><span class="op">(</span><span class="va">x</span>, ext <span class="op">=</span> <span class="st">"Rmd"</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">detect_keys</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for rmd_doc</span></span>
 <span><span class="fu">detect_keys</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
@@ -80,17 +80,12 @@ a line of the original document.</p>
     <dl><dt>x</dt>
 <dd><p>A character vector, a file imported by <code><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines()</a></code> or an object
 imported by <code><a href="https://kamapu.github.io/rpkg/yamlme/reference/read_rmd.html" class="external-link">read_rmd()</a></code>. If the character vector is the name of a Rmd
-file, <code><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines()</a></code> will be internally called to read it.</p></dd>
+or a Quarto document, <code><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines()</a></code> will be internally called to read it.</p></dd>
 
 
 <dt>...</dt>
 <dd><p>Further arguments passed among methods. In character-method they
 are passed to <code><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines()</a></code>.</p></dd>
-
-
-<dt>ext</dt>
-<dd><p>A character value indicating the extension of the document
-(i.e. Rmd or qmd).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -105,11 +100,8 @@ are passed to <code><a href="https://rdrr.io/r/base/readLines.html" class="exter
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Read installed r-markdown document</span></span></span>
-<span class="r-in"><span><span class="va">my_document</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">path.package</a></span><span class="op">(</span><span class="st">"biblio"</span><span class="op">)</span>, <span class="st">"document.Rmd"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Screen for citations</span></span></span>
-<span class="r-in"><span><span class="va">cited_refs</span> <span class="op">&lt;-</span> <span class="fu">detect_keys</span><span class="op">(</span><span class="va">my_document</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Screen for citations in installed document</span></span></span>
+<span class="r-in"><span><span class="va">cited_refs</span> <span class="op">&lt;-</span> <span class="fu">detect_keys</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">path.package</a></span><span class="op">(</span><span class="st">"biblio"</span><span class="op">)</span>, <span class="st">"document.Rmd"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">cited_refs</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        bibtexkey line</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 oberdorfer1960   10</span>
