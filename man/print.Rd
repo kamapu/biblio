@@ -8,24 +8,32 @@
 \alias{print,comp_df-method}
 \title{Print content of lib_df objects}
 \usage{
-\method{print}{lib_df}(x, ...)
+\method{print}{lib_df}(x, maxsum = 4, ...)
 
 \method{print}{comp_df}(x, ...)
 }
 \arguments{
 \item{x}{An object of class 'lib_df'.}
 
+\item{maxsum}{An integer value indicating the number of entries to be
+displayed in the printed output.}
+
 \item{...}{Further arguments passed among methods.}
 }
 \value{
-An invisible object, printed in the console.
+A print in the console.
 }
 \description{
 A method for a brief overview on the content of a \linkS4class{lib_df} or a
 \linkS4class{comp_df} object.
 }
 \examples{
-print(synopsis)
+Refs <- read_bib(x = file.path(
+        path.package("biblio"),
+        "LuebertPliscoff.bib"
+    ))
+
+print(Refs, maxsum = 10)
 }
 \author{
 Miguel Alvarez
