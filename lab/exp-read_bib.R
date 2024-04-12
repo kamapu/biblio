@@ -5,5 +5,5 @@
 
 library(biblio)
 
-x <- readLines("lab/dummy-bib.bib")
-
+Bib <- read_bib("lab/dummy-bib.bib")
+as.data.frame(Bib)
