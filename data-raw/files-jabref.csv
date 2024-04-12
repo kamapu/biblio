@@ -1,0 +1,5 @@
+field,description
+bibtexkey,"Identifier for respective reference entry (foreign key)."
+file,"Name of the file (used as primary key)."
+mime,"MIME type, required by **JabRef**."
+description,"Brief description of file."

@@ -17,8 +17,9 @@
 #' @export
 read_bib <- function(x, ...) {
   x <- readLines(x, ...)
-  # skip empty lines and comments
-  x <- x[nchar(x) > 0 & substring(x, 1, 1) != "%"]
+
+  # skip empty lines, lines with a single closing curly brace and comments
+  x <- x[!grepl("^\\s*$|^\\s*\\}$|^%", x)]
   # get index for reference
   x <- cbind(cumsum(substring(x, 1, 1) == "@"), x)
   # get type, key and id
@@ -52,18 +53,7 @@ read_bib <- function(x, ...) {
     2
   ])) + 1]
   # Skip trailing field symbol
-  idx <- substr(
-    Content[, 3], nchar(Content[, 3]) - 1,
-    nchar(Content[, 3])
-  ) == "},"
-  Content[idx, 3] <- substr(Content[idx, 3], 1, nchar(Content[idx, 3]) - 2)
-  # Resolve problems with last entry without comma symbol
-  # In that case a trailing curly bracket remains in entry
-  open_bk <- str_count(Content[, 3], fixed("{"))
-  close_bk <- str_count(Content[, 3], fixed("}"))
-  end_bk <- substr(Content[, 3], nchar(Content[, 3]), nchar(Content[, 3]))
-  idx <- (close_bk == open_bk + 1) & (end_bk == "}")
-  Content[idx, 3] <- substr(Content[idx, 3], 1, nchar(Content[idx, 3]) - 1)
+  Content[, 3] <- sub("(},)$|(})$", "", Content[, 3])
   # Aggregate for multiple lines entries
   Content <- as.data.frame(Content, stringsAsFactors = FALSE)
   colnames(Content) <- c("refid", "field", "value")
@@ -83,9 +73,9 @@ read_bib <- function(x, ...) {
   ), 3])
   new_x <- with(new_x, do.call(rbind, split(value, as.integer(refid))))
   colnames(new_x) <- fields
-  colnames(type)[1:2] <- c("bib_type", "bibtexkey")
+  colnames(type)[1:2] <- c("bibtype", "bibtexkey")
   new_x <- cbind(
-    type[, c("bib_type", "bibtexkey")],
+    type[, c("bibtype", "bibtexkey")],
     new_x[match(type[, "refid"], rownames(new_x)), ]
   )
   # Defining S3 class

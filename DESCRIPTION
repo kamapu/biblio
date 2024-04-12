@@ -12,6 +12,7 @@ Imports:
     methods,
     stringr,
     tools,
+    utils,
     yamlme
 Suggests:
     covr,

@@ -1,0 +1,46 @@
+id,field,category,description
+1,bibtype,custom,Category for entry type.
+2,bibtexkey,custom,Identifier for reference entry (primary key).
+3,author,individuals,Author(s) of 'title'.
+4,bookauthor,individuals,Author(s) of 'booktitle'.
+5,editor,individuals,Editor(s).
+6,institution,organizations,University or similar.
+7,organization,organizations,Manual/website publisher or event sponsor.
+8,publisher,organizations,Publisher(s).
+9,title,titles,Title.
+10,booktitle,titles,Title of book.
+11,maintitle,titles,Title of multi-volume book.
+12,journaltitle,titles,Or ‘journal’.
+13,journal,titles,Or ‘journaltitle’.
+14,issuetitle,titles,Title of journal special issue.
+15,eventtitle,titles,Title of conferenceor event.
+16,series,titles,Publication series.
+17,volume,versions,Volume of journal or multi-volume book.
+18,number,versions,Numbered issue of journal or book in series.
+19,chapter,versions,Chapter number of '@inCollection'.
+20,part,versions,Number of physical part of logical volume.
+21,issue,versions,Non-number issue of journal.
+22,volumes,versions,Number of volumes for multi-volume work.
+23,edition,versions,As *integer* rather than ordinal.
+24,version,versions,Revision number for software or manual.
+25,pubstate,versions,Publication state.
+26,pages,pages,Page list or range.
+27,pagetotal,pages,Total number of pages.
+28,year,dates,Publication year.
+29,date,dates,Publication date as *YYYY-MM-DD*.
+30,eventdate,dates,Conference or event date.
+31,urldate,dates,Access date for 'url'.
+32,url,digital,URL.
+33,doi,digital,Digital Object Identifier.
+34,type,types,"Type of '@manual', '@report', or '@thesis'."
+35,language,language,Language of work.
+36,isbn,standards,International Standard Book Number.
+37,issn,standards,International Standard Serial Number.
+38,ean,standards,European Article Number.
+39,file,no-class,Local link to file.
+40,address,place,Home of editorial or institution.
+41,location,place,Location of an event.
+42,comment,custom,Comments (annotations) related to the entry.
+43,abstract,no-class,Record of work’s abstract.
+44,keywords,no-class,Separated list of keywords.
+45,refid,custom,Identifier used in a different (exported) format.
