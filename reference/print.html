@@ -12,7 +12,7 @@ comp_df object."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     
     <a class="navbar-brand me-2" href="../index.html">biblio</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.9</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@ comp_df object."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for lib_df</span></span>
-<span><span class="fu">print</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">print</span><span class="op">(</span><span class="va">x</span>, maxsum <span class="op">=</span> <span class="fl">4</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for comp_df</span></span>
 <span><span class="fu">print</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
@@ -67,6 +67,11 @@ comp_df object."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
 <dd><p>An object of class 'lib_df'.</p></dd>
 
 
+<dt>maxsum</dt>
+<dd><p>An integer value indicating the number of entries to be
+displayed in the printed output.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Further arguments passed among methods.</p></dd>
 
@@ -75,7 +80,7 @@ comp_df object."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>An invisible object, printed in the console.</p>
+<p>A print in the console.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -84,12 +89,68 @@ comp_df object."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">print</span><span class="op">(</span><span class="va">synopsis</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Refs</span> <span class="op">&lt;-</span> <span class="fu"><a href="read_bib.html">read_bib</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">path.package</a></span><span class="op">(</span><span class="st">"biblio"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="st">"LuebertPliscoff.bib"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">print</span><span class="op">(</span><span class="va">Refs</span>, maxsum <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'lib_df'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of references: 1701</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of variables: 23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Duplicated entries: 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pliscoff, P., Luebert, F. (2006). “Ecosistemas terrestres.” In Rovira,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Jaime, Ugalde, Jaime, Stutzin, Miguel (eds.), _Biodiversidad de Chile:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Patrimonio y desafíos_, 74-8. Comisión Nacional de Medio Ambiente,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Santiago.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Luebert, F., Pliscoff, P. (200). _Clasificación de pisos de vegetación</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y análisis de representatividad ecológica de áreas propuestas para la</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> protección en la ecorregión Valdiviana_. Documento N° 10, Serie de</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Publicaciones WWF-Chile, Valdivia.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pliscoff, P., Luebert, F. (2006). “Una nueva propuesta de clasificación</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> de la vegetación de Chile y su aplicación en la evaluación del estado</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> de conservación de los ecosistemas terrestres.” _Ambiente y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Desarrollo_, *22*(1), 41-4.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Smith-Ramírez, C., Armesto, J. J, Rodríguez, J., Gutiérrez, G. A,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Christie, D., Núñez, M. (2005). “Aextoxicon punctatum, el tique u</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> olivillo.” In _Historia, biodiversidad y ecología de los bosques</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> costeros de Chile_, 278-28. Editorial Universitaria, Santiago.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Meza F, S., Promis, A., Faúndez, L. (2016). “Caracterización florística</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y estructural de la población natural de Jubaea chilensis (Molina)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Baill. más austral de Chile.” _Phyton_, *85*, 327-33.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Morales, Ramón, Alonso F, Luis J, Fitzek, Reinhard, Medina, Leopoldo,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Garmendia M, Félix (2016). “Catálogo provisional de la flora de San</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ignacio de Huinay, Chile.” _Anales del Jardín Botánico de Madrid_,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *73*(2), e03. doi:10.3989/ajbm.2435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;https://doi.org/10.3989/ajbm.2435&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rodríguez M, Ángel M (2017). “Sistematización bioclimática de la Sierra</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Madre Occidental (México) y su relación con los pisos de vegetación.”</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> _Polibotánica_, *43*, 125-16. doi:10.18387/polibotanica.43.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;https://doi.org/10.18387/polibotanica.43.6&gt;.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ramírez, C., Figueroa, H., Martín S, C. (1989). “Cambios estacionales</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> de frecuencia y cobertura en una pradera del Centro Sur de Chile.”</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> _Agro Sur_, *17*(2), 105-11.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Martín S, C., Ramírez, C., Verdugo, M. (1998). “Sinecología de las</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> praderas húmedas de Junquillo en el centro-sur de Chile.” _Anales de la</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sociedad Chilena de Ciencias Geográficas_, *1998*, 87-9.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pincheira-Ulbrich, Jimmy, Rau, R. J, Smith-Ramírez, C. (2012).</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> “Diversidad de plantas trepadoras y epífitas vasculares en un paisaje</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> agroforestal del sur de Chile: Una comparación entre fragmentos de</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> bosque nativo.” _Boletín de la Sociedad Argentina de Botánica_,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *47*(3-4), 411-42.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [TRUNCATED]</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
