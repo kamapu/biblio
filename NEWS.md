@@ -1,7 +1,15 @@
 
 # biblio 0.0.9
 
-### Bug Fixes
+### New Features
+
+- New function `bib2bibentry()` for converting `lib_df` objects into
+  `bibentry` objects.
+
+### Improvements
+
+- Improved function `read_bib()` using regular expressions.
+
 
 biblio 0.0.7
 ============
