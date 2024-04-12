@@ -1,4 +1,4 @@
-#' @importFrom methods as setOldClass
+#' @importFrom methods as S3Part<- setOldClass
 #' @importFrom stats na.omit aggregate
 #' @importFrom stringr fixed regex str_count str_match_all str_trim
 #' @importFrom tools file_path_sans_ext
