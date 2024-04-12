@@ -1,8 +1,5 @@
 #' @name print
-#'
 #' @rdname print
-#'
-#' @aliases print,lib_df-method
 #'
 #' @title Print content of lib_df objects
 #'
@@ -11,6 +8,8 @@
 #' [comp_df-class] object.
 #'
 #' @param x An object of class 'lib_df'.
+#' @param maxsum An integer value indicating the number of entries to be
+#'     displayed in the printed output.
 #' @param ... Further arguments passed among methods.
 #'
 #' @author Miguel Alvarez
@@ -18,29 +17,31 @@
 #' @example examples/print.R
 #'
 #' @return
-#' An invisible object, printed in the console.
+#' A print in the console.
 #'
+#' @aliases print,lib_df-method
 #' @method print lib_df
 #'
 #' @export
-#'
-print.lib_df <- function(x, ...) {
+print.lib_df <- function(x, maxsum = 4, ...) {
   cat(paste0(
     "Object of class 'lib_df'\n\n",
     "Number of references: ", nrow(x), "\n",
     "Number of variables: ", ncol(x), "\n",
-    "Duplicated entries: ", sum(duplicated(x$bibtexkey)), "\n"
+    "Duplicated entries: ", sum(duplicated(x$bibtexkey)), "\n\n"
   ))
+  if (maxsum > nrow(x)) {
+    print(as(x, "bibentry"))
+  } else {
+    print(as(x[1:maxsum, ], "bibentry"))
+    cat("\n[TRUNCATED]\n")
+  }
 }
 
 #' @rdname print
-#'
 #' @aliases print,comp_df-method
-#'
 #' @method print comp_df
-#'
 #' @export
-#'
 print.comp_df <- function(x, ...) {
   if (length(x$deleted_vars) > 0) {
     cat(paste0(
