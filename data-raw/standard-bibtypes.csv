@@ -1,0 +1,29 @@
+bibtype,description
+article,"Journal, magazine or newspaper article."
+book,Single-volume book by author(s) of whole.
+bookinbook,Originally published as standalone book.
+booklet,Informally published book.
+collection,Single-volume edited anthology.
+inbook,Book part with own title.
+incollection,Contribution to anthology.
+inproceedings,Article in conference proceedings.
+inreference,Article in a reference work.
+manual,Technical or other documentation.
+misc,Last resort.
+mvbook,Multi-volume book.
+mvcollection,Multi-volume collection.
+mvproceedings,Multi-volume conference proceedings.
+mvreference,Multi-volume reference work.
+online,Inherently online source.
+patent,Patent or patent request.
+periodical,Whole issue of a periodical.
+proceedings,Singel-volume conference proceedings.
+reference,Single-volume work of reference.
+report,Institutional report or white paper.
+set,(Static) Entry set.
+suppbook,Supplemental material in book.
+suppcollection,Supplemental material in anthology.
+supperiodical,Supplemental material in periodical.
+thesis,Work completed to fulfil degree requirement.
+unpublished,Work not formally published.
+xdata,Data-container (cannot be cited).
