@@ -1,6 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- Use snippet 'render_markdown' for it -->
 
 # biblio
@@ -12,6 +11,7 @@
 coverage](https://codecov.io/gh/kamapu/biblio/branch/master/graph/badge.svg)](https://codecov.io/gh/kamapu/biblio?branch=master)
 ![r-universe](https://kamapu.r-universe.dev/badges/biblio)
 
+[![R-CMD-check](https://github.com/kamapu/biblio/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kamapu/biblio/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 An R-package to manage bibliographic references. This package is focused
@@ -41,7 +41,29 @@ Bib
 #> 
 #> Number of references: 1701
 #> Number of variables: 23
-#> Duplicated entries: FALSE
+#> Duplicated entries: 0
+#> 
+#> Pliscoff, P., Luebert, F. (2006). "Ecosistemas terrestres." In Rovira,
+#> Jaime, Ugalde, Jaime, Stutzin, Miguel (eds.), _Biodiversidad de Chile:
+#> Patrimonio y desafíos_, 74-8. Comisión Nacional de Medio Ambiente,
+#> Santiago.
+#> 
+#> Luebert, F., Pliscoff, P. (200). _Clasificación de pisos de vegetación
+#> y análisis de representatividad ecológica de áreas propuestas para la
+#> protección en la ecorregión Valdiviana_. Documento N° 10, Serie de
+#> Publicaciones WWF-Chile, Valdivia.
+#> 
+#> Pliscoff, P., Luebert, F. (2006). "Una nueva propuesta de clasificación
+#> de la vegetación de Chile y su aplicación en la evaluación del estado
+#> de conservación de los ecosistemas terrestres." _Ambiente y
+#> Desarrollo_, *22*(1), 41-4.
+#> 
+#> Smith-Ramírez, C., Armesto, J. J, Rodríguez, J., Gutiérrez, G. A,
+#> Christie, D., Núñez, M. (2005). "Aextoxicon punctatum, el tique u
+#> olivillo." In _Historia, biodiversidad y ecología de los bosques
+#> costeros de Chile_, 278-28. Editorial Universitaria, Santiago.
+#> 
+#> [TRUNCATED]
 ```
 
 ## Scanning Cited References in R-Markdown Documents
@@ -73,7 +95,6 @@ that in this case the position of the citation may change because
 ``` r
 library(yamlme)
 my_document <- read_rmd(file.path(path.package("biblio"), "document.Rmd"))
-#> The yaml-header is not imported by this fucnion. Use 'update()' to re-write the header.
 cited_refs <- detect_keys(my_document)
 #> Lines are counted only at the body of the document.
 cited_refs
@@ -138,14 +159,16 @@ my_reflist <- reflist(x = Bib2, filename = "my_reflist", browse_file = FALSE)
 
 # Updating and rendering
 my_reflist <- update(
-        object = my_reflist,
-        title = "Reference List (PDF version)",
-        author = "myself",
-        output = "pdf_document",
-        body = txt_body(
-                "\\setlength{\\parindent}{-5mm}",
-                "\\setlength{\\leftskip}{5mm}",
-                "\\setlength{\\parskip}{8pt}"))
+  object = my_reflist,
+  title = "Reference List (PDF version)",
+  author = "myself",
+  output = "pdf_document",
+  body = txt_body(
+    "\\setlength{\\parindent}{-5mm}",
+    "\\setlength{\\leftskip}{5mm}",
+    "\\setlength{\\parskip}{8pt}"
+  )
+)
 render_rmd(my_reflist, output_file = "my_reflist")
 ```
 
