@@ -6,7 +6,9 @@
 #' Reading BibTeX databases and importing into R as a data frame. All the fields
 #' will be inserted as character values.
 #'
-#' @param x Path to BibTeX file.
+#' @param x A single character value with the path to a BibTeX file.
+#'     Alternativelly it can be a character vector containing the lines of a
+#'     BibTeX library, for instance after using [readLines()].
 #' @param ... Further arguments passed to [readLines()].
 #'
 #' @return
