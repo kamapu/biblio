@@ -9,7 +9,7 @@
 
 ### Improvements
 
-- Improved function `read_bib()` using regular expressions.
+- Improved function `read_bib()` using regular expressions and bibtex lines.
 
 ### Bug Fixes
 
