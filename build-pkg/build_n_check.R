@@ -7,13 +7,14 @@ library(devtools)
 library(styler)
 library(knitr)
 library(qpdf)
+library(covr)
 
 # Clean session
 rm(list = ls())
 
 # Clean folder
 unlink(file.path("build-pkg", list.files("build-pkg", ".tar.gz")))
-unlink(file.path("build-pkg", list.files("build-pkg", ".pdf")))
+## unlink(file.path("build-pkg", list.files("build-pkg", ".pdf")))
 
 # re-style scripts
 style_pkg()
@@ -32,12 +33,15 @@ Folder = "build-pkg"
 pkg_loc <- build(path = Folder, args = "--resave-data")
 check_built(path = pkg_loc)
 
-# a posteriori
-build_manual(path = Folder)
-install()
-
 # Report coverage
 report()
+
+
+# a posteriori
+build_manual(path = Folder)
+
+# Install package
+install()
 
 # Carry out the tests
 test()

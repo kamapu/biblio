@@ -9,7 +9,11 @@
 
 ### Improvements
 
-- Improved function `read_bib()` using regular expressions.
+- Improved function `read_bib()` using regular expressions and bibtex lines.
+
+### Bug Fixes
+
+- Function `read_bib()` was not able to read libraries with a single reference.
 
 
 # biblio 0.0.7

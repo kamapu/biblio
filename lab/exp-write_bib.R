@@ -8,10 +8,6 @@ library(biblio)
 Bib <- read_bib(x = file.path(path.package("biblio"),
         "LuebertPliscoff.bib"))
 
-x <- bib2bibentry(Bib[1:5, ])
+y2000 <- subset(Bib, year == "2000")
 
-# Back to bib
-y <- capture.output(print(x, "bibtex"))
-
-cat(paste0(y, collapse = "\n"))
-
+write_bib(y2000, "lab/year_2000.bib")

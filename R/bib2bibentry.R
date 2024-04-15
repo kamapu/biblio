@@ -24,6 +24,7 @@ bib2bibentry <- function(x, ...) {
 #' @method bib2bibentry lib_df
 #' @export
 bib2bibentry.lib_df <- function(x, ...) {
+  names(x)[names(x) == "bibtexkey"] <- "key"
   x <- sapply(
     split(x, seq_along(x$bibtype)),
     function(x) do.call(bibentry, as.list(x))
