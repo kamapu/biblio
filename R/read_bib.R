@@ -16,29 +16,39 @@
 #'
 #' @export
 read_bib <- function(x, ...) {
-  x <- readLines(x, ...)
-
+  if (length(x) == 1) {
+    x <- readLines(x, ...)
+  }
   # skip empty lines, lines with a single closing curly brace and comments
   x <- x[!grepl("^\\s*$|^\\s*\\}$|^%", x)]
   # get index for reference
   x <- cbind(cumsum(substring(x, 1, 1) == "@"), x)
-  # get type, key and id
-  refid <- x[substring(x[, 2], 1, 1) == "@", 1]
-  type <- substring(x[, 2], 2, nchar(x[, 2]) - 1)
-  type <- strsplit(type[substring(x[, 2], 1, 1) == "@"], "{", fixed = TRUE)
-  type <- do.call(rbind, type)
+  # get bibtype, key and id
+  refid <- data.frame(refid = x[substring(x[, 2], 1, 1) == "@", 1])
+  bib_type <- substring(x[, 2], 2, nchar(x[, 2]) - 1)
+  bib_type <- strsplit(bib_type[substring(x[, 2], 1, 1) == "@"], "{",
+    fixed = TRUE
+  )
+  if (length(bib_type) > 1) {
+    bib_type <- do.call(rbind, bib_type)
+    bib_type <- data.frame(bibtype = bib_type[, 1], bibtexkey = bib_type[, 2])
+  } else {
+    bib_type <- data.frame(
+      bibtype = bib_type[[1]][1],
+      bibtexkey = bib_type[[1]][2]
+    )
+  }
   # skip comment Notice
-  type <- cbind(type, refid)
-  type <- type[type[, 1] != "Comment", ]
-  x <- x[x[, 1] %in% type[, 3], ]
+  bib_type <- data.frame(bib_type, refid)
+  bib_type <- bib_type[tolower(bib_type$bibtype) != "comment", ]
+  x <- x[x[, 1] %in% bib_type$refid, ]
   # warn duplicated bibtexkeys
-  if (any(duplicated(type[, 3]))) {
+  if (any(duplicated(bib_type$bibtexkey))) {
     warning("Some duplicated values for 'bibtexkey' in 'x'.")
   }
   # getting list of entry fields
   x <- x[substr(x[, 2], 1, 1) != "@" & substr(x[, 2], 1, 1) != "}", ]
   x[, 2] <- gsub("\\s+", " ", str_trim(x[, 2]))
-  ## x[,2] <- trimws(x[,2], "both")
   Content <- strsplit(x[, 2], " = {", fixed = TRUE)
   Content <- lapply(Content, function(x) {
     if (length(x) == 1) {
@@ -64,7 +74,7 @@ read_bib <- function(x, ...) {
   # Output table
   fields <- unique(Content$field)
   new_x <- expand.grid(
-    field = fields, refid = type[, 3],
+    field = fields, refid = bib_type$refid,
     stringsAsFactors = FALSE
   )
   new_x$value <- with(new_x, Content[match(
@@ -73,13 +83,13 @@ read_bib <- function(x, ...) {
   ), 3])
   new_x <- with(new_x, do.call(rbind, split(value, as.integer(refid))))
   colnames(new_x) <- fields
-  colnames(type)[1:2] <- c("bibtype", "bibtexkey")
-  new_x <- cbind(
-    type[, c("bibtype", "bibtexkey")],
-    new_x[match(type[, "refid"], rownames(new_x)), ]
+  new_x <- as.data.frame(new_x)
+  names(bib_type) <- c("bibtype", "bibtexkey", "refid")
+  new_x <- data.frame(
+    bib_type[, c("bibtype", "bibtexkey")],
+    new_x[match(bib_type$refid, rownames(new_x)), ]
   )
   # Defining S3 class
-  new_x <- as.data.frame(new_x, stringsAsFactors = FALSE)
   class(new_x) <- c("lib_df", "data.frame")
   return(new_x)
 }

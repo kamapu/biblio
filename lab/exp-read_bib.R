@@ -6,4 +6,9 @@
 library(biblio)
 
 Bib <- read_bib("lab/dummy-bib.bib")
-as.data.frame(Bib)
+Bib
+as(Bib, "data.frame")
+
+# Only one entry in file
+Bib <- read_bib("lab/dummy-bib2.bib")
+Bib

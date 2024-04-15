@@ -4,6 +4,7 @@
 \alias{as}
 \alias{coerce,lib_df,data.frame-method}
 \alias{coerce,lib_df,bibentry-method}
+\alias{coerce,bibentry,lib_df-method}
 \title{Coerce 'lib_df' objects}
 \arguments{
 \item{x}{An object to be coerced.}
