@@ -14,6 +14,8 @@
 ### Bug Fixes
 
 - Function `read_bib()` was not able to read libraries with a single reference.
+- Issue regarding some fields without braces (see
+  [#34](https://github.com/kamapu/biblio/issues/34)).
 
 
 # biblio 0.0.7
