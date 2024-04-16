@@ -7,7 +7,9 @@
 read_bib(x, ...)
 }
 \arguments{
-\item{x}{Path to BibTeX file.}
+\item{x}{A single character value with the path to a BibTeX file.
+Alternativelly it can be a character vector containing the lines of a
+BibTeX library, for instance after using \code{\link[=readLines]{readLines()}}.}
 
 \item{...}{Further arguments passed to \code{\link[=readLines]{readLines()}}.}
 }
