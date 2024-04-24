@@ -9,7 +9,7 @@
 [![cran
 checks](https://badges.cranchecks.info/worst/biblio.svg)](https://cran.r-project.org/web/checks/check_results_biblio.html)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/biblio)](https://cran.r-project.org/package=biblio)
-![r-universe](https://kamapu.r-universe.dev/badges/biblio)
+[![r-universe](https://kamapu.r-universe.dev/badges/biblio)](https://kamapu.r-universe.dev/biblio#)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10984056.svg)](https://doi.org/10.5281/zenodo.10984056)
 <br>
 [![R-CMD-check](https://github.com/kamapu/biblio/workflows/R-CMD-check/badge.svg)](https://github.com/kamapu/biblio/actions)
