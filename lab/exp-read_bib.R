@@ -17,3 +17,8 @@ Bib
 Bib <- read_bib("lab/dummy-bib3.bib")
 Bib
 as(Bib, "data.frame")
+
+# Solving issue #49
+Refs <- read_bib(x = "lab/data/MiguelReferences.bib")
+x <- subset(Refs, grepl("address =", address))
+as(x, "data.frame")

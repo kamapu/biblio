@@ -36,7 +36,6 @@ check_built(path = pkg_loc)
 # Report coverage
 report()
 
-
 # a posteriori
 build_manual(path = Folder)
 
