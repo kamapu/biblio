@@ -1,4 +1,10 @@
 
+# biblio 0.1.0
+
+### Bug Fixes
+
+- Error importing BibTeX files by `read_bib()`.
+
 # biblio 0.0.9
 
 ### New Features

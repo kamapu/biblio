@@ -56,8 +56,8 @@ read_bib <- function(x, ...) {
   x$content[grepl("^@", x$content)] <- ""
   x <- x[x$content != "", ]
   idx <- x$field != ""
-  x$content[idx] <- str_replace(x$content[idx], paste(x$field[idx], "="), "")
   x$content <- gsub("\\s+", " ", str_trim(x$content))
+  x$content[idx] <- str_replace(x$content[idx], paste(x$field[idx], "= "), "")
   x$content[idx] <- sub("^\\{", "", x$content[idx])
   idx2 <- c(idx[-1], TRUE)
   x$content[idx2] <- sub("(},)$|(})$", "", x$content[idx2])
