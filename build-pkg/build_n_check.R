@@ -14,7 +14,7 @@ rm(list = ls())
 
 # Clean folder
 unlink(file.path("build-pkg", list.files("build-pkg", ".tar.gz")))
-## unlink(file.path("build-pkg", list.files("build-pkg", ".pdf")))
+unlink(file.path("build-pkg", list.files("build-pkg", ".pdf")))
 
 # re-style scripts
 style_pkg()
