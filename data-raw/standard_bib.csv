@@ -44,3 +44,12 @@ id,field,category,description
 43,abstract,no-class,Record of work’s abstract.
 44,keywords,no-class,Separated list of keywords.
 45,refid,custom,Identifier used in a different (exported) format.
+46,annote,custom,An annotation for annotated bibliography styles (not typical).
+47,Email,place,The email of teh author(s).
+48,crossref,custom,The key of the cross-referenced entry (e.g. collection for in_collection).
+49,howpublished,custom,"How it was published, if the publishing method is nonstandard."
+50,key,custom,A hidden field used for specifying or overriding the alphabetical order of entries (when the "author" and "editor" fields are missing). Note that this is very different from the key (mentioned just after this list) that is used to cite or cross-reference the entry.
+51,month,dates,"The month of publication (or, if unpublished, the month of creation)."
+52,note,custom,Miscellaneous extra information.
+53,school,place,The school where the thesis was written.
+54,type,custom,"The field overriding the default type of publication (e.g. 'Research Note' for techreport, '(PhD) dissertation' for phdthesis, 'Section' for inbook/incollection)."
