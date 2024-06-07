@@ -1,5 +1,5 @@
 Package: biblio
-Version: 0.0.9
+Version: 0.0.10
 Encoding: UTF-8
 Title: Interacting with BibTeX Databases
 Authors@R: c(
@@ -10,6 +10,7 @@ Depends:
     R(>= 4.1)
 Imports:
     methods,
+    rcrossref,
     stringr,
     tools,
     utils,

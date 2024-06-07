@@ -1,6 +1,11 @@
 
 # biblio 0.1.0
 
+### New Freatures
+
+- A new function `doi2bib()` is retrieving references in BibTeX format for
+  DOIs.
+
 ### Bug Fixes
 
 - Error importing BibTeX files by `read_bib()`.
