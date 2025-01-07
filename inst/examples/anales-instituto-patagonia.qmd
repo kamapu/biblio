@@ -1,0 +1,17 @@
+---
+title: Anales Instituto Patagonia
+format: pdf
+bibliography: bibliography.bib
+csl: ../csl/anales-instituto-patagonia.csl
+nocite: |
+  @*
+link-citations: true
+---
+
+# Metadata
+
+Journal: [Anales Instituto Patagonia](https://www.analesdelinstitutodelapatagonia.cl/index.php/analespatagonia/)\
+Direct citation: According to @Zeballos2023 \ldots \
+Indirect cittion: [@Matthei1995;@Ruiz2001]
+
+# References

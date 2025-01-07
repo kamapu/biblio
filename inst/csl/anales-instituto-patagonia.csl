@@ -38,7 +38,7 @@
       </else-if>
       <else>
         <group prefix=". " delimiter=", ">
-          <text variable="container-title" form="short"/>
+          <text variable="container-title" form="short" font-style="italic"/>
           <text variable="collection-title"/>
         </group>
       </else>
@@ -66,7 +66,7 @@
             <text variable="title" form="short" font-style="italic"/>
           </if>
           <else>
-            <text variable="title" form="short" quotes="true"/>
+            <text variable="title" form="short"/>
           </else>
         </choose>
       </substitute>
