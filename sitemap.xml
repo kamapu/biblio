@@ -1,60 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://kamapu.github.io/biblio/404.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/index.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/bib2bibentry.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/coerce-methods.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/comp_df-class.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/compare_df.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/detect_keys.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/doi2bib.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/insert_rows.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/lib_df-class.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/print.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/read_bib.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/reflist.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/synopsis.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/update_data.html</loc>
-  </url>
-  <url>
-    <loc>https://kamapu.github.io/biblio/reference/write_bib.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://kamapu.github.io/biblio/404.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/authors.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/index.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/news/index.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/bib2bibentry.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/coerce-methods.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/comp_df-class.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/compare_df.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/detect_keys.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/doi2bib.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/index.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/insert_rows.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/lib_df-class.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/print.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/read_bib.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/reflist.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/synopsis.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/update_data.html</loc></url>
+<url><loc>https://kamapu.github.io/biblio/reference/write_bib.html</loc></url>
 </urlset>
+
