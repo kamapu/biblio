@@ -22,7 +22,7 @@ jobs:
       
       # Install dependencies
       - name: Install cURL Headers
-        run: sudo apt-get update && sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
+        run: sudo apt-get update && sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev libfontconfig1-dev
       
       # Install packages needed
       - name: install required packages
