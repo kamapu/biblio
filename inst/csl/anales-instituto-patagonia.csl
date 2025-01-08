@@ -77,6 +77,9 @@
       <if variable="DOI">
         <text variable="DOI" prefix="https://doi.org/"/>
       </if>
+      <else-if variable="URL">
+         <text variable="URL"/>
+      </else-if>
       <else-if type="webpage post-weblog" match="any">
         <group delimiter=" ">
           <text value="URL"/>
@@ -104,21 +107,21 @@
       </if>
       <else-if type="bill book graphic legal_case legislation motion_picture report song speech" match="any">
         <text variable="title"/>
-        <text macro="edition" prefix=", "/>
+        <text macro="edition" prefix=" "/>
       </else-if>
-      <else-if type="webpage">
+      <!-- <else-if type="webpage">
         <text variable="title"/>
         <text value="WWW Document" prefix=" [" suffix="]"/>
-      </else-if>
+      </else-if> -->
       <else>
         <text variable="title"/>
       </else>
     </choose>
   </macro>
   <macro name="publisher">
-    <group delimiter=", ">
-      <text variable="publisher"/>
+    <group delimiter=": ">
       <text variable="publisher-place"/>
+      <text variable="publisher"/>
     </group>
   </macro>
   <macro name="event">
@@ -145,13 +148,13 @@
     <group delimiter=" ">
       <choose>
         <if is-numeric="edition">
-          <number variable="edition" form="ordinal"/>
+          <number variable="edition" form="ordinal" prefix="("/>
         </if>
         <else>
-          <text variable="edition" suffix="."/>
+          <text variable="edition" prefix="("/>
         </else>
       </choose>
-      <text value="ed"/>
+      <text value="ed.)"/>
     </group>
   </macro>
   <macro name="locators">
