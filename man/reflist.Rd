@@ -39,7 +39,7 @@ file.}
 be deleted after rendering html or not.}
 
 \item{title, output, nocite, urlcolor}{Arguments used for the yaml-header in
-r-markdown and passed to \code{\link[=write_rmd]{write_rmd()}}. They can be cancelled using the
+r-markdown and passed to \code{\link[yamlme:write_rmd]{yamlme::write_rmd()}}. They can be cancelled using the
 value NULL (not recommended for nocite).}
 
 \item{encoding}{A character value indicating the encoding string. It is
@@ -50,7 +50,7 @@ without file extension.}
 }
 \value{
 An invisible object of class \code{rmd_doc}. A Rmd file will be written by
-\code{\link[=write_rmd]{write_rmd()}} as well.
+\code{\link[yamlme:write_rmd]{yamlme::write_rmd()}} as well.
 }
 \description{
 A fast way to produce a reference list in an r-markdown document from a
@@ -60,7 +60,7 @@ This function may or may not produce intermediate files (bib and Rmd) and the
 result can be assigned to an object for further edition
 (see \code{\link[yamlme:update]{yamlme::update()}}).
 
-A html file will be written by \code{\link[=write_rmd]{write_rmd()}} and \code{\link[=render_rmd]{render_rmd()}} in the
+A html file will be written by \code{\link[yamlme:write_rmd]{yamlme::write_rmd()}} and \code{\link[yamlme:render_rmd]{yamlme::render_rmd()}} in the
 working directory and displayed by \code{\link[=browseURL]{browseURL()}}.
 }
 \examples{

@@ -14,7 +14,7 @@
 #' [rbbt](https://github.com/paleolimbot/rbbt).
 #'
 #' @param x A character vector, a file imported by [readLines()] or an object
-#'     imported by [read_rmd()]. If the character vector is the name of a Rmd
+#'     imported by [yamlme::read_rmd()]. If the character vector is the name of a Rmd
 #'     or a Quarto document, [readLines()] will be internally called to read it.
 #' @param ... Further arguments passed among methods. In character-method they
 #'     are passed to [readLines()].
@@ -25,8 +25,7 @@
 #'
 #' @example examples/detect_keys.R
 #'
-#' @export detect_keys
-#'
+#' @export
 detect_keys <- function(x, ...) {
   UseMethod("detect_keys", x)
 }

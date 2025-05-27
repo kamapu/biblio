@@ -16,7 +16,7 @@ The output is an object of class \linkS4class{lib_df}.
 }
 \description{
 Retrieving bibliographic entries from Crossref by DOIs.
-This function is a wrapper for \code{\link[=cr_cn]{cr_cn()}}.
+This function is a wrapper for \code{\link[rcrossref:cr_cn]{rcrossref::cr_cn()}}.
 }
 \examples{
 ## Retrieve bibliographic entries for two publications

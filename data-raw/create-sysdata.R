@@ -1,8 +1,3 @@
-# TODO:   Add tables to system data
-#
-# Author: Miguel Alvarez
-################################################################################
-
 library(tools)
 
 dfs <- file_path_sans_ext(list.files("data-raw", pattern = ".csv"))

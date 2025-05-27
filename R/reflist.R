@@ -11,7 +11,7 @@
 #' result can be assigned to an object for further edition
 #' (see [yamlme::update()]).
 #'
-#' A html file will be written by [write_rmd()] and [render_rmd()] in the
+#' A html file will be written by [yamlme::write_rmd()] and [yamlme::render_rmd()] in the
 #' working directory and displayed by [browseURL()].
 #'
 #' @param x A `lib_df` object to produce the reference list. In the character
@@ -26,14 +26,14 @@
 #' @param encoding A character value indicating the encoding string. It is
 #'     passed to [write_bib()].
 #' @param title,output,nocite,urlcolor Arguments used for the yaml-header in
-#'     r-markdown and passed to [write_rmd()]. They can be cancelled using the
+#'     r-markdown and passed to [yamlme::write_rmd()]. They can be cancelled using the
 #'     value NULL (not recommended for nocite).
 #' @param ... Further arguments passed to the yaml header in the intermediate
 #'     Rmarkdown document.
 #'
 #' @return
 #' An invisible object of class `rmd_doc`. A Rmd file will be written by
-#' [write_rmd()] as well.
+#' [yamlme::write_rmd()] as well.
 #'
 #' @examples
 #' \dontrun{

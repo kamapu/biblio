@@ -3,7 +3,7 @@
 #'
 #' @description
 #' Retrieving bibliographic entries from Crossref by DOIs.
-#' This function is a wrapper for [cr_cn()].
+#' This function is a wrapper for [rcrossref::cr_cn()].
 #'
 #' @param x A character vector including DOI identifiers.
 #' @param ... Further arguments (not yet used).
